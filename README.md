@@ -14,9 +14,11 @@ This repository Holds all code and planning resources for HCL Capstone
 | ------------- |:-------------:|
 | H1. | User Login |
 | H2. | User Registry |
+
 | Priority        | Medium           |
 | ------------- |:-------------:|
 | M1. | Store music files in S3 |
+
 | Priority        | Low           |
 | ------------- |:-------------:|
 | L1. | Account Tags |
