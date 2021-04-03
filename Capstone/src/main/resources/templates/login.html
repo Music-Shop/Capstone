@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+	<link rel="stylesheet" type="text/css" th:ref="@{/css/login.css}"/>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<meta charset="ISO-8859-1">
+<title>Login</title>
+</head>
+<body>
+<form th:action="@{/registration}" method="get">
+	<button class="btn btn-md btn-warning btn-block" type = "Submit">Go to Registration Page</button>
+</form>
+
+<div class="container">
+	<img th:src="@{/images/login.png}" class="img-responsive center-black" width="300" height="300" alt="Logo"/>
+	<form th:action="@{/login}" method="POST" class="form-signin">
+		<h3 class="form-signin-heading" th:text="Welcome"></h3>
+		<br/>
+		
+		<input type="text" id="user_name" name="user_name" placeholder="User Name"
+			class="form-control"/> <br/>
+			
+		<input type="password" th:placeholder="Password" id="password" name="password" class="form-control">
+		
+		<div align="center" th:if="${param.error}">
+			<p style="font-size: 20; color: #FF1C19;">User Name or Password invalid...please try again
+		</div>
+		
+		<button class="btn btn-lg btn-primary btn-block" name="Submit" value="login" type="Submit" th:text="login"></button>
+	</form>
+</div>
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
