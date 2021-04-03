@@ -1,14 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
+<!-- Google Credintials -->
+<meta name="google-signin-client_id" content="770775396538-q3m50r8vvupf6a70qtin44qu6o72bknm.apps.googleusercontent.com">
 
-	<link rel="stylesheet" type="text/css" th:ref="@{/css/login.css}"/>
+<title>Login</title>
+
+<!-- <link rel="shortcut icon" type="image/svg+xml" href="images/pets-24px.svg" /> -->
+	<link rel="stylesheet" type="text/css" th:ref="@{/css/addUser.css}"/>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <meta charset="ISO-8859-1">
-<title>Login</title>
 </head>
 <body>
+<!-- 
+
 <form th:action="@{/registration}" method="get">
 	<button class="btn btn-md btn-warning btn-block" type = "Submit">Go to Registration Page</button>
 </form>
@@ -32,8 +38,179 @@
 	</form>
 </div>
 
+ -->
 
 
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#" style="color: #E25A5A">Music Melody</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+</nav>
+
+<div class="d-flex justify-content-center">
+<div style="width:25%; ">
+	
+</div>
+</div>
+<div style="color: black; width: 100%; height: 100%; display: flex; justify-content: center; margin-bottom: 5rem; margin-top: 14rem;">
+		<div style="width: 500px; height: 650px; background-color: white; border-radius: 30px; position: relative; border: 5px solid black;">
+					<div class="text-center" style="width: 75%; height: auto; position: absolute; left: 65px; top: -205px;">
+						<!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+						<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+							 viewBox="0 0 254 131" style="enable-background:new 0 0 254 131;" xml:space="preserve">
+						<style type="text/css">
+							.st0{fill:#E25A5A;}
+						</style>
+						
+						<path class="st0" d="M0,131h14c0,0,0-42,35-69s71-26,79-27s44,1,74,27s36,69,36,69h16c0,0-4-34-21-67s-41-46-41-46S165-1,132,0
+							S90,3,70,12S29,48,29,48S10,77,5,100S0,131,0,131z"/>
+						</svg>
+					</div>
+					
+					<div class="text-center" style="border: solid 10px white; border-radius: 50%; background-color: #E25A5A; width: 150px; height: 150px; position: absolute; left: 175px; top: -75px; color: white;">
+						<p style="margin-top: 10px; font-size: 35px; font-family: cursive"> Music Melody</p>
+					</div>
+		
+		<div style="margin-top: 80px;">
+			<div class="d-flex justify-content-between">
+				<div class = "account login" id="login" style="text-decoration: underline; font-size: 25px; margin-left: 70px;" onclick="loginScreen()">Login</div>
+				<div class="account signUp" style=" font-size: 25px; margin-right: 70px;" onclick="signUp()">Sign Up</div>
+			
+			</div>
+				<!-- ------------------------------------------------------------- -->
+				<!--                  Sign in                                     -->
+				<!-- ------------------------------------------------------------- -->
+			<form name="Signin" class = "signinBox" onsubmit="return validateLogin()" th:action="@{/login}" method="POST" style="margin-top: 40px;">
+				<div class="d-flex justify-content-center" style="width: 100%;">
+				
+					<div>
+						<label for="email">Username</label>
+						<div class="" style="width: 100%;">
+							<input type="text" id="user_name" name="user_name" placeholder="User Name"
+								class="form-control"/> <br/>
+						</div>
+						<br>
+						
+						<label for="pwd">Password</label>
+						
+						<div class="" style="width: 100%;">
+							<input type="password" th:placeholder="Password" id="password" name="password" class="form-control">
+							<div align="center" th:if="${param.error}">
+								<p style="font-size: 20; color: #FF1C19;">User Name or Password invalid...please try again
+							</div>
+						</div>					
+						<br>
+						<br>
+							<input type="submit" value="Login" class="btn btn-primary btn-lg" style="background-color: #E25A5A; border-color: #E25A5A;">
+					</div>		
+					
+				</div>
+				</form>
+				
+				<!-- ------------------------------------------------------------- -->
+				<!--                  Sign up                                      -->
+				<!-- ------------------------------------------------------------- -->
+				<form class = "signupBox" name="Signup" onsubmit="return validateSignUp()" action="Signup" method="post" style="visibility: hidden;">
+				<div class="d-flex justify-content-center" style="width: 100%;">
+				
+					<div>
+						<label for="newEmail">Email</label>
+						<div class="" style="width: 100%;">
+							<input type="email" id="newEmail" name="newEmail">
+						</div>
+						<br>
+						
+						<label for="fname">First Name</label>
+						
+						<div class="" style="width: 100%;">
+							<input type="input" id="fname" name="fname">
+						</div>
+						
+						<label for="lname">Last Name</label>
+						
+						<div class="" style="width: 100%;">
+							<input type="input" id="lname" name="lname">
+						</div>
+						
+						<label for="newPwd">Password</label>
+						
+						<div class="" style="width: 100%;">
+							<input type="password" id="newPassword" name="newPassword">
+						</div>					
+						<br>
+						<br>
+							<input type="submit" value="Submit" class="btn btn-primary btn-lg" style="background-color: #E25A5A; border-color: #E25A5A;">
+					</div>		
+					
+				</div>
+			</form>
+			
+		</div>
+		
+		</div>
+</div>	
+	
+	<!-- Footer -->
+<footer class="text-center text-lg-start" style="background-color: #E25A5A; color: white;">
+  <!-- Grid container -->
+  <div class="container p-4">
+  <div class="text-center">
+	  	<h5 class="text-uppercase">Contact</h5>
+  </div>
+  
+  <div class="d-flex justify-content-center" style="margin-top: 2rem;">
+  	<div style="margin-right: 3rem;">
+
+        <ul class="list-unstyled mb-0">
+          <li>
+            Email
+          </li>
+          <li>
+            Phone
+          </li>
+        </ul>
+      </div>
+      
+      <div>
+
+        <ul class="list-unstyled">
+          <li>
+          	evan_watson@hcl.com
+          </li>
+          <li>
+            (###)###-####
+          </li>
+        </ul>
+      </div>
+  </div>
+  </div>
+	
+	  <!-- Copyright -->
+  <div class="text-center p-3" style="background-color: black;">
+    © 2020 Copyright:
+    <a class="text-light" href="#">MusicMelody.us</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+<!-- Footer -->
+	
+	
+	<!-- Google Credintials -->
+	<script src="https://apis.google.com/js/platform.js" async defer></script>
+	
+	<!-- Bootstrap -->
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+	<script th:ref="@{/js/addUser.js}"></script>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
