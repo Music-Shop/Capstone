@@ -54,7 +54,7 @@ function validateLogin(){
 
 
 function validateSignUp(){
- 	var email = document.forms["Signup"]["newEmail"].value;
+ 	/** var email = document.forms["Signup"]["newEmail"].value;
  	var fname = document.forms["Signup"]["fname"].value;
  	var lname = document.forms["Signup"]["lname"].value;
  	var pass = document.forms["Signup"]["newPassword"].value;
@@ -73,6 +73,7 @@ function validateSignUp(){
 		alert("Password must be filled out");
     	return false;
 	}
+	*/
 }
 
 function onSignIn(googleUser) {

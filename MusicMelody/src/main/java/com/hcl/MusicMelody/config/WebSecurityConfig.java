@@ -32,18 +32,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception{
 		String loginPage = "/login";
 		String logoutPage = "/logout";
+		String index = "/index";
 		
 		http.
 			authorizeRequests()
 			.antMatchers("/").permitAll()
 			.antMatchers(loginPage).permitAll()
+			.antMatchers(index).permitAll()
 			.antMatchers("/registration").permitAll()
 			.antMatchers(HttpMethod.POST, "/admin/home/addTask").hasAuthority("ADMIN")
 			.antMatchers("/admin/**").hasAuthority("ADMIN")
 			.anyRequest()
 			.authenticated()
 			.and().csrf().disable()
-			.formLogin()
+			.formLogin() 
 			.loginPage(loginPage)
 			.loginPage("/")
 			.failureUrl("/login?error=true")

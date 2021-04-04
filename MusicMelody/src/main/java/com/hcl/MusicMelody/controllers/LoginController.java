@@ -41,9 +41,21 @@ public class LoginController {
 	@Autowired
 	private TaskService taskService;
 	
-	@GetMapping(value = {"/", "/login"})
+	@GetMapping(value ="/")
+	public ModelAndView home() {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("index");
+		return modelAndView;
+	}
+	
+	
+	@GetMapping(value =  "/login")
 	public ModelAndView login() {
 		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("login");
+		
+		UserCred user = new UserCred();
+		modelAndView.addObject("userCred", user);
 		modelAndView.setViewName("login");
 		return modelAndView;
 	}
@@ -53,7 +65,7 @@ public class LoginController {
 		ModelAndView modelAndView = new ModelAndView();
 		UserCred user = new UserCred();
 		modelAndView.addObject("userCred", user);
-		modelAndView.setViewName("registration");
+		modelAndView.setViewName("login");
 		return modelAndView;
 	}
 	
@@ -75,7 +87,7 @@ public class LoginController {
 			userService.saveUser(user);
 			modelAndView.addObject("successMessage", "User has been registered successfully");
 			modelAndView.addObject("user", new UserCred());
-			modelAndView.setViewName("registration");
+			modelAndView.setViewName("login");
 		}
 		
 		return modelAndView;
