@@ -1,12 +1,18 @@
 package com.hcl.MusicMelody.models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotEmpty;
 
+import org.hibernate.validator.constraints.Length;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 import org.springframework.format.annotation.DateTimeFormat;
+
+import net.bytebuddy.implementation.bind.annotation.Default;
 
 import java.util.Date;
 
@@ -17,11 +23,41 @@ public class Task {
 	 * TODO: revamp to fit format for a product
 	 *  - Title of Song (String)
 	 *  - Artist (String)
-	 *  - Genre (enum)
+	 *  - Genre (enum) - allow for multiple selections? 
 	 *  - Release (Set date when added or self entered date)
 	 *  - Price (USD)
+	 * 
+	 * Below is the rough draft of the variables
 	 */
 
+	// @Id
+	// @GeneratedValue(strategy = GenerationType.IDENTITY)
+	// private Integer id;
+
+	// @Column(name = "title")
+	// @Length(message = "Song must have a title")
+	// @NotEmpty(message = "Please provide a song title")
+	// private String title;
+
+	// @Column(name = "artist")
+	// @Length(message = "Song must have an artist")
+	// @NotEmpty(message = "Please provide a artist for the song")
+	// private String artist;
+
+	// @Column(name = "genre")
+	// @Length(message = "Song must should have a genre")
+	// @NotEmpty(message = "Please select a genre for the song")
+	// private String genre;
+
+	// @Column(name = "release")
+	// @Length(message = "Song must have a release date")
+	// @NotEmpty(message = "Please enter the release date")
+	// private Date release;
+
+	// @Column(name = "price")
+	// @Length(message = "Song must have a asking price")
+	// @NotEmpty(message = "Please enter a price")
+	// private Double price;
 
 
 	@Id

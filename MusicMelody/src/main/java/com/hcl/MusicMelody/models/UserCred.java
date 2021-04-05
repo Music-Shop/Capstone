@@ -1,5 +1,6 @@
 package com.hcl.MusicMelody.models;
 
+import java.lang.Thread.State;
 import java.util.Set;
 
 //import org.hibernate.validator.constraints.Length;
@@ -10,6 +11,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.validator.constraints.Length;
+import org.springframework.boot.autoconfigure.security.ConditionalOnDefaultWebSecurity;
 
 
 @Entity
@@ -32,7 +34,7 @@ public class UserCred {
 	private String email;
 	
 	@Column(name = "password")
-	@Length(min = 5, message = "Your password must have at least 5 characters")
+	@Length(min = 8, message = "Your password must have at least 8 characters")
 	@NotEmpty(message = "Please provide your password")
 	private String password;
 	
@@ -52,11 +54,34 @@ public class UserCred {
 	 *  - Address (String)
 	 *  - Apartment (int)
 	 *  - City (String)
-	 *  - State (String - either initials (2 char len) or full state name)
+	 *  - State (String - either initials (2 char len) or full state name) - enum?
 	 *  - Zip Code (int of len 5)
 	 * 
 	 * I think that this should be added when a user registers (Ref: pdf of capstone in resources).
+	 * 
+	 * Below is the rough draft of the variables to add
 	 */
+
+	// @Column(name = "address")
+	// @Length(min = 5)
+	// @NotEmpty(message = "Please enter a address")
+	// private String address;
+
+	// @Column(name = "apartment")
+	// private Integer apartment;
+
+	// @Column(name = "city")
+	// @NotEmpty(message = "Please enter a name of city")
+	// private String city;
+
+	// @Column(name = "state")
+	// @NotEmpty(message = "Please select a state")
+	// private String state;
+
+	// @Column(name = "zipcode")
+	// @NotEmpty(message = "Please enter a zipcode")
+	// private Integer zipCode;
+
 	
 	@ManyToMany(cascade = CascadeType.MERGE)
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))

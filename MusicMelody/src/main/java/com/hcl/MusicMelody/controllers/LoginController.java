@@ -183,7 +183,6 @@ public class LoginController {
 	 * ================================================
 	 */
 
-
 	 /**
 	  * Gets the model for user home and displays the page for the new user.
 	  * @return - ModelAndView
