@@ -176,4 +176,20 @@ public class LoginController {
 		modelAndView.setViewName("redirect:/admin/home");
 		return modelAndView;
 	}
+
+	/**
+	 * ================================================
+	 * ===  USER CONTROLLER
+	 * ================================================
+	 */
+
+
+	 /**
+	  * Gets the model for user home and displays the page for the new user.
+	  * @return - ModelAndView
+	  */
+	 @GetMapping("/user/home")
+	 public ModelAndView showUserHome() {
+		 return new ModelAndView("/user/home");
+	 }
 }
