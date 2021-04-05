@@ -13,6 +13,17 @@ import java.util.Date;
 @Entity
 public class Task {
 	
+	/**
+	 * TODO: revamp to fit format for a product
+	 *  - Title of Song (String)
+	 *  - Artist (String)
+	 *  - Genre (enum)
+	 *  - Release (Set date when added or self entered date)
+	 *  - Price (USD)
+	 */
+
+
+
 	@Id
 	   @GeneratedValue(strategy=GenerationType.IDENTITY)
 	   private Integer id;

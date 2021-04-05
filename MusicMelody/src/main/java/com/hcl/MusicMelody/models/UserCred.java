@@ -46,6 +46,17 @@ public class UserCred {
 	
 	@Column(name = "active")
 	private boolean active;
+
+	/**
+	 * TODO: Add Billing address information?
+	 *  - Address (String)
+	 *  - Apartment (int)
+	 *  - City (String)
+	 *  - State (String - either initials (2 char len) or full state name)
+	 *  - Zip Code (int of len 5)
+	 * 
+	 * I think that this should be added when a user registers (Ref: pdf of capstone in resources).
+	 */
 	
 	@ManyToMany(cascade = CascadeType.MERGE)
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
