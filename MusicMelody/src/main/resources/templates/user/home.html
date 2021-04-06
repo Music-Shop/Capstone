@@ -5,6 +5,12 @@
     </head>
     <body>
         <h1>Welcome to user home screen</h1>
+
+        <div class="d-flex justify-content-end">
+            <form th:action="@{/logout}" method="get">
+                <button class="btn btn-md btn-danger btn-block d-flex justify-content-center" style="width: 100px; height: auto;" name="registration" type="Submit">Logout</button>
+            </form>
+        </div>
     </body>
 
 </html>
