@@ -1,20 +1,14 @@
 package com.hcl.MusicMelody.models;
 
-import javax.persistence.Column;
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.validation.constraints.NotEmpty;
 
-import org.hibernate.validator.constraints.Length;
-import org.springframework.boot.context.properties.bind.DefaultValue;
 import org.springframework.format.annotation.DateTimeFormat;
-
-import net.bytebuddy.implementation.bind.annotation.Default;
-
-import java.util.Date;
 
 @Entity
 public class Task {
@@ -27,7 +21,7 @@ public class Task {
 	 *  - Release (Set date when added or self entered date)
 	 *  - Price (USD)
 	 * 
-	 * Below is the rough draft of the variables
+	 * Below is the rough draft of the variables to change/add
 	 */
 
 	// @Id
@@ -61,22 +55,22 @@ public class Task {
 
 
 	@Id
-	   @GeneratedValue(strategy=GenerationType.IDENTITY)
-	   private Integer id;
-	   private String name;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Integer id;
+	private String name;
 	   
-	   @DateTimeFormat(pattern = "yyyy-MM-dd")
-	   private Date startDate;
-	   private Date endDate;
-	   private String severity;
-	   private String description;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date startDate;
+	private Date endDate;
+	private String severity;
+	private String description;
 	   
-	   @ManyToOne
-	   private UserCred user;
+	@ManyToOne
+	private UserCred user;
 	   
-	   public Task() {
+	public Task() {
 		   
-	   }
+	}
 	   
 	public Task(String name, Date startDate, Date endDate, String severity, String description,
 			UserCred user) {
