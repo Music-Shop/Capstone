@@ -12,42 +12,10 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <meta charset="ISO-8859-1">
 </head>
-<body>
-<!-- 
+<body style="background-color: #1E1E1E;">
 
-<form th:action="@{/registration}" method="get">
-	<button class="btn btn-md btn-warning btn-block" type = "Submit">Go to Registration Page</button>
-</form>
-
-<div class="container">
-	<img th:src="@{/images/login.png}" class="img-responsive center-black" width="300" height="300" alt="Logo"/>
-	<form th:action="@{/login}" method="POST" class="form-signin">
-		<h3 class="form-signin-heading" th:text="Welcome"></h3>
-		<br/>
-		
-		<input type="text" id="user_name" name="user_name" placeholder="User Name"
-			class="form-control"/> <br/>
-			
-		<input type="password" th:placeholder="Password" id="password" name="password" class="form-control">
-		
-		<div align="center" th:if="${param.error}">
-			<p style="font-size: 20; color: #FF1C19;">User Name or Password invalid...please try again
-		</div>
-		
-		<button class="btn btn-lg btn-primary btn-block" name="Submit" value="login" type="Submit" th:text="login"></button>
-	</form>
-</div>
-
- -->
-
-
-
-
-
-
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="/" style="color: #E25A5A">Music Melody</a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="/" style="color: #D06CFF">Music Melody</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -66,7 +34,7 @@
 						<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 							 viewBox="0 0 254 131" style="enable-background:new 0 0 254 131;" xml:space="preserve">
 						<style type="text/css">
-							.st0{fill:#E25A5A;}
+							.st0{fill:#D06CFF;}
 						</style>
 						
 						<path class="st0" d="M0,131h14c0,0,0-42,35-69s71-26,79-27s44,1,74,27s36,69,36,69h16c0,0-4-34-21-67s-41-46-41-46S165-1,132,0
@@ -74,7 +42,7 @@
 						</svg>
 					</div>
 					
-					<div class="text-center" style="border: solid 10px white; border-radius: 50%; background-color: #E25A5A; width: 150px; height: 150px; position: absolute; left: 175px; top: -75px; color: white;">
+					<div class="text-center" style="border: solid 10px white; border-radius: 50%; background-color: #D06CFF; width: 150px; height: 150px; position: absolute; left: 175px; top: -75px; color: white;">
 						<p style="margin-top: 10px; font-size: 35px; font-family: cursive"> Music Melody</p>
 					</div>
 		
@@ -103,12 +71,12 @@
 						<div class="" style="width: 100%;">
 							<input type="password" th:placeholder="Password" id="password" name="password" class="form-control">
 							<div align="center" th:if="${param.error}">
-								<p style="font-size: 20; color: #FF1C19;">User Name or Password invalid...please try again
+								<p style="font-size: 20; color: #D06CFF;">User Name or Password invalid...please try again
 							</div>
 						</div>					
 						<br>
 						<br>
-							<input type="submit" value="Login" class="btn btn-primary btn-lg" style="background-color: #E25A5A; border-color: #E25A5A;">
+							<input type="submit" value="Login" class="btn btn-primary btn-lg" style="background-color: #D06CFF; border-color: #D06CFF;">
 					</div>		
 					
 				</div>
@@ -154,7 +122,7 @@
 						</div>					
 						<br>
 						<br>
-							<button type="submit" class="btn btn-primary btn-lg" style="background-color: #E25A5A; border-color: #E25A5A;">Register</button>
+							<button type="submit" class="btn btn-primary btn-lg" style="background-color: #D06CFF; border-color: #D06CFF;">Register</button>
 					</div>		
 					
 					<h2><span class="text-success" th:utexts="${successMessage}"></span></h2>
@@ -173,7 +141,7 @@
 </div>	
 	
 	<!-- Footer -->
-<footer class="text-center text-lg-start" style="background-color: #E25A5A; color: white;">
+<footer class="text-center text-lg-start" style="background-color: #D06CFF; color: white;">
   <!-- Grid container -->
   <div class="container p-4">
   <div class="text-center">
