@@ -6,9 +6,7 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
-import com.hcl.MusicMelody.models.Task;
 import com.hcl.MusicMelody.models.UserCred;
-import com.hcl.MusicMelody.services.TaskService;
 import com.hcl.MusicMelody.services.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,9 +27,6 @@ public class LoginController {
 	@Autowired
 	private UserService userService;
 	
-	@Autowired
-	private TaskService taskService;
-	
 	@GetMapping(value ="/")
 	public ModelAndView home() {
 		ModelAndView modelAndView = new ModelAndView();
@@ -43,7 +38,6 @@ public class LoginController {
 	@GetMapping(value =  "/login")
 	public ModelAndView login() {
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("login");
 		
 		UserCred user = new UserCred();
 		modelAndView.addObject("userCred", user);
@@ -56,6 +50,8 @@ public class LoginController {
 		ModelAndView modelAndView = new ModelAndView();
 		UserCred user = new UserCred();
 		modelAndView.addObject("userCred", user);
+		modelAndView.addObject("successMessage", "User Error");
+
 		modelAndView.setViewName("login");
 		return modelAndView;
 	}
@@ -70,10 +66,13 @@ public class LoginController {
 
 		if(userExists != null) {
 			bindingResult.rejectValue("userName", "There is already a user w/ that name. Sorry...try again");
-			
+			modelAndView.addObject("successMessage", "User Exists");
+
 		}
 		if(bindingResult.hasErrors()) {
-			modelAndView.setViewName("registration");
+			modelAndView.addObject("successMessage", "User Error");
+
+			modelAndView.setViewName("login");
 		}else {
 			userService.saveUser(user);
 			modelAndView.addObject("successMessage", "User has been registered successfully");
@@ -91,10 +90,6 @@ public class LoginController {
 		UserCred user = userService.findUserByUserName(auth.getName());
 		System.out.println("=================================== User for Tasks" + user.toString());
 		
-		Iterable<Task> tasks = taskService.GetTasksByUser(user); 
-		
-		System.out.println("=================================== Tasks" + tasks.toString());
-		modelAndView.addObject("userTasks", tasks);
 		
 		modelAndView.addObject("userName", user.getName());
 		modelAndView.addObject("adminMessage", "Content Available only for users with admin role");
@@ -104,24 +99,10 @@ public class LoginController {
 	}
 	
 	@PostMapping(value="/admin/home")
-	public ModelAndView addTask(Principal principle, @RequestParam(value="fname", required=false, defaultValue="") String fname, 
-								@RequestParam(value="lname", required=false, defaultValue="") String lname, 
-								@RequestParam(value="sdate")     @DateTimeFormat(pattern="yyyy-MM-dd") Date sdate, 
-								@RequestParam(value="edate")     @DateTimeFormat(pattern="yyyy-MM-dd") Date edate,
-								@RequestParam(value="desc") String desc,
-								@RequestParam(value="sev") String sev
-								
-								) {
+	public ModelAndView addTask(Principal principle) {
 		ModelAndView modelAndView = new ModelAndView();
 
 		UserCred user = userService.findUserByUserName(principle.getName());
-		Task task = new Task(fname + " " + lname, sdate, edate, sev, desc, user);
-		taskService.save(task);
-		
-		Iterable<Task> tasks = taskService.GetTasksByUser(user); 
-		
-		System.out.println("=================================== Tasks" + tasks.toString());
-		modelAndView.addObject("userTasks", tasks);
 		
 		modelAndView.addObject("userName", user.getName());
 		modelAndView.addObject("adminMessage", "Content Available only for users with admin role");
@@ -130,43 +111,6 @@ public class LoginController {
 		return modelAndView;
 	}
 	
-	@PostMapping(value = "/admin/home/updateTask")
-	public ModelAndView updateTask(Principal principle, @RequestParam(value="tId", required=true, defaultValue="") String id,
-			@RequestParam(value="tName", required=false, defaultValue="") String name, 
-			@RequestParam(value="tSdate")     @DateTimeFormat(pattern="yyyy-MM-dd") Date sdate, 
-			@RequestParam(value="tEdate")     @DateTimeFormat(pattern="yyyy-MM-dd") Date edate,
-			@RequestParam(value="tDesc") String desc,
-			@RequestParam(value="tSev") String sev
-			) {
-		ModelAndView modelAndView = new ModelAndView();
-
-//		UserCred user = userService.findUserByUserName(principle.getName());
-		Optional<Task> updateTaskOption = taskService.GetTaskById(Integer.parseInt(id));
-		Task updateTask = updateTaskOption.get();
-		updateTask.setName(name);
-		updateTask.setStartDate(sdate);
-		updateTask.setEndDate(edate);
-		updateTask.setDescription(desc);
-		updateTask.setSeverity(sev);
-		taskService.save(updateTask);
-		
-		modelAndView.setViewName("redirect:/admin/home");
-		return modelAndView;
-	}
-
-	@PostMapping(value = "/admin/home/deleteTask")
-	public ModelAndView deleteTask(Principal principle, @RequestParam(value="tId", required=true, defaultValue="") String id
-			) {
-		ModelAndView modelAndView = new ModelAndView();
-
-//		UserCred user = userService.findUserByUserName(principle.getName());
-		Optional<Task> deleteTaskOption = taskService.GetTaskById(Integer.parseInt(id));
-		Task deleteTask = deleteTaskOption.get();
-		taskService.delete(deleteTask);
-		
-		modelAndView.setViewName("redirect:/admin/home");
-		return modelAndView;
-	}
 
 	/**
 	 * ================================================
