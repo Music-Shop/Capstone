@@ -1,5 +1,6 @@
 package com.hcl.MusicMelody.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import com.hcl.MusicMelody.models.Song;
@@ -26,11 +27,20 @@ public class SongService {
         else return holder.get();
     }
 
+    /**
+     * If song does not already exist, then it is added to the database; 
+     * else the song is updated with the following fields 
+     * @param song - Song
+     */
     public void addUpdateSong(Song song) {
         songRepo.save(song);
     }
 
-    public Iterable<Song> GetAllSongs() {
+    /**
+     * Collects all songs that are in the database
+     * @return List<Song>
+     */
+    public List<Song> GetAllSongs() {
         return songRepo.findAll();
     }
 }
