@@ -41,7 +41,61 @@ public class Artist {
     // @NotEmpty(message = "Duration cannot be 0, empty, or null")
     private String startDate;
 
-	
 	@OneToMany(mappedBy = "artist")
     private Set<Song> songs = new HashSet<>();
+
+    public String toFullName() {
+        return fname + lname;
+    }
+
+    public Artist() {
+    }
+
+    public Artist(String fname, String lname, String startDate) {
+        this.fname = fname;
+        this.lname = lname;
+        this.startDate = startDate;
+    }
+
+    public Artist getArtist() {
+        return artist;
+    }
+
+    public void setArtist(Artist artist) {
+        this.artist = artist;
+    }
+
+    public String getFname() {
+        return fname;
+    }
+
+    public void setFname(String fname) {
+        this.fname = fname;
+    }
+
+    public String getLname() {
+        return lname;
+    }
+
+    public void setLname(String lname) {
+        this.lname = lname;
+    }
+
+    public String getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+
+    public Set<Song> getSongs() {
+        return songs;
+    }
+
+    public void setSongs(Set<Song> songs) {
+        this.songs = songs;
+    }
+
+    
 }

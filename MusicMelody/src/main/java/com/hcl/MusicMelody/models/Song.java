@@ -54,10 +54,8 @@ public class Song {
     // @ManyToMany
     // private String genre;
     
-    
-    
-    
-    @ManyToOne
+ 
+    @ManyToOne 
     @JoinColumn(name = "artist_id")
     private Artist artist;
 
@@ -103,11 +101,21 @@ public class Song {
     public void setCost(BigDecimal cost) {
         this.cost = cost;
     }
+     
+    public Artist getArtist() {
+        return artist;
+    }
 
+    public void setArtist(Artist artist) {
+        this.artist = artist;
+    }
+    
     @Override
     public String toString() {
         return "Song [cost=" + cost + ", duration=" + duration + ", title=" + title + "]";
     }
+
+    
 
     
 }
