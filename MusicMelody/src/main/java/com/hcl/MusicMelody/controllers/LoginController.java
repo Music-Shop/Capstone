@@ -2,16 +2,18 @@
 package com.hcl.MusicMelody.controllers;
 
 import java.security.Principal;
-import java.util.Date;
-import java.util.Optional;
+import java.util.List;
 
 import javax.validation.Valid;
 
+import com.hcl.MusicMelody.models.Song;
 import com.hcl.MusicMelody.models.UserCred;
+import com.hcl.MusicMelody.services.SongService;
 import com.hcl.MusicMelody.services.UserService;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -27,7 +29,12 @@ public class LoginController {
 
 	@Autowired
 	private UserService userService;
+
+	@Autowired
+	private SongService songService;
 	
+	Logger logger = LoggerFactory.getLogger(LoginController.class);
+
 	@GetMapping(value ="/")
 	public ModelAndView home() {
 		ModelAndView modelAndView = new ModelAndView();
@@ -124,7 +131,40 @@ public class LoginController {
 	  * @return - ModelAndView
 	  */
 	 @GetMapping("/user/home")
-	 public ModelAndView showUserHome() {
-		 return new ModelAndView("/user/home");
+	 public ModelAndView showUserHome(Principal principle) {
+		ModelAndView modelAndView = new ModelAndView();
+		List<Song> songs = songService.GetAllSongs();
+		UserCred user = userService.findUserByUserName(principle.getName());
+
+
+		logger.info("======================================List contents");
+		modelAndView.addObject("songs", songs);
+		modelAndView.addObject("userName", user.getName());
+		// modelAndView.addObject("adminMessage", "Content Available only for users with admin role");
+		modelAndView.setViewName("user/home");
+		 return modelAndView;
 	 }
+
+	 @PostMapping("/user/home")
+	 public ModelAndView addSong(Principal principle, @RequestParam String title, @RequestParam Long duration, @RequestParam Double cost) {
+		ModelAndView modelAndView = new ModelAndView();
+
+		logger.info("==================== Collected params: " + title + " " + duration + " " + cost);
+		UserCred user = userService.findUserByUserName(principle.getName());
+		Song song = new Song(title, duration, cost);
+		songService.addUpdateSong(song);
+		
+		List<Song> songs = songService.GetAllSongs();
+
+		logger.info("======================================List contents");
+		for (Song s : songs) {
+			logger.info(s.toString());
+		}
+		modelAndView.addObject("songs", songs);
+		modelAndView.addObject("userName", user.getName());
+		modelAndView.addObject("adminMessage", "Content Available only for users with admin role");
+		
+		modelAndView.setViewName("redirect:/user/home");
+		return modelAndView;
+	}
 }
