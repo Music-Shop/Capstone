@@ -1,7 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.thymeleaf.org ">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.thymeleaf.org ">
 
 <head>
     <title>Music Melody</title>
@@ -21,10 +20,25 @@
 
 </head>
 
-<body>
-    <h1>Welcome to user home screen</h1>
+<style>
+    #logoutBtn {
+        position: relative;
+        top: -37px;
+        left: -10px;
+    }
+</style>
 
-    <div class="d-flex justify-content-end">
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: black;">
+        <a class="navbar-brand" href="/" style="color: #D06CFF">Music Melody</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+    </nav>
+
+    <div class="d-flex justify-content-end" id="logoutBtn">
         <form th:action="@{/logout}" method="get">
             <button class="btn btn-md btn-danger btn-block d-flex justify-content-center"
                 style="width: 100px; height: auto;" name="registration" type="Submit">Logout</button>
@@ -32,21 +46,30 @@
     </div>
 
     <div class="songForm"></div>
-        <form action="/user/home" method="POST">
-            <label for="songTitle">Song Title:</label><br>
-            <input type="text" name="songTitle" class="songTitle" id="songTitle" placeholder="Enter Song Title" /><br>
-            <label for="duration">Duration:</label><br>
-            <input type="text" name="duration" class="duration" id="duration" placeholder="Enter Length (in Seconds)" /><br>
-            <label for="cost">Cost:</label><br>
-            <input type="text" name="cost" class="cost" id="cost" placeholder="Enter Cost in USD" /><br><br>
-            <input type="submit" value="Submit" class="submitSongBtn"><br><br>
-        </form>
+    <form action="/user/home" method="POST">
+        <label for="songTitle">Song Title:</label><br>
+        <input type="text" name="songTitle" class="songTitle" id="songTitle" placeholder="Enter Song Title" /><br>
+        <label for="duration">Duration:</label><br>
+        <input type="text" name="duration" class="duration" id="duration" placeholder="Enter Length (in Seconds)" /><br>
+        <label for="cost">Cost:</label><br>
+        <input type="text" name="cost" class="cost" id="cost" placeholder="Enter Cost in USD" /><br><br>
+        <input type="submit" value="Submit" class="submitSongBtn"><br><br>
+    </form>
     </div>
     <br>
     <br>
     <br>
-    <div class="container">
-        <div class="songsTable">
+    <div class="container-sm">
+        <div th:each="song : ${songs}">
+            <div class="card">
+                <img class="card-img-left" src="./images/play-button.jpg">
+                <div class="card-body">
+                    <h4 class="card-title"><span th:text="${song.title}"></span></h4>
+                </div>
+            </div>
+
+
+            <!-- <div class="songsTable">
             <table class="table table-striped table-hover">
                 <thead>
                     <tr>
@@ -62,9 +85,7 @@
                         <td><span th:text="${song.duration}">Duration</span></td>
                     </tr>
                 </tbody>
-
-
-            </table>
+            </table> -->
         </div>
     </div>
 </body>
