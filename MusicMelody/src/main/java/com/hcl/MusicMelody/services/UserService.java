@@ -41,7 +41,7 @@ public class UserService {
 		System.out.println("============================================" + userCred.getPassword());
 		userCred.setPassword(bCryptPasswordEncoder.encode(userCred.getPassword()));
 		userCred.setActive(true);
-		Role userRole = roleRepo.findByRole("ADMIN");
+		Role userRole = roleRepo.findByRole("USER");
 		userCred.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
 		return userRepo.save(userCred);
 		
