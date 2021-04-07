@@ -1,5 +1,7 @@
 package com.hcl.MusicMelody.models;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,21 +26,21 @@ public class Song {
 
     @Column(name = "duration")
     // @NotEmpty(message = "Duration cannot be 0, empty, or null")
-    private Long duration;
+    private String duration;
 
     @Column(name = "cost", columnDefinition ="Decimal(10,2) default '0.00'" ,precision = 10, scale = 2)
     // @NotEmpty(message = "Please enter a price for the song. Cannot be null or empty")
-    private Double cost;
+    private BigDecimal cost;
 
     /**
      * Not added content. Cannot use currently
      */
     // @Column(name = "album")
-    // private Album album;
+    // private Album album; 
 
     // @Column(name = "artist")
     // @OneToMany
-    // private Artist artist;
+    // private Artist artist;  
 
     // @Column(name = "band")
     // @OneToMany
@@ -53,8 +55,8 @@ public class Song {
     }
 
     public Song(@Length(min = 3, message = "Title should have at least 3 characters") String title,
-            @NotEmpty(message = "Duration cannot be 0, empty, or null") Long duration,
-            @NotEmpty(message = "Please enter a price for the song. Cannot be null or empty") Double cost) {
+            @NotEmpty(message = "Duration cannot be 0, empty, or null") String duration,
+            @NotEmpty(message = "Please enter a price for the song. Cannot be null or empty") BigDecimal cost) {
         this.title = title;
         this.duration = duration;
         this.cost = cost;
@@ -72,19 +74,19 @@ public class Song {
         this.title = title;
     }
 
-    public Long getDuration() {
+    public String getDuration() {
         return duration;
     }
 
-    public void setDuration(Long duration) {
+    public void setDuration(String duration) {
         this.duration = duration;
     }
 
-    public Double getCost() {
+    public BigDecimal getCost() {
         return cost;
     }
 
-    public void setCost(Double cost) {
+    public void setCost(BigDecimal cost) {
         this.cost = cost;
     }
 

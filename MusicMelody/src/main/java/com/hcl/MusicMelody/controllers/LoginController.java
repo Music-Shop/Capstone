@@ -1,6 +1,7 @@
 
 package com.hcl.MusicMelody.controllers;
 
+import java.math.BigDecimal;
 import java.security.Principal;
 import java.util.List;
 
@@ -14,7 +15,6 @@ import com.hcl.MusicMelody.services.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.relational.core.sql.FalseCondition;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -24,7 +24,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
  
-
 @Controller
 public class LoginController {
 
@@ -103,7 +102,7 @@ public class LoginController {
 		modelAndView.addObject("userName", user.getName());
 		modelAndView.addObject("adminMessage", "Content Available only for users with admin role");
 		modelAndView.setViewName("admin/home");
-
+ 
 		return modelAndView;
 	}
 	
@@ -120,7 +119,7 @@ public class LoginController {
 		return modelAndView;
 	}
 	
-
+ 
 	/**
 	 * ================================================
 	 * ===  USER CONTROLLER
@@ -137,7 +136,6 @@ public class LoginController {
 		List<Song> songs = songService.GetAllSongs();
 		UserCred user = userService.findUserByUserName(principle.getName());
 
-
 		logger.info("====================================== List contents");
 		modelAndView.addObject("songs", songs);
 		modelAndView.addObject("userName", user.getName());
@@ -147,16 +145,18 @@ public class LoginController {
 	 }
 
 	 @PostMapping("/user/home")
-	 public ModelAndView addSong(Principal principle, @RequestParam String songTitle, @RequestParam Long duration, @RequestParam Double cost) {
+	 public ModelAndView addSong(Principal principle, @RequestParam String songTitle, @RequestParam String duration, @RequestParam BigDecimal cost) {
 		ModelAndView modelAndView = new ModelAndView();
-
+ 
+		int secs = Integer.valueOf(duration);
+		String time = songService.convertDuration(secs); 
 		// logger.info("==================== Collected params: " + songTitle + " " + duration + " " + cost);
 		UserCred user = userService.findUserByUserName(principle.getName());
-		Song song = new Song(songTitle, duration, cost);
+		Song song = new Song(songTitle, time, cost);
 		songService.addUpdateSong(song);
 		
 		List<Song> songs = songService.GetAllSongs();
-
+		
 		// logger.info("====================================== List contents");
 		// for (Song s : songs) {
 		// 	logger.info(s.toString());

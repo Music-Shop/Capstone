@@ -43,4 +43,13 @@ public class SongService {
     public List<Song> GetAllSongs() {
         return songRepo.findAll();
     }
+
+    public String convertDuration(int secs) {
+        int mins = secs/60;
+        int seconds = secs % 60;
+        if(seconds < 10) {
+            return String.valueOf(mins) + ":" + String.valueOf("0" + seconds);
+        }
+        return String.valueOf(mins) + ":" + String.valueOf(seconds);
+    }
 }
