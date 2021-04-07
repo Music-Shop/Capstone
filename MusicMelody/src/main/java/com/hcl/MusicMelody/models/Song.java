@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
@@ -18,6 +20,7 @@ public class Song {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "song_id")
     private Integer id;
 
     @Column(name = "title")
@@ -50,7 +53,18 @@ public class Song {
     // @NotEmpty(message = "Song must have a genre. Cannot be Empty or null")
     // @ManyToMany
     // private String genre;
+    
+    
+    
+    
+    @ManyToOne
+    @JoinColumn(name = "artist_id")
+    private Artist artist;
 
+    
+    
+    
+    
     public Song() {
     }
 
