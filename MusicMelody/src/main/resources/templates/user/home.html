@@ -96,8 +96,9 @@
                         </div>
                         <div class="col-6 justify-content-start">
                             <div class="card-body">
-                                <h4 class="card-title">Song Title: <span th:text="${song.title}"></span></h4>
-                                <h4 class="card-duration">Duration: <span th:text="${song.duration}"></span></h4>
+                                <h5 class="card-title">Song Title: <span th:text="${song.title}"></span></h5>
+                                <h5 class="card-duration">Duration: <span th:text="${song.duration}"></span></h5>
+                                <h5 class="card-artist">Artist: <span th:text="${song.artist.fname} + ' '+ ${song.artist.lname}"></span></h5>
                                 <p class="card-text text-muted">Price: $<span th:text="${song.cost}"></span></p>
                             </div>
                         </div>

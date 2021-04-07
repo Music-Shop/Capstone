@@ -136,6 +136,7 @@ public class LoginController {
 		List<Song> songs = songService.GetAllSongs();
 		UserCred user = userService.findUserByUserName(principle.getName());
 
+
 		logger.info("====================================== List contents");
 		modelAndView.addObject("songs", songs);
 		modelAndView.addObject("userName", user.getName());
@@ -155,7 +156,7 @@ public class LoginController {
 		Song song = new Song(songTitle, time, cost);
 		songService.addUpdateSong(song);
 		
-		List<Song> songs = songService.GetAllSongs();
+		List<Song> songs = songService.GetAllSongs(); 
 		
 		// logger.info("====================================== List contents");
 		// for (Song s : songs) {
