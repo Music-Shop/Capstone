@@ -31,14 +31,14 @@
         </form><br><br>
     </div>
 
-    <div class="songForm">
+    <div class="songForm"></div>
         <form action="/user/home" method="POST">
-            <label for="title">Song Title:</label><br>
-            <input type="text" class="title" id="title" placeholder="Enter Song Title" required><br>
+            <label for="songTitle">Song Title:</label><br>
+            <input type="text" name="songTitle" class="songTitle" id="songTitle" placeholder="Enter Song Title" /><br>
             <label for="duration">Duration:</label><br>
-            <input type="text" class="duration" id="duration" placeholder="Enter Length of Song (in Seconds)" required><br>
+            <input type="text" name="duration" class="duration" id="duration" placeholder="Enter Length (in Seconds)" /><br>
             <label for="cost">Cost:</label><br>
-            <input type="text" class="cost" id="cost" placeholder="Enter Cost in USD" required><br><br>
+            <input type="text" name="cost" class="cost" id="cost" placeholder="Enter Cost in USD" /><br><br>
             <input type="submit" value="Submit" class="submitSongBtn"><br><br>
         </form>
     </div>
@@ -50,7 +50,6 @@
             <table class="table table-striped table-hover">
                 <thead>
                     <tr>
-                        <th>#</th>
                         <th>Title</th>
                         <th>Cost</th>
                         <th>Duration</th>
@@ -58,7 +57,6 @@
                 </thead>
                 <tbody>
                     <tr th:each="song : ${songs}">
-                        <td><span th:text="${song.id}">Id </span></td>
                         <td><span th:text="${song.title}">Title</span></td>
                         <td><span th:text="${song.cost}">Cost</span></td>
                         <td><span th:text="${song.duration}">Duration</span></td>

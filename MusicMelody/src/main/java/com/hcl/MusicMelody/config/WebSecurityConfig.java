@@ -58,7 +58,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 			.loginPage(loginPage)
 			.loginPage("/")
 			.failureUrl("/login?error=true")
-			// .defaultSuccessUrl("/user/home")
 			.successHandler(authenticationSuccessHandler)
 			.usernameParameter("user_name")
 			.passwordParameter("password")
