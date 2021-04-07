@@ -13,6 +13,7 @@ import com.hcl.MusicMelody.services.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.relational.core.sql.FalseCondition;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -136,7 +137,7 @@ public class LoginController {
 		UserCred user = userService.findUserByUserName(principle.getName());
 
 
-		logger.info("======================================List contents");
+		logger.info("====================================== List contents");
 		modelAndView.addObject("songs", songs);
 		modelAndView.addObject("userName", user.getName());
 		// modelAndView.addObject("adminMessage", "Content Available only for users with admin role");
@@ -145,20 +146,20 @@ public class LoginController {
 	 }
 
 	 @PostMapping("/user/home")
-	 public ModelAndView addSong(Principal principle, @RequestParam String title, @RequestParam Long duration, @RequestParam Double cost) {
+	 public ModelAndView addSong(Principal principle, @RequestParam String songTitle, @RequestParam Long duration, @RequestParam Double cost) {
 		ModelAndView modelAndView = new ModelAndView();
 
-		logger.info("==================== Collected params: " + title + " " + duration + " " + cost);
+		// logger.info("==================== Collected params: " + songTitle + " " + duration + " " + cost);
 		UserCred user = userService.findUserByUserName(principle.getName());
-		Song song = new Song(title, duration, cost);
+		Song song = new Song(songTitle, duration, cost);
 		songService.addUpdateSong(song);
 		
 		List<Song> songs = songService.GetAllSongs();
 
-		logger.info("======================================List contents");
-		for (Song s : songs) {
-			logger.info(s.toString());
-		}
+		// logger.info("====================================== List contents");
+		// for (Song s : songs) {
+		// 	logger.info(s.toString());
+		// }
 		modelAndView.addObject("songs", songs);
 		modelAndView.addObject("userName", user.getName());
 		modelAndView.addObject("adminMessage", "Content Available only for users with admin role");

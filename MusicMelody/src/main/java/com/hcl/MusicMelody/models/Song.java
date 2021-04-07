@@ -15,7 +15,7 @@ import org.hibernate.validator.constraints.Length;
 public class Song {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "title")
@@ -34,8 +34,6 @@ public class Song {
      * Not added content. Cannot use currently
      */
     // @Column(name = "album")
-    // @NotEmpty(message = "Cannot be empty. Must be Single or part of a album")
-    // @OneToMany
     // private Album album;
 
     // @Column(name = "artist")
