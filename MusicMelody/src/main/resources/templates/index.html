@@ -1,87 +1,106 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
-<!-- Google Credintials -->
-<meta name="google-signin-client_id" content="770775396538-q3m50r8vvupf6a70qtin44qu6o72bknm.apps.googleusercontent.com">
+    <title>Music Melody</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Login</title>
-
-<!-- <link rel="shortcut icon" type="image/svg+xml" href="images/pets-24px.svg" /> -->
-	<link rel="stylesheet" type="text/css" th:ref="@{/css/addUser.css}"/>
+<!--     	<link rel="stylesheet" type="text/css" th:ref="@{/css/addUser.css}"/> -->
+    
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<meta charset="ISO-8859-1">
-<body>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            color: black;
+        }
+        .bg {
+            background-image: url("images/pexels.jpg");
+            height: 60%;
+            width: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#" style="color: #E25A5A">Music Melody</a>
-  <div class = "d-flex">
-    <a href="login">Login | Register</a>
-  </div>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+        }
 
-</nav>
+        .topnav {
+            overflow: hidden;
+            background-color: black;
+        }
 
-<h1 style="font-size: calc(250% + 1vw + 1vh);">Music Melody</h1>
+            .topnav a {
+                float: left;
+                color: #D06CFF;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+                font-size: 17px;
+            }
 
-  <!-- <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner">
-      <div class="carousel-item active cia" style="background-image: url(chopstick.jpg)">
-        <div class="carouselCont">
-          <p>Welcome to</p>
-          
+                .topnav a:hover {
+                    background-color: #ddd;
+                    color: black;
+                }
+
+                .topnav a.active {
+                    background-color: black;
+                    color: #D06CFF;
+                    
+                }
+
+        .topnav-right {
+            float: right;
+        }
+
+       .landingContentContainer{
+ 
+           font-size: 30px;
+           text-align: center;
+       }
+    </style>
+</head>
+<body style="background-color: #1E1E1E;">
+
+    <div class="topnav">
+        <a class="active" href="#home">Music Melody</a>
+
+        <div class="topnav-right">
+            <a href="/login">Login</a>
+            <a href="/login">Register</a>
         </div>
-      </div>
-      <div class="carousel-item cia" style="background-image: url(Orange-Chicken.jpg)">
-        <div class="carouselCont"></div>
-      </div>
-      <div class="carousel-item cia" style="background-image: url(wok.jpg)">
-        <div class="carouselCont"></div>
-      </div>
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div> -->
+    <div class="bg d-flex justify-content-center" style="padding:16px">
+        <div>
+	        <h2><b>Music<br /> Melody</b></h2>
+	        <p>We like to party, we like, we like to party</p>
+        </div>
+    </div>
 
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<!-- Footer -->
-<footer class="text-center text-lg-start" style="background-color: #E25A5A; color: white;">
+	<div class="d-flex justify-content-center">
+	    <div class="landingContentContainer">
+	        <div>Video #1 </div>
+	        <div>Video time</div>
+	        <div class="landingTextArea">Video time</div>
+	    </div>
+	
+	    <div class="landingContentContainer">
+	        <div>Video #2 </div>
+	        <div>Text here </div>
+	        <div class="landingTextArea">Text here </div>
+	    </div>
+	    
+	    <div class="landingContentContainer">
+	        <div>Video #3 </div>
+	        <div>Text here </div>
+	        <div class="landingTextArea">Text here </div>
+	    </div>
+	</div>
+    <!-- Footer -->
+<footer class="text-center text-lg-start" style="background-color: #D06CFF; color: white;">
   <!-- Grid container -->
   <div class="container p-4">
   <div class="text-center">
@@ -105,7 +124,7 @@
 
         <ul class="list-unstyled">
           <li>
-          	evan_watson@hcl.com
+          	mm@musicmelody.us
           </li>
           <li>
             (###)###-####
@@ -117,17 +136,16 @@
 	
 	  <!-- Copyright -->
   <div class="text-center p-3" style="background-color: black;">
-    � 2020 Copyright:
+    © 2020 Copyright:
     <a class="text-light" href="#">MusicMelody.us</a>
   </div>
   <!-- Copyright -->
 </footer>
 <!-- Footer -->
-	
-<!-- Bootstrap -->
-		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!-- Bootstrap -->
 
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>
