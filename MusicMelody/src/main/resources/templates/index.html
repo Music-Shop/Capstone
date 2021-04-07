@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Music Melody</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,10 +9,12 @@
 
     <!--     	<link rel="stylesheet" type="text/css" th:ref="@{/css/addUser.css}"/> -->
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <style>
-        body, html {
+        body,
+        html {
             height: 100%;
             margin: 0;
             font-family: Arial, Helvetica, sans-serif;
@@ -32,24 +35,24 @@
             background-color: black;
         }
 
-            .topnav a {
-                float: left;
-                color: #D06CFF;
-                text-align: center;
-                padding: 14px 16px;
-                text-decoration: none;
-                font-size: 17px;
-            }
+        .topnav a {
+            float: left;
+            color: #D06CFF;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
 
-                .topnav a:hover {
-                    background-color: #ddd;
-                    color: black;
-                }
+        .topnav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
 
-                .topnav a.active {
-                    background-color: black;
-                    color: #D06CFF;
-                }
+        .topnav a.active {
+            background-color: black;
+            color: #D06CFF;
+        }
 
         .topnav-right {
             float: right;
@@ -59,8 +62,13 @@
             font-size: 30px;
             text-align: center;
         }
+        .videoCards {
+            margin: 20px;
+            position: relative; top:-60px;
+        }
     </style>
 </head>
+
 <body style="background-color: #1E1E1E;">
 
 <body style="background-color: #1E1E1E;">
@@ -90,81 +98,112 @@
         </div>
     </div>
 
-    
-        <div class="d-flex justify-content-center">
+
+    <div class="d-flex justify-content-center">
+        <div class="landingContentContainer">
+            <div class="col">
+                <div class="videoCards">
+                    <div class="card">
+                        <!-- image goes here? -->
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                Video #1
+                            </h4\>
+                            <p class="card-text"> here is the text for the card video</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-3">
             <div class="landingContentContainer">
-              <div class="col">
-                <div>Video #1 </div>
-                <div>Video time</div>
-                <div class="landingTextArea">Video time</div>
-                </div>
-             </div>
-            
-
-            <div class="col-5">
-                <div class="landingContentContainer">
-                    <div>Video #2 </div>
-                    <div>Video time</div>
-                    <div class="landingTextArea">Video time</div>
-                </div>
-            </div>
-
-            <div class="col-3">
-                <div class="landingContentContainer">
-
-                    <div>Video #3 </div>
-                    <div>Video time</div>
-                    <div class="landingTextArea">Video time</div>
-                </div>
-            </div>
-            </div>
-        <!-- Footer -->
-        <footer class="text-center text-lg-start" style="background-color: #D06CFF; color: white;">
-            <!-- Grid container -->
-            <div class="container p-4">
-                <div class="text-center">
-                    <h5 class="text-uppercase">Contact</h5>
-                </div>
-
-                <div class="d-flex justify-content-center" style="margin-top: 2rem;">
-                    <div style="margin-right: 3rem;">
-
-                        <ul class="list-unstyled mb-0">
-                            <li>
-                                Email
-                            </li>
-                            <li>
-                                Phone
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div>
-
-                        <ul class="list-unstyled">
-                            <li>
-                                mm@musicmelody.us
-                            </li>
-                            <li>
-                                (###)###-####
-                            </li>
-                        </ul>
+                <div class="videoCards">
+                    <div class="card">
+                        <!-- image goes here? -->
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                Video #2
+                            </h4\>
+                            <p class="card-text"> here is the text for the card video</p>
+                        </div>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- Copyright -->
-            <div class="text-center p-3" style="background-color: black;">
-                © 2020 Copyright:
-                <a class="text-light" href="#">MusicMelody.us</a>
+        <div class="col-3">
+            <div class="landingContentContainer">
+
+                <div class="videoCards">
+                    <div class="card">
+                        <!-- image goes here? -->
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                Video #3
+                            </h4\>
+                            <p class="card-text"> here is the text for the card video</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <!-- Copyright -->
-        </footer>
-        <!-- Footer -->
-        <!-- Bootstrap -->
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer class="text-center text-lg-start" style="background-color: #D06CFF; color: white;">
+        <!-- Grid container -->
+        <div class="container p-4">
+            <div class="text-center">
+                <h5 class="text-uppercase">Contact</h5>
+            </div>
 
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+            <div class="d-flex justify-content-center" style="margin-top: 2rem;">
+                <div style="margin-right: 3rem;">
+
+                    <ul class="list-unstyled mb-0">
+                        <li>
+                            Email
+                        </li>
+                        <li>
+                            Phone
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+
+                    <ul class="list-unstyled">
+                        <li>
+                            mm@musicmelody.us
+                        </li>
+                        <li>
+                            (###)###-####
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: black;">
+            © 2020 Copyright:
+            <a class="text-light" href="#">MusicMelody.us</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
+    <!-- Bootstrap -->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
 </body>
+
 </html>
