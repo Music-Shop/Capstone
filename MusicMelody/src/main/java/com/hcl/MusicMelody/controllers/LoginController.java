@@ -156,7 +156,7 @@ public class LoginController {
 		
 
 	 }
-
+	  
 	 @PostMapping("/user/home")
 	 public ModelAndView addSong(Principal principle, @RequestParam String songTitle, @RequestParam String duration, @RequestParam BigDecimal cost) {
 		ModelAndView modelAndView = new ModelAndView();
@@ -194,7 +194,22 @@ public class LoginController {
 			
 			modelAndView.setViewName("user/home");
 			
-			return modelAndView;
+			return modelAndView; 
 
-		}
+		}   
+
+	/**
+	 * ================================================
+	 * ===  CUSTOMER DETAILS CONTROLLERS
+	 * ================================================
+	 */
+
+	 @GetMapping("/user/home/cart/customerDetails")
+	 public ModelAndView showCustomerDetailsPage() {
+		 ModelAndView modelAndView = new ModelAndView();
+
+		 modelAndView.setViewName("/user/customerDetails");
+		 return modelAndView;
+	 }
+ 
 }

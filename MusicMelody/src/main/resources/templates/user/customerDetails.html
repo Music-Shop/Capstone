@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Music Melody</title>
+    <link rel="stylesheet" type="text/css" th:ref="@{/css/registration.css}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</head>
+<script>
+    function goPrev() {
+        window.history.back();
+    }
+</script>
+<style>
+    body {
+        background-color: #1E1E1E;
+    }
+
+
+
+    #footer {
+        background-color: black;
+        position: absolute;
+        bottom: 0px;
+        width: 100%;
+    }
+
+    #formContainer {
+        align-items: center;
+        justify-content: center;
+        margin-top: 15px;
+        background-color: #323232;
+        color: white;
+    }
+
+    form {
+        vertical-align: center;
+        padding: 20px 20px;
+        padding-top: 0;
+    }
+
+    input, select{
+        background-color: #1E1E1E;
+    }
+    .submit, .cancel {
+        color: white;
+    }
+
+    ::placeholder, select {
+        color: gray;
+    }
+    
+    hr {
+        background-color: white;
+    }
+</style>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: black;">
+            <a class="navbar-brand" href="/" style="color: #D06CFF">Music Melody</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </nav>
+    </header>
+
+
+    <div class="container align-items-center" id="formContainer">
+        <h1 class="display-2">Customer Details</h1>
+        <hr>
+        <form class="form" action="/user/home/cart/customerDetails" method="POST"><br>
+            <label for="name">Name: </label><br>
+            <input type="text" name="name" class="name" placeholder="Enter name" required><br>
+            <label for="email">Email: </label><br>
+            <input type="email" name="email" class="email" placeholder="prefix@domain" required><br>
+            <label for="phone"> Phone #: </label><br>
+            <input type="text" name="phone" class="phone" placeholder="(123)-456-7890" required><br>
+            <label for="street">Street Name: </label><br>
+            <input type="text" name="street" class="street" placeholder="123 Street Name" required><br>
+            <label for="apt">Apartment #: </label><br>
+            <input type="text" name="apt" class="apt" placeholder="Apartment #"><br>
+            <label for="city">City: </label><br>
+            <input type="text" name="city" class="city" placeholder="Enter City" required><br>
+            <label for="states">State: </label><br>
+            <select name="states" class="states">
+                <option value="AL">AL</option>
+                <option value="AK">AK</option>
+                <option value="AR">AR</option>
+                <option value="AZ">AZ</option>
+                <option value="CA">CA</option>
+                <option value="CO">CO</option>
+                <option value="CT">CT</option>
+                <option value="DC">DC</option>
+                <option value="DE">DE</option>
+                <option value="FL">FL</option>
+                <option value="GA">GA</option>
+                <option value="HI">HI</option>
+                <option value="IA">IA</option>
+                <option value="ID">ID</option>
+                <option value="IL">IL</option>
+                <option value="IN">IN</option>
+                <option value="KS">KS</option>
+                <option value="KY">KY</option>
+                <option value="LA">LA</option>
+                <option value="MA">MA</option>
+                <option value="MD">MD</option>
+                <option value="ME">ME</option>
+                <option value="MI">MI</option>
+                <option value="MN">MN</option>
+                <option value="MO">MO</option>
+                <option value="MS">MS</option>
+                <option value="MT">MT</option>
+                <option value="NC">NC</option>
+                <option value="NE">NE</option>
+                <option value="NH">NH</option>
+                <option value="NJ">NJ</option>
+                <option value="NM">NM</option>
+                <option value="NV">NV</option>
+                <option value="NY">NY</option>
+                <option value="ND">ND</option>
+                <option value="OH">OH</option>
+                <option value="OK">OK</option>
+                <option value="OR">OR</option>
+                <option value="PA">PA</option>
+                <option value="RI">RI</option>
+                <option value="SC">SC</option>
+                <option value="SD">SD</option>
+                <option value="TN">TN</option>
+                <option value="TX">TX</option>
+                <option value="UT">UT</option>
+                <option value="VT">VT</option>
+                <option value="VA">VA</option>
+                <option value="WA">WA</option>
+                <option value="WI">WI</option>
+                <option value="WV">WV</option>
+                <option value="WY">WY</option>
+            </select><br>
+            <label for="zip">Zip Code: </label><br>
+            <input type="text" name="zip" class="zip" placeholder="01234" required><br><br>
+            <input type="submit" value="Next" class="submit" name="submit">
+            <input type="submit" name="cancel" class="cancel" value="Cancel" onclick="goPrev()">
+        </form>
+    </div>
+
+
+
+    <footer class="text-center text-lg-start" id="footer" style="background-color: #D06CFF; color: white;">
+        <!-- Grid container -->
+        <div class="container p-4">
+            <div class="text-center">
+                <h5 class="text-uppercase">Contact</h5>
+            </div>
+
+            <div class="d-flex justify-content-center" style="margin-top: 2rem;">
+                <div style="margin-right: 3rem;">
+
+                    <ul class="list-unstyled mb-0">
+                        <li>
+                            Email
+                        </li>
+                        <li>
+                            Phone
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+
+                    <ul class="list-unstyled">
+                        <li>
+                            mm@musicmelody.us
+                        </li>
+                        <li>
+                            (###)###-####
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: black;">
+            © 2020 Copyright:
+            <a class="text-light" href="#">MusicMelody.us</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
+</body>
+
+</html>
