@@ -39,8 +39,8 @@ public class Song {
     /**
      * Not added content. Cannot use currently
      */
-    @Column(name = "album")
-    private Album album;   
+    // @Column(name = "album")
+    // private Album album;   
 
     // @Column(name = "band")
     // @OneToMany
