@@ -135,7 +135,6 @@ public class LoginController {
 	 @GetMapping("/user/home")
 	 public ModelAndView showUserHome(Principal principle) {
 		ModelAndView modelAndView = new ModelAndView();
-<<<<<<< HEAD
 //		List<Song> songs = songService.getAllSongs();
 //		UserCred user = userService.findUserByUserName(principle.getName());
 //
@@ -152,15 +151,14 @@ public class LoginController {
 
 //		 return modelAndView;
 		return findPaginated(1, modelAndView);
-=======
-		List<Song> songs = songService.GetAllSongs();
-		System.out.println("================ songs ");
-		for (Song song : songs) {
-			System.out.println("================" + song.getTitle());
-		}
-		UserCred user = userService.findUserByUserName(principle.getName());
 		
->>>>>>> efecdcf8213b3729b6b6f5abb04fb57dadc82a73
+//		List<Song> songs = songService.GetAllSongs();
+//		System.out.println("================ songs ");
+//		for (Song song : songs) {
+//			System.out.println("================" + song.getTitle());
+//		}
+//		UserCred user = userService.findUserByUserName(principle.getName());
+		
 
 	 }
 
