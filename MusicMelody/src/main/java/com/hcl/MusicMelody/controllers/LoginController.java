@@ -139,7 +139,7 @@ public class LoginController {
 			System.out.println("================" + song.getTitle());
 		}
 		UserCred user = userService.findUserByUserName(principle.getName());
-
+		
 
 		logger.info("====================================== List contents");
 		modelAndView.addObject("songs", songs);
