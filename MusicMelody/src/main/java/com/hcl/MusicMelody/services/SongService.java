@@ -1,5 +1,6 @@
 package com.hcl.MusicMelody.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -8,7 +9,10 @@ import com.hcl.MusicMelody.repositories.SongRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 
 @Service
 public class SongService {
@@ -40,7 +44,7 @@ public class SongService {
      * Collects all songs that are in the database
      * @return List<Song>
      */
-    public List<Song> GetAllSongs() {
+    public List<Song> getAllSongs() {
         return songRepo.findAll();
     }
 
@@ -52,4 +56,25 @@ public class SongService {
         }
         return String.valueOf(mins) + ":" + String.valueOf(seconds);
     }
+    
+//    public List<Song> getPaging(Integer pageNo, Integer pageSize, String sortBy)
+//    {
+//        Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
+// 
+//        Page<Song> pagedResult = songRepo.findAll(paging);
+//         
+//        if(pagedResult.hasContent()) {
+//            return pagedResult.getContent();
+//        } else {
+//        	
+//        	List<Song> song = new ArrayList<Song>();
+//            return song;
+//        }
+//    }
+    
+    public Page<Song> findPaginated(int pageNo, int pageSize){
+    	Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
+    	
+    	return this.songRepo.findAll(pageable);
+    };
 }

@@ -15,11 +15,13 @@ import com.hcl.MusicMelody.services.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -133,16 +135,23 @@ public class LoginController {
 	 @GetMapping("/user/home")
 	 public ModelAndView showUserHome(Principal principle) {
 		ModelAndView modelAndView = new ModelAndView();
-		List<Song> songs = songService.GetAllSongs();
-		UserCred user = userService.findUserByUserName(principle.getName());
+//		List<Song> songs = songService.getAllSongs();
+//		UserCred user = userService.findUserByUserName(principle.getName());
+//
+//
+//		logger.info("====================================== List contents");
+//		modelAndView.addObject("songs", songs);
+//		modelAndView.addObject("userName", user.getName());
+//		// modelAndView.addObject("adminMessage", "Content Available only for users with admin role");
+//		modelAndView.setViewName("user/home");
+		
+//		modelAndView.addObject("songs", songs);
+//		modelAndView.addObject("userName", user.getName());
+//		modelAndView.addObject("adminMessage", "Content Available only for users with admin role");
 
+//		 return modelAndView;
+		return findPaginated(1, modelAndView);
 
-		logger.info("====================================== List contents");
-		modelAndView.addObject("songs", songs);
-		modelAndView.addObject("userName", user.getName());
-		// modelAndView.addObject("adminMessage", "Content Available only for users with admin role");
-		modelAndView.setViewName("user/home");
-		 return modelAndView;
 	 }
 
 	 @PostMapping("/user/home")
@@ -156,17 +165,33 @@ public class LoginController {
 		Song song = new Song(songTitle, time, cost);
 		songService.addUpdateSong(song);
 		
-		List<Song> songs = songService.GetAllSongs(); 
+		List<Song> songs = songService.getAllSongs(); 
 		
 		// logger.info("====================================== List contents");
 		// for (Song s : songs) {
 		// 	logger.info(s.toString());
 		// }
-		modelAndView.addObject("songs", songs);
-		modelAndView.addObject("userName", user.getName());
-		modelAndView.addObject("adminMessage", "Content Available only for users with admin role");
-		
 		modelAndView.setViewName("redirect:/user/home");
+		
 		return modelAndView;
 	}
+	 
+	 @GetMapping("page/{pageNo}")
+		public ModelAndView findPaginated(@PathVariable (value = "pageNo") int pageNo, ModelAndView modelAndView) {
+			
+			int pageSize = 5;
+			
+			Page<Song> page = songService.findPaginated(pageNo, pageSize);
+			List<Song> listSongs = page.getContent();
+			
+			modelAndView.addObject("currnentPage", pageNo);
+			modelAndView.addObject("totalPages", page.getTotalPages());
+			modelAndView.addObject("totalItems", page.getTotalElements());
+			modelAndView.addObject("listSongs", listSongs);
+			
+			modelAndView.setViewName("user/home");
+			
+			return modelAndView;
+
+		}
 }
