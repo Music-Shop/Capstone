@@ -192,7 +192,7 @@ public class LoginController {
 			Page<Song> page = songService.findPaginated(pageNo, pageSize);
 			List<Song> listSongs = page.getContent();
 			
-			modelAndView.addObject("currnentPage", pageNo);
+			modelAndView.addObject("currentPage", pageNo);
 			modelAndView.addObject("totalPages", page.getTotalPages());
 			modelAndView.addObject("totalItems", page.getTotalElements());
 			modelAndView.addObject("listSongs", listSongs);
