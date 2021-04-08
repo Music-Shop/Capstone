@@ -20,7 +20,7 @@ public class Song {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "song_id")
+    @Column(name = "id")
     private Integer id;
 
     @Column(name = "title")

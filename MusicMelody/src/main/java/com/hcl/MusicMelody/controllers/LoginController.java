@@ -134,6 +134,10 @@ public class LoginController {
 	 public ModelAndView showUserHome(Principal principle) {
 		ModelAndView modelAndView = new ModelAndView();
 		List<Song> songs = songService.GetAllSongs();
+		System.out.println("================ songs ");
+		for (Song song : songs) {
+			System.out.println("================" + song.getTitle());
+		}
 		UserCred user = userService.findUserByUserName(principle.getName());
 
 
