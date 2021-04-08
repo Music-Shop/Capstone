@@ -135,21 +135,16 @@ public class LoginController {
 	 @GetMapping("/user/home")
 	 public ModelAndView showUserHome(Principal principle) {
 		ModelAndView modelAndView = new ModelAndView();
-//		List<Song> songs = songService.getAllSongs();
+		List<Song> songs = songService.getAllSongs();
 //		UserCred user = userService.findUserByUserName(principle.getName());
 //
 //
 //		logger.info("====================================== List contents");
-//		modelAndView.addObject("songs", songs);
+		modelAndView.addObject("songs", songs);
 //		modelAndView.addObject("userName", user.getName());
 //		// modelAndView.addObject("adminMessage", "Content Available only for users with admin role");
-//		modelAndView.setViewName("user/home");
-		
-//		modelAndView.addObject("songs", songs);
-//		modelAndView.addObject("userName", user.getName());
-//		modelAndView.addObject("adminMessage", "Content Available only for users with admin role");
+		modelAndView.setViewName("user/home");
 
-//		 return modelAndView;
 		return findPaginated(1, modelAndView);
 		
 //		List<Song> songs = songService.GetAllSongs();
