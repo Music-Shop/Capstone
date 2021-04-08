@@ -2,11 +2,13 @@ package com.hcl.MusicMelody.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
@@ -59,7 +61,9 @@ public class Song {
     @JoinColumn(name = "artist_id")
     private Artist artist;
 
-    
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "genre_id")
+    private Artist genre;
     
     
     
@@ -78,7 +82,31 @@ public class Song {
         // this.genre = genre;
     }
 
-    public String getTitle() {
+    public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public Artist getArtist() {
+		return artist;
+	}
+
+	public void setArtist(Artist artist) {
+		this.artist = artist;
+	}
+
+	public Artist getGenre() {
+		return genre;
+	}
+
+	public void setGenre(Artist genre) {
+		this.genre = genre;
+	}
+
+	public String getTitle() {
         return title;
     }
 
