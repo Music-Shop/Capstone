@@ -170,8 +170,8 @@ public class LoginController {
 		String time = songService.convertDuration(secs); 
 		// logger.info("==================== Collected params: " + songTitle + " " + duration + " " + cost);
 		UserCred user = userService.findUserByUserName(principle.getName());
-		Song song = new Song(songTitle, time, cost);
-		songService.addUpdateSong(song);
+		// Song song = new Song(songTitle, time, cost);
+		// songService.addUpdateSong(song);
 		
 		List<Song> songs = songService.getAllSongs(); 
 		

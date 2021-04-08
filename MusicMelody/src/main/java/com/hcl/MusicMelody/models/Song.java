@@ -12,7 +12,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.validator.constraints.Length;
 
@@ -40,21 +39,12 @@ public class Song {
     /**
      * Not added content. Cannot use currently
      */
-    // @Column(name = "album")
-    // private Album album; 
-
-    // @Column(name = "artist")
-    // @OneToMany
-    // private Artist artist;  
+    @Column(name = "album")
+    private Album album;   
 
     // @Column(name = "band")
     // @OneToMany
     // private Band band;
-
-    // @Column(name = "genre")
-    // @NotEmpty(message = "Song must have a genre. Cannot be Empty or null")
-    // @ManyToMany
-    // private String genre;
     
  
     @ManyToOne 
@@ -63,24 +53,14 @@ public class Song {
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "genre_id")
-    private Artist genre;
+    private Genre genre;
     
     
     
     public Song() {
     }
 
-    public Song(@Length(min = 3, message = "Title should have at least 3 characters") String title,
-            @NotEmpty(message = "Duration cannot be 0, empty, or null") String duration,
-            @NotEmpty(message = "Please enter a price for the song. Cannot be null or empty") BigDecimal cost) {
-        this.title = title;
-        this.duration = duration;
-        this.cost = cost;
-        // this.album = album;
-        // this.artist = artist;
-        // this.band = band;
-        // this.genre = genre;
-    }
+   
 
     public Integer getId() {
 		return id;
@@ -90,11 +70,11 @@ public class Song {
 		this.id = id;
 	}
 
-	public Artist getGenre() {
+	public Genre getGenre() {
 		return genre;
 	}
 
-	public void setGenre(Artist genre) {
+	public void setGenre(Genre genre) {
 		this.genre = genre;
 	}
 
