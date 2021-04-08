@@ -36,9 +36,9 @@ public class Album {
     // @NotEmpty(message = "Please enter a price for the song. Cannot be null or empty")
     private Double cost;
     
-    @ManyToMany(cascade = CascadeType.MERGE)
-	@JoinTable(name = "song_album", joinColumns = @JoinColumn(name = "song_id"), inverseJoinColumns = @JoinColumn(name = "album_id"))
-	private Set<Song> songs;
+//    @ManyToMany(cascade = CascadeType.MERGE)
+//	@JoinTable(name = "song_album", joinColumns = @JoinColumn(name = "song_id"), inverseJoinColumns = @JoinColumn(name = "album_id"))
+//	private Set<Song> songs;
 
 	public Integer getId() {
 		return id;
@@ -72,13 +72,13 @@ public class Album {
 		this.cost = cost;
 	}
 
-	public Set<Song> getSongs() {
-		return songs;
-	}
-
-	public void setSongs(Set<Song> songs) {
-		this.songs = songs;
-	}
+//	public Set<Song> getSongs() {
+//		return songs;
+//	}
+//
+//	public void setSongs(Set<Song> songs) {
+//		this.songs = songs;
+//	}
     
     
 }
