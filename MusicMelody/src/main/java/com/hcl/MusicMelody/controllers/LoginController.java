@@ -12,7 +12,6 @@ import com.hcl.MusicMelody.models.UserCred;
 import com.hcl.MusicMelody.services.SongService;
 import com.hcl.MusicMelody.services.UserService;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.security.core.Authentication;
@@ -130,35 +129,6 @@ public class LoginController {
 	  * Gets the model for user home and displays the page for the new user.
 	  * @return - ModelAndView
 	  */
-<<<<<<< HEAD
-	 @GetMapping("/user/home")
-	 public ModelAndView showUserHome(Principal principle) {
-		ModelAndView modelAndView = new ModelAndView();
-		List<Song> songs = songService.getAllSongs();
-//		UserCred user = userService.findUserByUserName(principle.getName());
-//
-//
-//		logger.info("====================================== List contents");
-		modelAndView.addObject("songs", songs);
-//		modelAndView.addObject("userName", user.getName());
-//		// modelAndView.addObject("adminMessage", "Content Available only for users with admin role");
-		modelAndView.setViewName("user/home");
-
-		return findPaginated(1, modelAndView);
-		
-//		List<Song> songs = songService.GetAllSongs();
-//		System.out.println("================ songs ");
-//		for (Song song : songs) {
-//			System.out.println("================" + song.getTitle());
-//		}
-//		UserCred user = userService.findUserByUserName(principle.getName());
-		
-
-	 }
-	  
-=======
-
->>>>>>> user-home
 	 @PostMapping("/user/home")
 	 public ModelAndView addSong(Principal principle, @RequestParam String songTitle, @RequestParam String duration, @RequestParam BigDecimal cost) {
 		ModelAndView modelAndView = new ModelAndView();
@@ -226,15 +196,9 @@ public class LoginController {
 			model.addAttribute("sortDir", sortDir);
 			model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
 			
-<<<<<<< HEAD
-			modelAndView.setViewName("user/home");
-		       
-			return modelAndView; 
-=======
 //			modelAndView.setViewName("user/home");
 			
 			return "user/home";
->>>>>>> user-home
 
 		}   
 
