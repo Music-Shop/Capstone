@@ -68,6 +68,20 @@
     hr {
         background-color: #D06CFF;
     }
+
+    #next {
+        background-color: #D06CFF;
+        border-color: #D06CFF;
+        color: white;
+    }
+
+    #next:hover {
+        background-color: #8b00cc;
+    }
+
+    /* #cancel:hover {
+        background-color: gray;
+    } */
 </style>
 
 <body>
@@ -154,8 +168,8 @@
             </select><br>
             <label for="zip">Zip Code: </label><br>
             <input type="text" name="zip" class="zip" placeholder="01234" required><br><br>
-            <input type="submit" value="Next" class="submit" name="submit">
-            <input type="submit" name="cancel" class="cancel" value="Cancel" onclick="goPrev()">
+            <button type="submit" id="next" class="btn">Next</button>
+            <button type="button" id="cancel" class="btn btn-light" onclick="goPrev()">Cancel</button>
         </form>
     </div>
 
