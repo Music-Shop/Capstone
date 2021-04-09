@@ -72,8 +72,11 @@ public class SongService {
 //        }
 //    }
     
-    public Page<Song> findPaginated(int pageNo, int pageSize){
-    	Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
+    public Page<Song> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection){
+    	Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() :
+			Sort.by(sortField).descending();
+    	
+    	Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
     	
     	return this.songRepo.findAll(pageable);
     };
