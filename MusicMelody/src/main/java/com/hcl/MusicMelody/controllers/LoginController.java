@@ -182,7 +182,7 @@ public class LoginController {
 				@RequestParam("sortDir") String sortDir,
 				Model model) {
 			
-			int pageSize = 5;
+			int pageSize = 10;
 			
 			Page<Song> page = songService.findPaginated(pageNo, pageSize, sortField, sortDir);
 			List<Song> listSongs = page.getContent();
