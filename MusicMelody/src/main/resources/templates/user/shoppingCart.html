@@ -34,15 +34,20 @@
         width: 100%;
     }
 
-    .container-title, .container-body {
+    .container-title,
+    .container-body {
         color: white;
     }
 
-    #cart-container, #title-container {
+    #cart-container,
+    #title-container {
         background-color: #323232;
         padding: 15px 15px;
         border-radius: 5px;
+        /* border-style: inset;
+        border-color: #D06CFF; */
     }
+
     #title-container {
         margin-bottom: 15px;
         margin-top: 15px;
@@ -52,55 +57,79 @@
         background-color: #D06CFF;
         border-color: #D06CFF;
     }
+
     #checkout:hover {
         background-color: #8b00cc;
     }
+
+    hr {
+        background-color: #D06CFF;
+    }
+    
+    .nav-item {
+        margin-right: 15px;
+    }
+
 </style>
 
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: black;">
             <a class="navbar-brand" href="/" style="color: #D06CFF">Music Melody</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav ml-auto">
+                    <a class="nav-item nav-link" href="/user/home">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-item nav-link disabled" href="#">Profile</a>
+                    <a class="nav-item nav-link active" href="#">Cart</a>
+                    <form th:action="@{/logout}" method="get">
+                        <button class="btn btn-md btn-block d-flex justify-content-center"
+                             name="registration" type="Submit">Logout</button>
+                    </form>
+                </div>
         </nav>
     </header>
 
-    <div class="container" id="title-container">
-        <div class="container-title">
-            <h1 class="display-2">Cart</h1>
+    <div class="container" id="content">
+        <div class="container" id="title-container">
+            <div class="container-title">
+                <h1 class="display-2">Cart</h1>
+            </div>
+            <hr>
+            <div class="container-body">
+                <p>All of the selected songs in your shopping cart</p>
+            </div>
         </div>
-        <div class="container-body">
-            <p>All of the selected songs in your shopping cart</p>
-        </div>
-    </div>
 
-    <div class="container" id="cart-container">
-        <div class="song-list">
-            <table class="table table-striped table-dark">
-                <thead>
-                    <tr>
-                        <td>Song</td>
-                        <td>Album</td>
-                        <td>Artist</td>
-                        <td>Price</td>
-                        <td>Unit Price</td>
-                        <td>Quantity</td>
-                        <td>Price</td>
-                        <td>Action</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Add content using thymeleaf here. Should be session data -->
-                </tbody>
-            </table>
-        </div>
-        <div class="buttons">
-            <!-- This probably should change to a button that submits since its kinda a form? -->
-            <a class="btn btn-primary" id="checkout" role="button" href="cart/customer-details">Continue to Checkout</a>
-            <button class="btn btn-light" type="submit" onclick="goPrev()">Continue Shopping</button>
+        <div class="container" id="cart-container">
+            <div class="song-list">
+                <table class="table table-striped table-dark">
+                    <thead>
+                        <tr>
+                            <td>Song</td>
+                            <td>Album</td>
+                            <td>Artist</td>
+                            <td>Price</td>
+                            <td>Unit Price</td>
+                            <td>Quantity</td>
+                            <td>Price</td>
+                            <td>Action</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Add content using thymeleaf here. Should be session data -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="buttons">
+                <!-- This probably should change to a button that submits since its kinda a form? -->
+                <a class="btn btn-primary" id="checkout" role="button" href="cart/customer-details">Continue to
+                    Checkout</a>
+                <button class="btn btn-light" type="submit" onclick="goPrev()">Continue Shopping</button>
+            </div>
         </div>
     </div>
 
