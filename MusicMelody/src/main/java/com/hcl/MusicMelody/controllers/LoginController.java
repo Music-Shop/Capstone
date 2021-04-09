@@ -89,7 +89,7 @@ public class LoginController {
 		
 		return modelAndView;
 	}
-	
+	 
 	@GetMapping(value = "/admin/home")
 	public ModelAndView home(Principal principal) {
 		ModelAndView modelAndView = new ModelAndView();
@@ -201,19 +201,5 @@ public class LoginController {
 			return "user/home";
 
 		}   
-
-	/**
-	 * ================================================
-	 * ===  CUSTOMER DETAILS CONTROLLERS
-	 * ================================================
-	 */
-
-	 @GetMapping("/user/home/cart/customer-details")
-	 public ModelAndView showCustomerDetailsPage() {
-		 ModelAndView modelAndView = new ModelAndView();
-
-		 modelAndView.setViewName("/user/customerDetails");
-		 return modelAndView;
-	 }
  
 }

@@ -23,11 +23,32 @@ public class PurchaseController {
 
     Logger logger = LoggerFactory.getLogger(LoginController.class);
 
+
+    /**
+	 * ================================================
+	 * ===  SHOPPING CART CONTROLLERS
+	 * ================================================
+	 */
+
     @GetMapping("/user/home/cart")
     public ModelAndView showCart() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/user/shoppingCart"); 
         return modelAndView;
     }
+
+    /**
+	 * ================================================ 
+	 * ===  CUSTOMER DETAILS CONTROLLERS
+	 * ================================================
+	 */
+
+	 @GetMapping("/user/home/cart/customer-details")
+	 public ModelAndView showCustomerDetailsPage() {
+		 ModelAndView modelAndView = new ModelAndView();
+
+		 modelAndView.setViewName("/user/customerDetails");
+		 return modelAndView;
+	 }
 }
  
