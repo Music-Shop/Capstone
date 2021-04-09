@@ -1,7 +1,5 @@
 package com.hcl.MusicMelody.controllers;
 
-import java.security.Principal;
-
 import com.hcl.MusicMelody.services.SongService;
 import com.hcl.MusicMelody.services.UserService;
 
@@ -15,15 +13,13 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class PurchaseController {
 
-    Logger logger = LoggerFactory.getLogger(PurchaseController.class);
+    // Logger logger = LoggerFactory.getLogger(PurchaseController.class);
 
     @Autowired
     private UserService userService;
-
+ 
     @Autowired
     private SongService songService;
-
-    Logger logger = LoggerFactory.getLogger(LoginController.class);
 
 
     /**
@@ -40,7 +36,7 @@ public class PurchaseController {
     }
 
     /**
-	 * ================================================ 
+     * ================================================ 
 	 * ===  CUSTOMER DETAILS CONTROLLERS
 	 * ================================================
 	 */
@@ -53,4 +49,3 @@ public class PurchaseController {
 		 return modelAndView;
 	 }
 }
- 
