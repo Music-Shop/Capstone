@@ -15,6 +15,8 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class PurchaseController {
 
+    Logger logger = LoggerFactory.getLogger(PurchaseController.class);
+
     @Autowired
     private UserService userService;
 
