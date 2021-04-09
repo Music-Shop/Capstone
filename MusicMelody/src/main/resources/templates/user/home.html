@@ -60,6 +60,20 @@
     .container-fluid {
         align-items: center;
     }
+    
+    .playBtn{
+    	background-image: url("../images/play-button.jpg");
+    	width: 8rem;
+    	height: 100%;
+    	background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    
+    .songBtn:hover{
+    	cursor: pointer;
+    	text-decoration: underline;
+    }
 </style>
 
 <body>
@@ -98,6 +112,8 @@
     <br>
     
     <div class="container-fluid align-items-center">
+        <div class="d-flex justify-content-around">
+    
     	<a th:href="@{'/page/' + ${currentPage} + '?sortField=title&sortDir=' + ${reverseSortDir}}">
 							Title</a>
 		<a th:href="@{'/page/' + ${currentPage} + '?sortField=artist&sortDir=' + ${reverseSortDir}}">
@@ -107,15 +123,16 @@
 		<a th:href="@{'/page/' + ${currentPage} + '?sortField=cost&sortDir=' + ${reverseSortDir}}">
 		Cost</a>
 		
-		
+		</div>
 		<div th:each="song : ${listSongs}">
             <div class="card">
                 <div class="row">
                     <div class="col-3">
-                        <img class="card-img-left" src="./../../static/images/play-button.jpg">
+                    	<div class="playBtn"></div>
                     </div>
                     <div class="col-5 justify-content-start">
-                        <div class="card-body">
+                        <div class="card-body songBtn" onclick="sendSong(event)">
+                        <div class="sId" style="display: none;" th:utext="${song.id}"></div>
                             <h6 class="card-title">Song Title: <span th:text="${song.title}"></span></h6>
                             <h6 class="card-artist">Artist: <span
                                     th:text="${song.artist.fname} + ' '+ ${song.artist.lname}"></span></h6>
@@ -132,11 +149,12 @@
                 </div>
             </div>
         </div>
-        
+        </div>
+        <!--  
         <div th:if = "${totalPages > 1}">
 			<div class = "row col-sm-10">
 				<div class = "col-sm-2">
-					Total Rows: [[${totalItems}]] 
+					Total Songs: [[${totalItems}]] 
 				</div>
 				<div class = "col-sm-1">
 					<span th:each="i: ${#numbers.sequence(1, totalPages)}">
@@ -157,6 +175,33 @@
 		</div>
         
     </div>
+    -->
+    <div class="d-flex" th:if = "${totalPages > 1}">
+    	<div class = "col-sm-2">
+					Total Songs: [[${totalItems}]] 
+		</div>
+				
+		
+	    <ul class="pagination ">
+		    
+		    <li class="page-item">
+	    		<span th:each="i: ${#numbers.sequence(1, totalPages)}">
+					<a class="page-link" th:if="${currentPage != i}" th:href="@{'/page/' + ${i}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
+					<span th:unless="${currentPage != i}">[[${i}]]</span>  &nbsp; &nbsp;
+				</span>
+			</li>
+
+		    <li class="page-item">
+		    	<a class="page-link" th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Next</a>
+				<span th:unless="${currentPage < totalPages}">Next</span>
+		    </li>
+		    
+		    <li class="page-item">
+		    	<a class="page-link" th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${totalPages}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Last</a>
+				<span th:unless="${currentPage < totalPages}">Last</span>
+		    </li>
+	  	</ul>
+  	</div>
     
     
     <!--  
@@ -263,7 +308,35 @@
   </div>
   <!-- Copyright -->
 </footer>
-<!-- Footer --></body>
+<!-- Footer -->
 
 
+
+<script>
+	function sendSong(ev){
+		
+		console.log("Send song", ev.currentTarget)
+		var songCard = ev.currentTarget;
+		var sId = songCard.querySelector('.sId');
+		
+		console.log("Send song", sId.innerHTML);
+		var form = document.createElement("form");
+		form.style.visibility = 'hidden';
+	    form.setAttribute("method", "get");
+	    form.setAttribute("action", "/song/" + sId.innerHTML);
+	    
+	    var id = document.createElement("input");
+		id.setAttribute("type", "hidden");
+		id.setAttribute("name", "songId");
+		id.defaultValue = sId.innerHTML;
+		
+		form.appendChild(id);
+		
+		document.getElementsByTagName("body")[0]
+	    .appendChild(form);
+	    form.submit();
+		
+	}
+</script>
+</body>
 </html>

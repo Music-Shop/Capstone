@@ -80,4 +80,8 @@ public class SongService {
     	
     	return this.songRepo.findAll(pageable);
     };
+    
+    public Optional<Song> getSongById(Integer songId) {
+    	return songRepo.findById(songId);
+    }
 }
