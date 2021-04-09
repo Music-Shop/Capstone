@@ -96,8 +96,19 @@
     <br>
     <br>
     <br>
+    
     <div class="container-fluid align-items-center">
-        <div th:each="song : ${songs}">
+    	<a th:href="@{'/page/' + ${currentPage} + '?sortField=title&sortDir=' + ${reverseSortDir}}">
+							Title</a>
+		<a th:href="@{'/page/' + ${currentPage} + '?sortField=artist&sortDir=' + ${reverseSortDir}}">
+		Artist Name</a>
+		<a th:href="@{'/page/' + ${currentPage} + '?sortField=duration&sortDir=' + ${reverseSortDir}}">
+							Duration</a>
+		<a th:href="@{'/page/' + ${currentPage} + '?sortField=cost&sortDir=' + ${reverseSortDir}}">
+		Cost</a>
+		
+		
+		<div th:each="song : ${listSongs}">
             <div class="card">
                 <div class="row">
                     <div class="col-3">
@@ -121,29 +132,34 @@
                 </div>
             </div>
         </div>
+        
+        <div th:if = "${totalPages > 1}">
+			<div class = "row col-sm-10">
+				<div class = "col-sm-2">
+					Total Rows: [[${totalItems}]] 
+				</div>
+				<div class = "col-sm-1">
+					<span th:each="i: ${#numbers.sequence(1, totalPages)}">
+						<a th:if="${currentPage != i}" th:href="@{'/page/' + ${i}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
+						<span th:unless="${currentPage != i}">[[${i}]]</span>  &nbsp; &nbsp;
+					</span>
+				</div>
+				<div class = "col-sm-1">
+					<a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Next</a>
+					<span th:unless="${currentPage < totalPages}">Next</span>
+				</div>
+				
+				 <div class="col-sm-1">
+    				<a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${totalPages}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Last</a>
+					<span th:unless="${currentPage < totalPages}">Last</span>
+   				 </div>
+			</div>
+		</div>
+        
     </div>
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    <!--  
     <table border="1" class = "table table-striped table-responsive-md">
 			<thead>
 				<tr>
@@ -198,24 +214,7 @@
 					<span th:unless="${currentPage < totalPages}">Last</span>
    				 </div>
 			</div>
-		</div>
-            <!-- <div class="songsTable">
-            <table class="table table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th>Title</th>
-                        <th>Cost</th>
-                        <th>Duration</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="song : ${songs}">
-                        <td><span th:text="${song.title}">Title</span></td>
-                        <td><span th:text="${song.cost}">Cost</span></td>
-                        <td><span th:text="${song.duration}">Duration</span></td>
-                    </tr>
-                </tbody>
-            </table> -->
+		</div>-->
             
 <br>
 <br>
