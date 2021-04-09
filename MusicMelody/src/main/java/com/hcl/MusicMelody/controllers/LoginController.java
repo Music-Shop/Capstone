@@ -12,13 +12,13 @@ import com.hcl.MusicMelody.models.UserCred;
 import com.hcl.MusicMelody.services.SongService;
 import com.hcl.MusicMelody.services.UserService;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,8 +35,6 @@ public class LoginController {
 	@Autowired
 	private SongService songService;
 	
-	Logger logger = LoggerFactory.getLogger(LoginController.class);
-
 	@GetMapping(value ="/")
 	public ModelAndView home() {
 		ModelAndView modelAndView = new ModelAndView();
@@ -132,30 +130,6 @@ public class LoginController {
 	  * Gets the model for user home and displays the page for the new user.
 	  * @return - ModelAndView
 	  */
-	 @GetMapping("/user/home")
-	 public ModelAndView showUserHome(Principal principle) {
-		ModelAndView modelAndView = new ModelAndView();
-		List<Song> songs = songService.getAllSongs();
-//		UserCred user = userService.findUserByUserName(principle.getName());
-//
-//
-//		logger.info("====================================== List contents");
-		modelAndView.addObject("songs", songs);
-//		modelAndView.addObject("userName", user.getName());
-//		// modelAndView.addObject("adminMessage", "Content Available only for users with admin role");
-		modelAndView.setViewName("user/home");
-
-		return findPaginated(1, modelAndView);
-		
-//		List<Song> songs = songService.GetAllSongs();
-//		System.out.println("================ songs ");
-//		for (Song song : songs) {
-//			System.out.println("================" + song.getTitle());
-//		}
-//		UserCred user = userService.findUserByUserName(principle.getName());
-		
-
-	 }
 
 	 @PostMapping("/user/home")
 	 public ModelAndView addSong(Principal principle, @RequestParam String songTitle, @RequestParam String duration, @RequestParam BigDecimal cost) {
@@ -179,22 +153,54 @@ public class LoginController {
 		return modelAndView;
 	}
 	 
-	 @GetMapping("page/{pageNo}")
-		public ModelAndView findPaginated(@PathVariable (value = "pageNo") int pageNo, ModelAndView modelAndView) {
+	 @GetMapping("/user/home")
+	 public String showUserHome(Model model, Principal principle) {
+//		ModelAndView modelAndView = new ModelAndView();
+//		List<Song> songs = songService.getAllSongs();
+//		UserCred user = userService.findUserByUserName(principle.getName());
+//
+//
+//		logger.info("====================================== List contents");
+//		modelAndView.addObject("songs", songs);
+//		modelAndView.addObject("userName", user.getName());
+//		// modelAndView.addObject("adminMessage", "Content Available only for users with admin role");
+//		modelAndView.setViewName("user/home");
+
+		return findPaginated(1, "title", "asc", model);
+		
+//		List<Song> songs = songService.GetAllSongs();
+//		System.out.println("================ songs ");
+//		for (Song song : songs) {
+//			System.out.println("================" + song.getTitle());
+//		}
+//		UserCred user = userService.findUserByUserName(principle.getName());
+		
+
+	 }
+	 
+	 @GetMapping("/page/{pageNo}")
+		public String findPaginated(@PathVariable (value = "pageNo") int pageNo, 
+				@RequestParam("sortField") String sortField,
+				@RequestParam("sortDir") String sortDir,
+				Model model) {
 			
 			int pageSize = 5;
 			
-			Page<Song> page = songService.findPaginated(pageNo, pageSize);
+			Page<Song> page = songService.findPaginated(pageNo, pageSize, sortField, sortDir);
 			List<Song> listSongs = page.getContent();
 			
-			modelAndView.addObject("currentPage", pageNo);
-			modelAndView.addObject("totalPages", page.getTotalPages());
-			modelAndView.addObject("totalItems", page.getTotalElements());
-			modelAndView.addObject("listSongs", listSongs);
+			model.addAttribute("currentPage", pageNo);
+			model.addAttribute("totalPages", page.getTotalPages());
+			model.addAttribute("totalItems", page.getTotalElements());
+			model.addAttribute("listSongs", listSongs);
 			
-			modelAndView.setViewName("user/home");
+			model.addAttribute("sortField", sortField);
+			model.addAttribute("sortDir", sortDir);
+			model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
 			
-			return modelAndView;
+//			modelAndView.setViewName("user/home");
+			
+			return "user/home";
 
 		}
 }
