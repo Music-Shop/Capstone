@@ -193,7 +193,7 @@ public class LoginController {
 			modelAndView.addObject("listSongs", listSongs);
 			
 			modelAndView.setViewName("user/home");
-			
+		       
 			return modelAndView; 
 
 		}   
@@ -204,7 +204,7 @@ public class LoginController {
 	 * ================================================
 	 */
 
-	 @GetMapping("/user/home/cart/customerDetails")
+	 @GetMapping("/user/home/cart/customer-details")
 	 public ModelAndView showCustomerDetailsPage() {
 		 ModelAndView modelAndView = new ModelAndView();
 
