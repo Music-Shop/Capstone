@@ -1,5 +1,7 @@
 package com.hcl.MusicMelody.models;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,6 +13,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name = "billing_information")
 public class BillingInformation {
@@ -20,7 +24,7 @@ public class BillingInformation {
 	private Integer id;
 
 	@Column(name = "street")
-	@NotEmpty(message = "Please provide a First Name")
+	@NotEmpty(message = "Please provide a Street Name")
 	private String street;
 
 	@Column(name = "apartment")
@@ -39,15 +43,15 @@ public class BillingInformation {
 	private String zip;
 
 	@Column(name = "cvv")
-	@NotEmpty(message = "Please provide a First Name")
+	@NotEmpty(message = "Please provide cvv")
 	private String cvv;
 
 	@Column(name = "exp_date")
-	@NotEmpty(message = "Please provide a First Name")
-	private String expDate;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date expDate;
 
 	@Column(name = "card_number")
-	@NotEmpty(message = "Please provide a First Name")
+	@NotEmpty(message = "Please provide a card number")
 	private String cardNumber;
 
 	public Integer getId() {
@@ -106,11 +110,11 @@ public class BillingInformation {
 		this.cvv = cvv;
 	}
 
-	public String getExpDate() {
+	public Date getExpDate() {
 		return expDate;
 	}
 
-	public void setExpDate(String expDate) {
+	public void setExpDate(Date expDate) {
 		this.expDate = expDate;
 	}
 
