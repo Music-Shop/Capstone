@@ -191,17 +191,18 @@
                             <h6 class="card-artist">Artist: <span class="songArtist"
                                     th:text="${song.artist.fname} + ' '+ ${song.artist.lname}"></span></h6>
                             <p class="card-text text-muted">Price: $<span class="songCost" th:text="${song.cost}"></span></p>
+                            <!-- <h6 class="card-album">Album: <span class="songAlbum" th:text="${song.album.title}"></span></h6> -->
                         </div>
                     </div>
                     <div class="col-1">
-                        <p class="card-duration text-muted"><span th:text="${song.duration}"></span></p>
+                        <p class="card-duration text-muted "><span th:text="${song.duration}"></span></p>
                     </div>
                     <div class="col-3 d-flex justify-content-end">
                         <button class="btn justify-content-end" name="addToCart" id="addToCartBtn" value="add" onclick="addToCart(event)">Add To
                             Cart</button>
                     </div>
                 </div>
-            </div>
+            </div> 
         </div>
 
         <div th:if="${totalPages > 1}">

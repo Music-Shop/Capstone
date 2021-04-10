@@ -23,8 +23,9 @@ public class PurchaseController {
     private SongService songService;
 
     /**
-     * ================================================ === SHOPPING CART
-     * CONTROLLERS ================================================
+     * ================================================ 
+     * === SHOPPING CART CONTROLLERS 
+     * ================================================
      */
 
     @GetMapping("/user/home/cart")
@@ -35,8 +36,9 @@ public class PurchaseController {
     }
 
     /**
-     * ================================================ === CUSTOMER DETAILS
-     * CONTROLLERS ================================================
+     * ================================================ 
+     * === CUSTOMER DETAILS CONTROLLERS
+     *  ================================================
      */
 
     @GetMapping("/user/home/cart/customer-details")
@@ -47,8 +49,8 @@ public class PurchaseController {
         return modelAndView;
     }
 
-    @PostMapping("/user/home/cart/customer-details")
-    public ModelAndView addShippingDetails(@RequestParam String name, @RequestParam String email,
+    @PostMapping("/user/home/cart/customer-details/confirm")
+    public ModelAndView addShippingetails(@RequestParam String name, @RequestParam String email,
             @RequestParam String phone, @RequestParam String street, @RequestParam String apt,
             @RequestParam String city, @RequestParam String state, @RequestParam String zip) {
         ModelAndView modelAndView = new ModelAndView();
@@ -57,7 +59,7 @@ public class PurchaseController {
         String address1 = street + " " + apt;
         String address2 = city + " " + state + " " + zip;
         UserCred user = userService.findUserByEmail(email);
-        modelAndView.addObject("name", name);
+        modelAndView.addObject("name", name); 
         modelAndView.addObject("address1", address1);
         modelAndView.addObject("address2", address2);
         modelAndView.addObject("user", user);
@@ -67,8 +69,9 @@ public class PurchaseController {
     }
 
     /**
-     * ================================================ === ORDER CONFIRMATION
-     * CONTROLLERS ================================================
+     * ================================================ 
+     * === ORDER CONFIRMATION CONTROLLERS 
+     * ================================================
      */
 
     @GetMapping("/user/home/cart/customer-details/confirm")
@@ -76,6 +79,19 @@ public class PurchaseController {
         ModelAndView modelAndView = new ModelAndView();
         // modelAndView.addObject();
         modelAndView.setViewName("/user/orderConfirm");
+        return modelAndView;
+    }
+
+    /**
+     * ================================================ 
+     * === ORDER PLACED CONTROLLERS 
+     * ================================================
+     */
+
+    @GetMapping("/user/home/cart/customer-details/confirm/placed")
+    public ModelAndView showOrderPlacedPage() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("/user/confirmed");
         return modelAndView;
     }
 }
