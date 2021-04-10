@@ -26,44 +26,30 @@
         </button>
 
     </nav>
+    <div class="d-flex justify-content-center" style="margin-top: 4rem; margin-bottom: 2rem;">
+        <h1>Shopping Cart</h1>
     
-    <div class="d-flex justify-content-end" id="logoutBtn">
-        <form th:action="@{/logout}" method="get">
-            <button class="btn btn-md btn-danger btn-block d-flex justify-content-center"
-                style="width: 100px; height: auto;" name="registration" type="Submit">Logout</button>
-        </form><br><br>
+    </div>
+    <div class="container" style="margin-bottom: 20rem;">
+	    <table class="cartTable table table-dark table-striped">
+		    <thead>
+		    <tr>
+		      <th class="text-center" scope="col">Title</th>
+		      <th class="text-center" scope="col">Artist</th>
+		      <th class="text-center" scope="col">Cost</th>
+		    </tr>
+		  </thead>
+		  <tbody class="cartTableBody">
+		  </tbody>
+	    </table>
+	    <div class="d-flex justify-content-between">
+	    	<div class="d-flex"><h1>Total: </h1> &nbsp <h1 class="costTotal"></h1></div>
+	    	<button style="background-color: #D06CFF; color: white;">Confirm Order</button>
+	    </div>
     </div>
     
+
     
-    
-	<div class="sId" style="font-size: 10rem;" th:utext="${song.title}"></div>
-	<div class="d-flex">
-	   	<div class="sId" style="font-size: 5rem;" th:utext="${song.artist.fname}"></div>
-	   	<div class="sId" style="font-size: 5rem;" th:utext="${song.artist.lname}"></div>
-	
-	</div>
-	<div class="d-flex">
-		<p style="font-size: 5rem;">Duration: </p>
-   		<div class="sId" style="font-size: 5rem;" th:utext="${song.duration}"></div>
-   	</div>
-   	<div class="d-flex">
-   		<p style="font-size: 5rem;">Cost: </p>
-   		<div class="sId" style="font-size: 5rem;" th:utext="${song.cost}"></div>
-   	</div>
-   	
-    
-    
-    
-    
-    
-    
-    
-    
-    <br>
-<br>
-<br>
-<br>
-<br>
     <!-- Footer -->
     <footer class="text-center text-lg-start fixed-bottom" id="footer" style="background-color: #D06CFF; color: white;">
         <!-- Grid container -->
@@ -108,11 +94,45 @@
     </footer>
     <!-- Footer -->
     <!-- Bootstrap -->
-    <script>
-    console.log(localStorage.getItem("orders"));
     
+    <script type="text/javascript">
+	    var orders = localStorage.getItem("orders");
+		if (orders === null){
+			orders = [];
+		}else{
+			orders = JSON.parse(orders);
+		}
+	
+		var i;
+		var costTot = 0;
+		var table = document.querySelector('.cartTableBody');
+		for (i = 0; i < orders.length; i++) {
+			console.log(orders[i]);
+			var tr = document.createElement("tr");
+			
+			var tdTitle = document.createElement("td");
+			tdTitle.innerHTML = orders[i][1];
+			tdTitle.className = "text-center";
+			
+			var tdArtist = document.createElement("td");
+			tdArtist.innerHTML = orders[i][2];
+			tdArtist.className = "text-center";
+			
+			var tdCost = document.createElement("td");
+			costTot += parseFloat(orders[i][3]);
+			tdCost.innerHTML = orders[i][3];
+			tdCost.className = "text-center";
+			
+			tr.appendChild(tdTitle);
+			tr.appendChild(tdArtist);
+			tr.appendChild(tdCost);
+			
+			table.appendChild(tr);
+		}
+		
+		var costTotal = document.querySelector('.costTotal');
+		costTotal.innerHTML = Number(costTot.toFixed(2));
+    </script>
 
- // Store
- </script>
 </body>
 </html>

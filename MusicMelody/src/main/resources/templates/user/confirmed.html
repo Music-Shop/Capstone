@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Music Melody</title>
+    <link rel="stylesheet" type="text/css" th:ref="@{/css/registration.css}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</head>
+<script>
+    function goPrev() {
+        window.history.back();
+    }
+</script>
+<style>
+    body {
+        background-color: #1E1E1E;
+    }
+
+    #footer {
+        background-color: black;
+        position: absolute;
+        bottom: 0px;
+        width: 100%;
+    }
+
+    #formContainer {
+        align-items: center;
+        justify-content: center;
+        margin-top: 15px;
+        background-color: #323232;
+        color: white;
+        /* border-style: inset; */
+        border-radius: 5px;
+        /* border-color: #D06CFF; */
+    }
+
+    form {
+        vertical-align: center;
+        padding: 20px 20px;
+        padding-top: 0;
+    }
+
+    input,
+    option,
+    select {
+        background-color: #1E1E1E;
+        color: white;
+    }
+
+    .submit,
+    .cancel {
+        color: white;
+    }
+
+    hr {
+        background-color: #D06CFF;
+    }
+
+
+    /* #cancel:hover {
+        background-color: gray;
+    } */
+</style>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: black;">
+            <a class="navbar-brand" href="/" style="color: #D06CFF">Music Melody</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav ml-auto">
+                    <a class="nav-item nav-link" href="/user/home">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-item nav-link disabled" href="#">Profile</a>
+                    <a class="nav-item nav-link" href="/user/home/cart">Cart</a>
+                    <form th:action="@{/logout}" method="get">
+                        <button class="btn btn-md btn-block d-flex justify-content-center" name="registration"
+                            type="Submit">Logout</button>
+                    </form>
+                </div>
+        </nav>
+    </header>
+
+
+    <div class="container align-items-center" id="orderPlaced">
+        <div class="container-title">
+            <h1 class="display-2">Order has been placed</h1>
+        </div>
+        <hr>
+        <!-- <p>Order number: <p th:text="${order.orderNum}"></p></p> -->
+        <div class="alert alert success" role="alert">Your order will be shipped in 3 - 5 business days.</div>
+        <a class="btn btn-primary" role="button" href="/user/home">Return to Home</a>
+    </div>
+
+
+
+    <footer class="text-center text-lg-start" id="footer" style="background-color: #D06CFF; color: white;">
+        <!-- Grid container -->
+        <div class="container p-4">
+            <div class="text-center">
+                <h5 class="text-uppercase">Contact</h5>
+            </div>
+
+            <div class="d-flex justify-content-center" style="margin-top: 2rem;">
+                <div style="margin-right: 3rem;">
+
+                    <ul class="list-unstyled mb-0">
+                        <li>
+                            Email
+                        </li>
+                        <li>
+                            Phone
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+
+                    <ul class="list-unstyled">
+                        <li>
+                            mm@musicmelody.us
+                        </li>
+                        <li>
+                            (###)###-####
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: black;">
+            © 2020 Copyright:
+            <a class="text-light" href="#">MusicMelody.us</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
+</body>
+
+</html>
