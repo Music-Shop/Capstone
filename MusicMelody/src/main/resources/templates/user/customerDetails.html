@@ -52,6 +52,7 @@
     }
 
     input,
+    option,
     select {
         background-color: #1E1E1E;
         color: white;
@@ -62,8 +63,7 @@
         color: white;
     }
 
-    ::placeholder,
-    select {
+    ::placeholder {
         color: gray;
     }
 
@@ -84,6 +84,7 @@
     .nav-item {
         margin-right: 15px;
     }
+
     /* #cancel:hover {
         background-color: gray;
     } */
@@ -103,8 +104,8 @@
                     <a class="nav-item nav-link disabled" href="#">Profile</a>
                     <a class="nav-item nav-link" href="/user/home/cart">Cart</a>
                     <form th:action="@{/logout}" method="get">
-                        <button class="btn btn-md btn-block d-flex justify-content-center"
-                             name="registration" type="Submit">Logout</button>
+                        <button class="btn btn-md btn-block d-flex justify-content-center" name="registration"
+                            type="Submit">Logout</button>
                     </form>
                 </div>
         </nav>
@@ -114,7 +115,8 @@
     <div class="container align-items-center" id="formContainer">
         <h1 class="display-2">Customer Details</h1>
         <hr>
-        <form class="form" action="/user/home/cart/customerDetails" method="POST"><br>
+        <h6>Shipping Information</h6>
+        <form class="form" action="/user/home/cart/customer-details" method="POST"><br>
             <label for="name">Name: </label><br>
             <input type="text" name="name" class="name" placeholder="Enter name" required><br>
             <label for="email">Email: </label><br>
@@ -127,8 +129,8 @@
             <input type="text" name="apt" class="apt" placeholder="Apartment #"><br>
             <label for="city">City: </label><br>
             <input type="text" name="city" class="city" placeholder="Enter City" required><br>
-            <label for="states">State: </label><br>
-            <select name="states" class="states">
+            <label for="state">State: </label><br>
+            <select name="state" class="state">
                 <option value="AL">AL</option>
                 <option value="AK">AK</option>
                 <option value="AR">AR</option>
@@ -183,7 +185,7 @@
             </select><br>
             <label for="zip">Zip Code: </label><br>
             <input type="text" name="zip" class="zip" placeholder="01234" required><br><br>
-            <button type="submit" id="next" class="btn">Next</button>
+            <input type="submit" id="next" class="btn" value="Next">
             <button type="button" id="cancel" class="btn btn-light" onclick="goPrev()">Cancel</button>
         </form>
     </div>

@@ -15,38 +15,41 @@ import javax.validation.constraints.NotEmpty;
 @Table(name = "billing_information")
 public class BillingInformation {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "billing_id")
 	private Integer id;
-	
-	@Column(name="fname")
+
+	@Column(name = "street")
 	@NotEmpty(message = "Please provide a First Name")
-	private String fname;
-	
-	@Column(name="lname")
-	@NotEmpty(message = "Please provide a Last Name")
-	private String lname;
-	
-	@Column(name="billing_address")
-	@NotEmpty(message = "Please provide a First Name")
-	private String billingAddress;
-	
-	@Column(name="cvv")
+	private String street;
+
+	@Column(name = "apartment")
+	private String apt;
+
+	@Column(name = "city")
+	@NotEmpty(message = "An address should contain a city.")
+	private String city;
+
+	@Column(name = "state")
+	@NotEmpty(message = "An address should contain a state.")
+	private String state;
+
+	@Column(name = "zip")
+	@NotEmpty(message = "An address should contain a zip code.")
+	private String zip;
+
+	@Column(name = "cvv")
 	@NotEmpty(message = "Please provide a First Name")
 	private String cvv;
-	
-	@Column(name="exp_date")
+
+	@Column(name = "exp_date")
 	@NotEmpty(message = "Please provide a First Name")
 	private String expDate;
-	
-	@Column(name="card_number")
+
+	@Column(name = "card_number")
 	@NotEmpty(message = "Please provide a First Name")
 	private String cardNumber;
 
-	@OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private UserCred userCred;
-	
 	public Integer getId() {
 		return id;
 	}
@@ -55,28 +58,44 @@ public class BillingInformation {
 		this.id = id;
 	}
 
-	public String getFname() {
-		return fname;
+	public String getStreet() {
+		return street;
 	}
 
-	public void setFname(String fname) {
-		this.fname = fname;
+	public void setStreet(String street) {
+		this.street = street;
 	}
 
-	public String getLname() {
-		return lname;
+	public String getApt() {
+		return apt;
 	}
 
-	public void setLname(String lname) {
-		this.lname = lname;
+	public void setApt(String apt) {
+		this.apt = apt;
 	}
 
-	public String getBillingAddress() {
-		return billingAddress;
+	public String getCity() {
+		return city;
 	}
 
-	public void setBillingAddress(String billingAddress) {
-		this.billingAddress = billingAddress;
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public String getZip() {
+		return zip;
+	}
+
+	public void setZip(String zip) {
+		this.zip = zip;
 	}
 
 	public String getCvv() {
@@ -102,6 +121,5 @@ public class BillingInformation {
 	public void setCardNumber(String cardNumber) {
 		this.cardNumber = cardNumber;
 	}
-	
-	
+
 }

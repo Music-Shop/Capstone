@@ -2,19 +2,19 @@ package com.hcl.MusicMelody.models;
 
 import java.util.Set;
 
-//import org.hibernate.validator.constraints.Length;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
-
 import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.validator.constraints.Length;
@@ -55,6 +55,9 @@ public class UserCred {
 	@Column(name = "active")
 	private boolean active;
 	
+	@OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "billing_id")
+    private BillingInformation billing;
 	
 	@ManyToMany(cascade = CascadeType.MERGE)
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -110,11 +113,18 @@ public class UserCred {
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
 	}
+	public BillingInformation getBilling() {
+		return billing;
+	}
+	public void setBilling(BillingInformation billing) {
+		this.billing = billing;
+	}
 	@Override
 	public String toString() {
 		return "UserCred [id=" + id + ", userName=" + userName + ", email=" + email + ", password=" + password
 				+ ", name=" + name + ", lastName=" + lastName + ", active=" + active + ", roles=" + roles + "]";
 	}
+	
 	
 	
 
