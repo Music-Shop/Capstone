@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <meta charset="UTF-8">
+      <title>Shopping Cart</title>
+      <link rel="stylesheet" type="text/css" th:href="@{/styles.css}">
+   </head>
+   <body>
+      <th:block th:include="/_header"></th:block>
+      <th:block th:include="/_menu"></th:block>
+       
+      <div class="page-title">My Cart</div>
+       
+      <th:block th:if="${cartForm == null || cartForm.cartLines == null || cartForm.cartLines.empty}">
+         <h2>There is no items in Cart</h2>
+         <a th:href="@{/songList}">Show Song List</a>
+      </th:block>
+       
+      <th:block th:if="${cartForm != null && cartForm.cartLines != null && !cartForm.cartLines.empty}">
+         <form method="POST" th:object="${cartForm}" th:action="@{/shoppingCart}">
+          
+               <div class="product-preview-container"
+                        th:each="cartLineInfo, varStatus : ${cartForm.cartLines}">
+                  <ul>
+                     <li><img class="product-image"
+                        th:src="@{|/songImage?code=${cartLineInfo.songInfo.code}|}" />
+                     </li>
+                     <li>Code: <span th:utext="${cartLineInfo.songInfo.code}"></span>
+                        <input type="hidden"      
+                           th:name="|cartLines[${varStatus.index}].songInfo.code|"                       
+                           th:value="${cartLineInfo.songInfo.code}" />
+                     </li>
+                     <li>Title: <span th:utext="${cartLineInfo.songInfo.title}"></span></li>
+                     <li>Price:
+                        <span class="price"
+                           th:utext="${#numbers.formatDecimal(cartLineInfo.songInfo.cost,3,2,'COMMA')}">
+                        </span>
+                     </li>
+                     <li>Quantity:
+                        <input
+                            th:name="|cartLines[${varStatus.index}].quantity|"
+                            th:value="${cartLineInfo.quantity}" />
+                     </li>
+                     <li>Subtotal:
+                        <span class="subtotal"
+                           th:utext="${#numbers.formatDecimal(cartLineInfo.amount,3,2,'COMMA')}">
+                        </span>
+                     </li>
+                     <li>
+                        <a th:href="@{|/shoppingCartRemoveSong?code=${cartLineInfo.songInfo.code}|}">
+                        Delete
+                        </a>
+                     </li>
+                  </ul>
+               </div>
+             
+            <div style="clear: both"></div>
+            <input class="button-update-sc" type="submit" value="Update Quantity" />
+            <a class="navi-item"
+               th:href="@{/shoppingCartCustomer}">Enter Customer Info</a>
+            <a class="navi-item"
+               th:href="@{/songList}">Continue Buy</a>
+         </form>
+      </th:block>
+       
+      <th:block th:include="/_footer"></th:block>
+       
+   </body>
+</html>
+</body>
+</html>

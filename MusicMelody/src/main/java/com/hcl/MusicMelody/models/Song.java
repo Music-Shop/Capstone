@@ -1,6 +1,7 @@
 package com.hcl.MusicMelody.models;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,9 +10,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.validator.constraints.Length;
 
@@ -36,6 +40,13 @@ public class Song {
     // @NotEmpty(message = "Please enter a price for the song. Cannot be null or empty")
     private BigDecimal cost;
 
+    @Id
+    @Column(name = "Code", length = 20, nullable = false)
+    private String code;
+    
+    @Lob
+    @Column(name = "Image", length = Integer.MAX_VALUE, nullable = true)
+    private byte[] image;
     /**
      * Not added content. Cannot use currently
      */
@@ -55,13 +66,18 @@ public class Song {
     @JoinColumn(name = "genre_id")
     private Genre genre;
     
-    
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "Create_Date", nullable = false)
+    private Date createDate;
     
     public Song() {
     }
 
    
-
+    public String getCode() {
+        return code;
+    }
+    
     public Integer getId() {
 		return id;
 	}
@@ -81,9 +97,25 @@ public class Song {
 	public String getTitle() {
         return title;
     }
+	 
+    public byte[] getImage() {
+        return image;
+    }
+ 
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
+	
+	public void setCode(String code) {
+        this.code = code;
+    }
 
     public void setTitle(String title) {
         this.title = title;
+    }
+    
+    public Date getCreateDate() {
+        return createDate;
     }
 
     public String getDuration() {
@@ -113,6 +145,11 @@ public class Song {
     @Override
     public String toString() {
         return "Song [cost=" + cost + ", duration=" + duration + ", title=" + title + "]";
+    }
+
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
     }
 
     
