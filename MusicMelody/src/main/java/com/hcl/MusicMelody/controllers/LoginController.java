@@ -42,7 +42,12 @@ public class LoginController {
 		return modelAndView;
 	}
 	
-	
+	@GetMapping(value = "/user/cart")
+	public ModelAndView buildCart() {
+		ModelAndView modelAndView= new ModelAndView();
+		modelAndView.setViewName("user/cart");
+		return modelAndView;
+	}
 	@GetMapping(value =  "/login")
 	public ModelAndView login() {
 		ModelAndView modelAndView = new ModelAndView();
@@ -203,5 +208,6 @@ public class LoginController {
 			return "user/home";
 
 		}
+	 
 
 }
