@@ -17,11 +17,7 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
 </head>
-<script>
-    function goPrev() {
-        window.history.back();
-    }
-</script>
+
 <style>
     body {
         background-color: #1E1E1E;
@@ -34,16 +30,12 @@
         width: 100%;
     }
 
-    .container-title,
-    .container-body {
-        color: white;
-    }
-
     #cart-container,
     #title-container {
         background-color: #323232;
         padding: 15px 15px;
         border-radius: 5px;
+        color: white;
         /* border-style: inset;
         border-color: #D06CFF; */
     }
@@ -70,27 +62,32 @@
         margin-right: 15px;
     }
 
+    table {
+        text-align: left;
+    }
+
 </style>
 
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: black;">
-            <a class="navbar-brand" href="/" style="color: #D06CFF">Music Melody</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav ml-auto">
-                    <a class="nav-item nav-link" href="/user/home">Home <span class="sr-only">(current)</span></a>
-                    <a class="nav-item nav-link disabled" href="#">Profile</a>
-                    <a class="nav-item nav-link active" href="#">Cart</a>
-                    <form th:action="@{/logout}" method="get">
-                        <button class="btn btn-md btn-block d-flex justify-content-center"
-                             name="registration" type="Submit">Logout</button>
-                    </form>
-                </div>
-        </nav>
+        <a class="navbar-brand" href="/" style="color: #D06CFF">Music Melody</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav ml-auto">
+                <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link disabled" href="#">Profile</a>
+                <a class="nav-item nav-link" href="/user/home/cart">Cart</a>
+                <form th:action="@{/logout}" method="get">
+                    <button class="btn btn-md btn-block d-flex justify-content-center" name="registration"
+                        type="Submit">Logout</button>
+                </form>
+            </div>
+            </div>
+    </nav>
     </header>
 
     <div class="container" id="content">
@@ -110,20 +107,19 @@
                     <thead>
                         <tr>
                             <td>Song</td>
-                            <td>Album</td>
+                            <td hidden>Album</td>
                             <td>Artist</td>
                             <td>Price</td>
-                            <td>Unit Price</td>
-                            <td>Quantity</td>
-                            <td>Price</td>
-                            <td>Action</td>
+                            <td hidden>Action</td>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="cartTableBody">
                         <!-- Add content using thymeleaf here. Should be session data -->
                     </tbody>
                 </table>
             </div>
+            <br>
+            <div class="d-flex"><h1>Total: </h1> &nbsp <h1 class="costTotal"></h1></div><br><br>
             <div class="buttons">
                 <!-- This probably should change to a button that submits since its kinda a form? -->
                 <a class="btn btn-primary" id="checkout" role="button" href="cart/customer-details">Continue to
@@ -175,6 +171,49 @@
         </div>
         <!-- Copyright -->
     </footer>
+
+    <script>
+        function goPrev() {
+            window.history.back();
+        }
+    
+        var orders = localStorage.getItem("orders");
+            if (orders === null){
+                orders = [];
+            }else{
+                orders = JSON.parse(orders);
+            }
+        
+            var i;
+            var costTot = 0;
+            var table = document.querySelector('.cartTableBody');
+            for (i = 0; i < orders.length; i++) {
+                console.log(orders[i]);
+                var tr = document.createElement("tr");
+                
+                var tdTitle = document.createElement("td");
+                tdTitle.innerHTML = orders[i][1];
+                // tdTitle.className = "text-center";
+                
+                var tdArtist = document.createElement("td");
+                tdArtist.innerHTML = orders[i][2];
+                // tdArtist.className = "text-center";
+                
+                var tdCost = document.createElement("td");
+                costTot += parseFloat(orders[i][3]);
+                tdCost.innerHTML = orders[i][3];
+                // tdCost.className = "text-center";
+                
+                tr.appendChild(tdTitle);
+                tr.appendChild(tdArtist);
+                tr.appendChild(tdCost);
+                
+                table.appendChild(tr);
+            }
+            
+            var costTotal = document.querySelector('.costTotal');
+            costTotal.innerHTML = Number(costTot.toFixed(2));
+    </script>
 </body>
 
 </html>

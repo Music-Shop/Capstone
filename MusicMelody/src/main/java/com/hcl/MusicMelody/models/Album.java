@@ -1,10 +1,14 @@
 package com.hcl.MusicMelody.models;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.Length;
@@ -30,6 +34,9 @@ public class Album {
     // @NotEmpty(message = "Please enter a price for the song. Cannot be null or empty")
     private Double cost;
     
+	@OneToMany(mappedBy = "artist")
+    private Set<Song> songs = new HashSet<>();
+	
 //    @ManyToMany(cascade = CascadeType.MERGE)
 //	@JoinTable(name = "song_album", joinColumns = @JoinColumn(name = "song_id"), inverseJoinColumns = @JoinColumn(name = "album_id"))
 //	private Set<Song> songs;

@@ -39,8 +39,9 @@ public class Song {
     /**
      * Not added content. Cannot use currently
      */
-    // @Column(name = "album")
-    // private Album album;   
+    @ManyToOne
+    @JoinColumn(name = "album_id")
+    private Album album;   
 
     // @Column(name = "band")
     // @OneToMany

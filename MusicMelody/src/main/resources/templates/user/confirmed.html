@@ -34,43 +34,30 @@
         width: 100%;
     }
 
-    #formContainer {
-        align-items: center;
-        justify-content: center;
-        margin-top: 15px;
+    #order-placed {
+        color: white;
         background-color: #323232;
-        color: white;
-        /* border-style: inset; */
+        padding: 15px 15px;
         border-radius: 5px;
-        /* border-color: #D06CFF; */
     }
 
-    form {
-        vertical-align: center;
-        padding: 20px 20px;
-        padding-top: 0;
-    }
-
-    input,
-    option,
-    select {
-        background-color: #1E1E1E;
-        color: white;
-    }
-
-    .submit,
-    .cancel {
-        color: white;
+    #order-placed {
+        margin-bottom: 15px;
+        margin-top: 15px;
     }
 
     hr {
         background-color: #D06CFF;
     }
 
+    #return {
+        background-color: #D06CFF;
+        border-color: #D06CFF;
+    }
 
-    /* #cancel:hover {
-        background-color: gray;
-    } */
+    #return:hover {
+        background-color: #8b00cc;
+    }
 </style>
 
 <body>
@@ -95,14 +82,14 @@
     </header>
 
 
-    <div class="container align-items-center" id="orderPlaced">
-        <div class="container-title">
-            <h1 class="display-2">Order has been placed</h1>
+    <div class="container align-items-center" id="order-placed">
+        <div class="title-container">
+            <h1 class="display-2">Order Has Been Placed</h1>
         </div>
         <hr>
         <!-- <p>Order number: <p th:text="${order.orderNum}"></p></p> -->
         <div class="alert alert success" role="alert">Your order will be shipped in 3 - 5 business days.</div>
-        <a class="btn btn-primary" role="button" href="/user/home">Return to Home</a>
+        <a class="btn btn-primary" id="return" role="button" href="/user/home">Return to Home</a>
     </div>
 
 
