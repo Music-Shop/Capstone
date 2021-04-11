@@ -101,7 +101,7 @@ public class LoginController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UserCred user = userService.findUserByUserName(auth.getName());
 		System.out.println("=================================== User for Tasks" + user.toString());
-
+		System.out.println("=============== has Roles: " + user.getRoles());
 		modelAndView.addObject("userName", user.getName());
 		modelAndView.addObject("adminMessage", "Content Available only for users with admin role");
 		modelAndView.setViewName("admin/home");
@@ -133,6 +133,7 @@ public class LoginController {
 		modelAndView.setViewName("user/search");
 		return modelAndView;
 	}
+
 	/**
 	 * Gets the model for user home and displays the page for the new user.
 	 * 
@@ -181,7 +182,6 @@ public class LoginController {
 	public String findPaginated(@PathVariable(value = "pageNo") int pageNo, @RequestParam("sortField") String sortField,
 			@RequestParam("sortDir") String sortDir, Model model) {
 
-		
 		int pageSize = 10;
 
 		Page<Song> page = songService.findPaginated(pageNo, pageSize, sortField, sortDir);
