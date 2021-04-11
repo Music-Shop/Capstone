@@ -112,7 +112,7 @@
                             <td hidden>Album</td>
                             <td>Artist</td>
                             <td>Price</td>
-                            <td hidden>Action</td>
+                            <td>Action</td>
                         </tr>
                     </thead>
                     <tbody class="cartTableBody">
@@ -130,7 +130,6 @@
             </div>
         </div>
     </div>
-Test
 
     <footer class="text-center text-lg-start" id="footer" style="background-color: #D06CFF; color: white;">
         <!-- Grid container -->
@@ -190,7 +189,6 @@ Test
             var costTot = 0;
             var table = document.querySelector('.cartTableBody');
             for (i = 0; i < orders.length; i++) {
-                console.log(orders[i]);
                 var tr = document.createElement("tr");
                 
                 var tdTitle = document.createElement("td");
@@ -206,15 +204,58 @@ Test
                 tdCost.innerHTML = orders[i][3];
                 // tdCost.className = "text-center";
                 
+                var tdDelete = document.createElement("td");
+                var button = document.createElement("button");
+                button.type = "button";
+                button.className = "btn btn-outline-danger removeOrder";
+                button.innerHTML = "DELETE";
+                button.onclick = function(){removeOrder(event)};
+                
+                var id = document.createElement("div");
+                id.innerHTML = orders[i][0];
+                id.style.display = "none";
+                id.className = "sId";
+                tdDelete.appendChild(button);
+                tdDelete.appendChild(id);
+
                 tr.appendChild(tdTitle);
                 tr.appendChild(tdArtist);
                 tr.appendChild(tdCost);
+                tr.appendChild(tdDelete);
+
                 
                 table.appendChild(tr);
             }
             
+            orders = JSON.stringify(orders);
+            
             var costTotal = document.querySelector('.costTotal');
             costTotal.innerHTML = Number(costTot.toFixed(2));
+            
+            function removeOrder(e){
+            	var removeBtn = e.currentTarget;
+            	var row = removeBtn.parentNode.parentNode;
+            	
+            	var id = removeBtn.parentNode.querySelector('.sId').innerHTML;
+            	//var songCard = removeBtn.parentNode;
+            	
+                orders = JSON.parse(orders);
+            	
+            	var i;
+            	for(i = 0; i < orders.length; i++){
+            		console.log("i: " + orders[i][0], "id: ", id);
+            		if(orders[i][0] == id){
+            			orders.splice(i, 1);
+            			break;
+            		}
+            	}
+            	
+               	table.removeChild(row);
+            	orders = JSON.stringify(orders);
+    			localStorage.setItem("orders", orders);
+
+
+            }
     </script>
 </body>
 
