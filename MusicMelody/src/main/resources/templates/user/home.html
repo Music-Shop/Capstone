@@ -86,7 +86,7 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: black;">
-        <a class="navbar-brand" href="/" style="color: #D06CFF">Music Melody</a>
+        <a class="navbar-brand" href=" " style="color: #D06CFF">Music Melody</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
             aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -94,12 +94,14 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav ml-auto">
                 <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link disabled" href="#">Profile</a>
+                <a class="nav-item nav-link" href="#">My Songs</a>
+                <a class="nav-item nav-link" href="/user/profile">Profile</a>
                 <a class="nav-item nav-link" href="/user/home/cart">Cart</a>
                 <form th:action="@{/logout}" method="get">
                     <button class="btn btn-md btn-block d-flex justify-content-center" name="registration"
                         type="Submit">Logout</button>
                 </form>
+            </div>
             </div>
     </nav>
 

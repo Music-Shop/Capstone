@@ -46,5 +46,10 @@ public class UserService {
 		return userRepo.save(userCred);
 		
 	}
+	
+	public UserCred updateUser(UserCred userCred) {
+		return userRepo.save(userCred);
+		
+	}
 
 }

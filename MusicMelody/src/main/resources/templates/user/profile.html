@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.thymeleaf.org ">
+
+<head>
+    <title>Music Melody</title>
+    <link rel="stylesheet" type="text/css" th:ref="@{/css/registration.css}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+</head>
+
+<style>
+    body{
+    	background-color: #1E1E1E;
+        color: white; 
+    }
+</style>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: black;">
+        <a class="navbar-brand" href="/user/home" style="color: #D06CFF">Music Melody</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav ml-auto">
+                <a class="nav-item nav-link" href="/user/home">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link" href="#">My Songs</a>
+                <a class="nav-item nav-link active" href="#">Profile</a>
+                <a class="nav-item nav-link" href="/user/home/cart">Cart</a>
+                <form th:action="@{/logout}" method="get">
+                    <button class="btn btn-md btn-block d-flex justify-content-center" name="registration"
+                        type="Submit">Logout</button>
+                </form>
+            </div>
+            </div>
+    </nav>
+
+<div class="d-flex" style="width: 100vw; height: 100vh">
+	<div style="width: 30%; height: 100%; background-color: black;">
+		<h1 class="text-center" th:text="${user.userName}"></h1>
+		
+		<div class="card text-white" style="width: 100%; background-color:#D06CFF">
+		  <ul style = "background-color: #D06CFF;" class="list-group list-group-flush">
+		    <li style = "background-color: #D06CFF;" class="list-group-item">Account</li>
+		    <li style = "background-color: #D06CFF;" class="list-group-item">Billing</li>
+		    <li style = "background-color: #D06CFF;" class="list-group-item">Signout</li>
+		  </ul>
+		</div>
+	</div>
+	
+	<div class="billingContainer h-100 d-inline-block" style="padding: 10rem;">
+		<div>
+			<h1>Billing Information</h1>
+			<form action="/user/billing" method="post">
+	            <label for="name">Name: </label><br>
+	            <input type="text" name="name" class="name" placeholder="Enter name" required><br>
+	            <label for="email">Email: </label><br>
+	            <input type="email" name="email" class="email" placeholder="prefix@domain" required><br>
+	           
+	           <label for="cardNumber">Card Number </label><br>
+	            <input type="text" name="cardNumber" class="cardNumber" placeholder="Card #" required><br>
+	            
+	            <label for="expDate">Start Date:</label><br>
+            	<input type="date" id="expDate" name="expDate"><br>
+            
+	           <label for="cvv">Card CVV </label><br>
+	            <input type="text" name="cvv" class="cvv" placeholder="CVV" required><br>
+	            
+	            <label for="phone"> Phone #: </label><br>
+	            <input type="text" name="phone" class="phone" placeholder="(123)-456-7890" required><br>
+	            <label for="street">Street Name: </label><br>
+	            <input type="text" name="street" class="street" placeholder="123 Street Name" required><br>
+	            <label for="apt">Apartment #: </label><br>
+	            <input type="text" name="apt" class="apt" placeholder="Apartment #"><br>
+	            <label for="city">City: </label><br>
+	            <input type="text" name="city" class="city" placeholder="Enter City" required><br>
+	            <label for="state">State: </label><br>
+	            <select name="state" class="state">
+	                <option value="AL">AL</option>
+	                <option value="AK">AK</option>
+	                <option value="AR">AR</option>
+	                <option value="AZ">AZ</option>
+	                <option value="CA">CA</option>
+	                <option value="CO">CO</option>
+	                <option value="CT">CT</option>
+	                <option value="DC">DC</option>
+	                <option value="DE">DE</option>
+	                <option value="FL">FL</option>
+	                <option value="GA">GA</option>
+	                <option value="HI">HI</option>
+	                <option value="IA">IA</option>
+	                <option value="ID">ID</option>
+	                <option value="IL">IL</option>
+	                <option value="IN">IN</option>
+	                <option value="KS">KS</option>
+	                <option value="KY">KY</option>
+	                <option value="LA">LA</option>
+	                <option value="MA">MA</option>
+	                <option value="MD">MD</option>
+	                <option value="ME">ME</option>
+	                <option value="MI">MI</option>
+	                <option value="MN">MN</option>
+	                <option value="MO">MO</option>
+	                <option value="MS">MS</option>
+	                <option value="MT">MT</option>
+	                <option value="NC">NC</option>
+	                <option value="NE">NE</option>
+	                <option value="NH">NH</option>
+	                <option value="NJ">NJ</option>
+	                <option value="NM">NM</option>
+	                <option value="NV">NV</option>
+	                <option value="NY">NY</option>
+	                <option value="ND">ND</option>
+	                <option value="OH">OH</option>
+	                <option value="OK">OK</option>
+	                <option value="OR">OR</option>
+	                <option value="PA">PA</option>
+	                <option value="RI">RI</option>
+	                <option value="SC">SC</option>
+	                <option value="SD">SD</option>
+	                <option value="TN">TN</option>
+	                <option value="TX">TX</option>
+	                <option value="UT">UT</option>
+	                <option value="VT">VT</option>
+	                <option value="VA">VA</option>
+	                <option value="WA">WA</option>
+	                <option value="WI">WI</option>
+	                <option value="WV">WV</option>
+	                <option value="WY">WY</option>
+	            </select><br>
+	            <label for="zip">Zip Code: </label><br>
+	            <input type="text" name="zip" class="zip" placeholder="01234" required><br><br>
+	            
+	            <input type="submit" value="Confirm" class="btn btn-primary btn-lg" style="background-color: #D06CFF; border-color: #D06CFF;">
+           
+            </form>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Footer -->
+    <footer class="text-center text-lg-start" id="footer" style="background-color: #D06CFF; color: white;">
+        <!-- Grid container -->
+        <div class="container p-4">
+            <div class="text-center">
+                <h5 class="text-uppercase">Contact</h5>
+            </div>
+
+            <div class="d-flex justify-content-center" style="margin-top: 2rem;">
+                <div style="margin-right: 3rem;">
+
+                    <ul class="list-unstyled mb-0">
+                        <li>
+                            Email
+                        </li>
+                        <li>
+                            Phone
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+
+                    <ul class="list-unstyled">
+                        <li>
+                            evan_watson@hcl.com
+                        </li>
+                        <li>
+                            (###)###-####
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: black;">
+            2020 Copyright:
+            <a class="text-light" href="#">MusicMelody.us</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+</html>
