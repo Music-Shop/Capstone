@@ -84,4 +84,11 @@ public class SongService {
     public Optional<Song> getSongById(Integer songId) {
     	return songRepo.findById(songId);
     }
+
+    public List<Song> listAll(String keyword) {
+        if (keyword != null) {
+            return songRepo.findAll(keyword);
+        }
+        return songRepo.findAll();   
+    }
 }
