@@ -1,10 +1,18 @@
 package com.hcl.MusicMelody.controllers;
 
+import com.hcl.MusicMelody.models.ConfirmedPurchase;
+import com.hcl.MusicMelody.models.Song;
 import com.hcl.MusicMelody.models.UserCred;
+import com.hcl.MusicMelody.services.ConfirmedPurchaseService;
 import com.hcl.MusicMelody.services.SongService;
 import com.hcl.MusicMelody.services.UserService;
+import java.security.Principal;
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,6 +30,8 @@ public class PurchaseController {
     @Autowired
     private SongService songService;
 
+    @Autowired
+    private ConfirmedPurchaseService purchaseService;
     /**
      * ================================================ 
      * === SHOPPING CART CONTROLLERS 
@@ -50,9 +60,11 @@ public class PurchaseController {
     }
 
     @PostMapping("/user/home/cart/customer-details/confirm")
-    public ModelAndView addShippingetails(@RequestParam String name, @RequestParam String email,
+    public ModelAndView addShippingetails(
+    		@RequestParam String name, @RequestParam String email,
             @RequestParam String phone, @RequestParam String street, @RequestParam String apt,
-            @RequestParam String city, @RequestParam String state, @RequestParam String zip) {
+            @RequestParam String city, @RequestParam String state, @RequestParam String zip
+            ) {
         ModelAndView modelAndView = new ModelAndView();
         System.out.println("========================= " + "Collected items from details: " + name + " " + email + " "
                 + phone + " " + street + " " + apt + " " + city + " " + state + " " + zip);
@@ -94,4 +106,25 @@ public class PurchaseController {
         modelAndView.setViewName("/user/confirmed");
         return modelAndView;
     }
+    
+    @PostMapping("/user/home/cart/receipt")
+    public ModelAndView placeOrder(Principal principal, @RequestParam String idLst) {
+        ModelAndView modelAndView = new ModelAndView();
+        
+        String[] arrSong = idLst.split(",");
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		UserCred user = userService.findUserByUserName(auth.getName());
+
+		for(String songId: arrSong) {
+        	System.out.println("=========================== IDs: " + songId);
+        	Song song = songService.getSongById(Integer.parseInt(songId)).get();
+        	ConfirmedPurchase confirmPurchase = new ConfirmedPurchase();
+        	confirmPurchase.setSong(song);
+        	confirmPurchase.setUser(user);
+        	purchaseService.saveOrUpdate(confirmPurchase);
+        }
+        modelAndView.setViewName("/user/confirmed");
+        return modelAndView;
+    }
+
 }

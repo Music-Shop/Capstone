@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html>
-
+<html xmlns:th="http://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.thymeleaf.org ">
+    
 <head>
     <title>Music Melody</title>
     <link rel="stylesheet" type="text/css" th:ref="@{/css/registration.css}" />
@@ -71,16 +72,17 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: black;">
-        <a class="navbar-brand" href="/" style="color: #D06CFF">Music Melody</a>
+        <a class="navbar-brand" href="/user/home" style="color: #D06CFF">Music Melody</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
             aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav ml-auto">
-                <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link disabled" href="#">Profile</a>
-                <a class="nav-item nav-link" href="/user/home/cart">Cart</a>
+                <a class="nav-item nav-link" href="/user/home">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link" href="#">My Songs</a>
+                <a class="nav-item nav-link" href="/user/profile">Profile</a>
+                <a class="nav-item nav-link active" href="#">Cart</a>
                 <form th:action="@{/logout}" method="get">
                     <button class="btn btn-md btn-block d-flex justify-content-center" name="registration"
                         type="Submit">Logout</button>

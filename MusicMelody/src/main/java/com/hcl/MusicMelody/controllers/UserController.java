@@ -65,6 +65,8 @@ public class UserController {
 		 UserCred user = userService.findUserByUserName(auth.getName());
 		 System.out.println("===============================" + user.toString());
 		 BillingInformation userBilling = user.getBilling(); 
+		 System.out.println("===============================" + userBilling);
+
 		 if(userBilling != null) {
 			 //Update User billing existing information
 			 BillingInformation billingExists = billingInformationService.getBillingInformationById(userBilling.getId()).get();
@@ -98,7 +100,7 @@ public class UserController {
 			 user.setBilling(newBilling);
 			 
 			 //Save Billing Id reference to user
-			 userService.saveUser(user);
+			 userService.updateUser(user);
 		 }
 		 
 		 
