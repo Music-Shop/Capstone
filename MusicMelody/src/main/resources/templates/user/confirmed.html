@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.thymeleaf.org ">
+
 <head>
     <title>Music Melody</title>
     <link rel="stylesheet" type="text/css" th:ref="@{/css/registration.css}" />
@@ -73,6 +74,7 @@
                     <a class="nav-item nav-link" href="/user/home">Home <span class="sr-only">(current)</span></a>
                     <a class="nav-item nav-link disabled" href="#">Profile</a>
                     <a class="nav-item nav-link" href="/user/home/cart">Cart</a>
+                    <a class="nav-item nav-link" href="/admin/home">Admin</a>
                     <form th:action="@{/logout}" method="get">
                         <button class="btn btn-md btn-block d-flex justify-content-center" name="registration"
                             type="Submit">Logout</button>
