@@ -116,6 +116,14 @@ public class Song {
         return "Song [cost=" + cost + ", duration=" + duration + ", title=" + title + "]";
     }
 
+    public Song(@Length(min = 3, message = "Title should have at least 3 characters") String title, String duration,
+            BigDecimal cost, Artist artist) {
+        this.title = title;
+        this.duration = duration;
+        this.cost = cost;
+        this.artist = artist;
+    }
+
     
 
     

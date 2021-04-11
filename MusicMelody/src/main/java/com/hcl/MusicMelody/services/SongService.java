@@ -6,6 +6,7 @@ import java.util.Optional;
 import com.hcl.MusicMelody.models.Song;
 import com.hcl.MusicMelody.repositories.SongRepository;
 
+import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -89,5 +90,9 @@ public class SongService {
             return songRepo.findAll(keyword);
         }
         return songRepo.findAll();   
+    }
+
+    public void deleteSongById(Integer id) {
+        songRepo.delete(songRepo.findById(id).get());
     }
 }

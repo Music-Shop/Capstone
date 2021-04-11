@@ -44,7 +44,15 @@ public class Artist {
 	@OneToMany(mappedBy = "artist")
     private Set<Song> songs = new HashSet<>();
 
-    
+    public Artist() {
+	}
+
+	public Artist(String fname, String lname) {
+		this.fname = fname;
+		this.lname = lname;
+	}
+
+
 	public Long getArtistId() {
 		return artistId;
 	}
@@ -103,6 +111,14 @@ public class Artist {
 	public void setSongs(Set<Song> songs) {
 		this.songs = songs;
 	}
+
+	
+
+
+	
+
+
+	
 	
 	
 }
