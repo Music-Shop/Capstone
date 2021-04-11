@@ -1,6 +1,5 @@
 package com.hcl.MusicMelody.services;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -8,11 +7,11 @@ import com.hcl.MusicMelody.models.Song;
 import com.hcl.MusicMelody.repositories.SongRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
 
 @Service
 public class SongService {

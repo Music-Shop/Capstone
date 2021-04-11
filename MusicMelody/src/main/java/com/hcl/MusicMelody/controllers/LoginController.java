@@ -101,7 +101,6 @@ public class LoginController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UserCred user = userService.findUserByUserName(auth.getName());
 		System.out.println("=================================== User for Tasks" + user.toString());
-		System.out.println("=============== has Roles: " + user.getRoles());
 		modelAndView.addObject("userName", user.getName());
 		modelAndView.addObject("adminMessage", "Content Available only for users with admin role");
 		modelAndView.setViewName("admin/home");

@@ -1,14 +1,13 @@
 package com.hcl.MusicMelody.controllers;
 
+import java.security.Principal;
+
 import com.hcl.MusicMelody.models.ConfirmedPurchase;
 import com.hcl.MusicMelody.models.Song;
 import com.hcl.MusicMelody.models.UserCred;
 import com.hcl.MusicMelody.services.ConfirmedPurchaseService;
 import com.hcl.MusicMelody.services.SongService;
 import com.hcl.MusicMelody.services.UserService;
-import java.security.Principal;
-
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
