@@ -34,6 +34,8 @@
         </form><br><br>
     </div>
     
+	<button onclick="playTunes()">Play</button>
+    <button onclick="stopTunes()">Stop</button>    
     
     
 	<div class="sId" style="font-size: 10rem;" th:utext="${song.title}"></div>
@@ -108,11 +110,6 @@
     </footer>
     <!-- Footer -->
     <!-- Bootstrap -->
-    <script>
-    console.log(localStorage.getItem("orders"));
-    
-
- // Store
- </script>
+<script type="text/javascript" src="aws/s3-file-upload.js"></script>
 </body>
 </html>
