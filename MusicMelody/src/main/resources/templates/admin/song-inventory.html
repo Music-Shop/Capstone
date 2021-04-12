@@ -46,7 +46,6 @@
     }
 
     #admin-page {
-        background-color: #323232;
         padding: 15px 15px;
         border-radius: 5px;
         color: white;
@@ -140,7 +139,8 @@
                     <tr>
                         <td hidden>Id</td>
                         <td>Title</td>
-                        <td>Artist</td>
+                        <td>Artist First</td>
+                        <td>Artist Last</td>
                         <td hidden>Album</td>
                         <td hidden>Genre</td>
                         <td>Price</td>
@@ -151,21 +151,22 @@
                 <tbody id="tableBody" th:each="song : ${listSongs}">
                     <tr>
                         <td hidden th:text="${song.id}"></td>
-                        <td th:text="${song.title}"></td>
-                        <td th:text="${song.artist.fname} + ' ' + ${song.artist.lname}"></td>
+                        <td class="titleTd" th:text="${song.title}"></td>
+                        <td class="firstTd" th:text="${song.artist.fname}"></td>
                         <!-- <td th:text="${song.album.title}"></td> -->
                         <!-- <td th:text="${song.genre.title}"></td> -->
-                        <td th:text="${song.cost}"></td>
-                        <td th:text="${song.duration}"></td>
+                        <td class="lastTd" th:text="${song.artist.lname}"></td>
+                        <td class="costTd" th:text="${song.cost}"></td>
+                        <td class="durationTd" th:text="${song.duration}"></td>
                         <td>
                             <!-- <form action="/admin/home/song-inventory/delete" method="POST"> -->
 
                             <div class="song-id" th:utext="${song.id}" style="display: none;">
                             </div>
-                            <button type="submit" class="btn btn-outline-danger"
+                            <button type="submit" class="btn btn-outline-danger removeBtn"
                                 onclick="deleteRow(event)">Remove</button>
                             <!-- </form> -->
-                            <button type="button" class="btn btn-outline-primary">Modify</button>
+                            <button type="button" class="btn btn-outline-primary modifyBtn" onclick="modifyRow(event)">Modify</button>
                         </td>
                     </tr>
 
@@ -218,6 +219,13 @@
     </footer>
 
     <script>
+    
+    var title;
+	var first;
+	var last;
+	var price;
+	var duration;
+	
         function deleteRow(e) {
             var button = e.currentTarget;
             var row = button.parentNode.parentNode;
@@ -239,6 +247,108 @@
             document.getElementsByTagName("body")[0]
                 .appendChild(form);
             form.submit();
+        }
+        
+        var modifyOpen = false;
+        
+        function modifyRow(e){
+        	
+        	if(modifyOpen == false){
+            	console.log("Modify");
+            	var modifyBtn = e.currentTarget;
+            	var row = modifyBtn.parentNode.parentNode;
+            	         
+            	title = row.querySelector('.titleTd');
+            	first = row.querySelector('.firstTd');
+            	last = row.querySelector('.lastTd');
+            	price = row.querySelector('.costTd');
+            	duration = row.querySelector('.durationTd');
+            	
+            	console.log(title, first, last, price, duration);
+            	var removeBtn = modifyBtn.parentNode.querySelector('.removeBtn');
+
+            	modifyBtn.style.display = "none";
+            	removeBtn.style.display = "none";
+            	
+            	var confirmEditBtn = document.createElement("button");
+            	confirmEditBtn.className = "btn btn-outline-success";
+            	confirmEditBtn.innerHTML = "Confirm Update";
+            	
+            	title.innerHTML = '<input value="'+title.innerText+'" name="title" class= titleInput>';
+            	first.innerHTML = '<input value="'+first.innerText+'" name="first" class= firstInput>';
+            	last.innerHTML = '<input value="'+last.innerText+'" name="last" class= lastInput>';
+            	price.innerHTML = '<input value="'+price.innerText+'" name="price" class= priceInput>';
+            	duration.innerHTML = '<input value="'+duration.innerText+'" name="duration" class= durationInput>';
+
+            	modifyBtn.parentNode.appendChild(confirmEditBtn);
+            	
+            	
+            	confirmEditBtn.addEventListener("click", function(){confirmUpdate(event)});
+            	
+        	}
+        	modifyOpen = true;
+        }
+        
+        function confirmUpdate(e){
+        	var confirmBtn = e.currentTarget;
+            var songId = confirmBtn.parentNode.querySelector('.song-id').innerHTML;
+
+        	console.log(songId);
+        	
+        	 var form = document.createElement("form");
+             form.style.visibility = 'hidden';
+             form.setAttribute("method", "post");
+             form.setAttribute("action", "/admin/home/song-inventory/update");
+             
+             var idForm = document.createElement("input");
+             idForm.setAttribute("type", "text");
+             idForm.setAttribute("name", "songId");
+             idForm.defaultValue = songId;
+
+             var titleForm = document.createElement("input");
+             titleForm.setAttribute("type", "text");
+             titleForm.setAttribute("name", "title");
+             titleForm.defaultValue = title.querySelector('.titleInput').value;
+             
+             var firstForm = document.createElement("input");
+             firstForm.setAttribute("type", "text");
+             firstForm.setAttribute("name", "artistFirst");
+             firstForm.defaultValue = first.querySelector('.firstInput').value;
+             
+             var lastForm = document.createElement("input");
+             lastForm.setAttribute("type", "text");
+             lastForm.setAttribute("name", "artistLast");
+             lastForm.defaultValue = last.querySelector('.lastInput').value;
+             
+             var costForm = document.createElement("input");
+             costForm.setAttribute("type", "text");
+             costForm.setAttribute("name", "cost");
+             costForm.defaultValue = price.querySelector('.priceInput').value;
+             
+             var durationForm = document.createElement("input");
+             durationForm.setAttribute("type", "text");
+             durationForm.setAttribute("name", "duration");
+             
+             var durationTime = duration.querySelector('.durationInput').value;
+             const time = durationTime.split(':');
+             var sec = (parseInt(time[0])*60) + parseInt(time[1]);
+             console.log("sec", sec);
+
+             durationForm.defaultValue = sec;
+             
+             console.log(title.querySelector('.titleInput').value);
+
+             form.appendChild(idForm);
+             form.appendChild(titleForm);
+             form.appendChild(firstForm);
+             form.appendChild(lastForm);
+             form.appendChild(costForm);
+             form.appendChild(durationForm);
+
+             console.log(form);
+             document.getElementsByTagName("body")[0]
+                 .appendChild(form);
+             form.submit();
         }
     </script>
 </body>

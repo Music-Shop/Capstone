@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.hcl.MusicMelody.models.Artist;
+import com.hcl.MusicMelody.models.Song;
 import com.hcl.MusicMelody.repositories.ArtistRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,15 +20,23 @@ public class ArtistService {
         return artistRepo.findAll();
     }
 
-    public Artist GetArtistByFName(String fname) {
+    public Optional<Artist> GetArtistByFName(String fname) {
         Optional<Artist> artist = artistRepo.findByFname(fname);
+        if(!artist.isPresent()) {
+            return null;
+        }
+        return artist;
+    }
+    
+    public Artist getArtistById(Integer songId) {
+    	Optional<Artist> artist = artistRepo.findById(songId);
         if(!artist.isPresent()) {
             return null;
         }
         return artist.get();
     }
 
-    public void addArtist(Artist artist) { 
-        artistRepo.save(artist);
+    public Artist addArtist(Artist artist) { 
+        return artistRepo.save(artist);
     }
 }

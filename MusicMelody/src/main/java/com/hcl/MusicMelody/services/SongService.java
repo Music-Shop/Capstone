@@ -95,4 +95,8 @@ public class SongService {
     public void deleteSongById(Integer id) {
         songRepo.delete(songRepo.findById(id).get());
     }
+    
+    public Song saveSong(Song song) {
+        return songRepo.save(song);
+    }
 }

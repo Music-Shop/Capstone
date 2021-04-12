@@ -1,7 +1,9 @@
 package com.hcl.MusicMelody.controllers;
 
 import java.math.BigDecimal;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import com.hcl.MusicMelody.models.Artist;
 import com.hcl.MusicMelody.models.Song;
@@ -58,8 +60,11 @@ public class AdminController {
     }
 
     @PostMapping("/admin/home/song-inventory/add-song")
-    public ModelAndView addSong(@RequestParam String title, @RequestParam String artistFirst, @RequestParam String artistLast, @RequestParam int duration,
-            @RequestParam BigDecimal cost) {
+    public ModelAndView addSong(@RequestParam String title, 
+					    		@RequestParam String artistFirst, 
+					    		@RequestParam String artistLast, 
+					    		@RequestParam int duration,
+					            @RequestParam BigDecimal cost) {
         System.out.println("=================== Collection: " + title + " " + artistFirst + " " + artistLast + " " + duration + " " + cost);
         ModelAndView modelAndView = new ModelAndView();
         if (artistService.GetArtistByFName(artistFirst) == null) {
@@ -67,7 +72,7 @@ public class AdminController {
             artistService.addArtist(artistNew);
         }
         Song addSong = new Song(title, songService.convertDuration(duration), cost,
-                artistService.GetArtistByFName(artistFirst));
+                artistService.GetArtistByFName(artistFirst).get());
         songService.addUpdateSong(addSong);
         modelAndView.setViewName("redirect:/admin/home/song-inventory");
         return modelAndView;
@@ -78,6 +83,43 @@ public class AdminController {
         System.out.println("==================== ID: " + songId);
         ModelAndView modelAndView = new ModelAndView();
         songService.deleteSongById(songId);
+        modelAndView.setViewName("redirect:/admin/home/song-inventory");
+        return modelAndView;
+    }
+    
+    @PostMapping("/admin/home/song-inventory/update")
+    public ModelAndView updateSong(@RequestParam Integer songId,
+    								@RequestParam String title,
+    								@RequestParam String artistFirst,
+    								@RequestParam String artistLast,
+    								@RequestParam BigDecimal cost,
+    								@RequestParam int duration
+    								) {
+        
+        //songService.convertDuration(duration)
+        ModelAndView modelAndView = new ModelAndView();
+        Song song = songService.getSongById(songId).get();
+
+        Artist artist = new Artist();
+        try{
+        	artist = artistService.GetArtistByFName(artistFirst).get();
+        }catch(Exception e) {
+        	Set<Song> songs = new HashSet<Song>();;
+        	songs.add(song);
+        	artist.setSongs(songs);
+            Artist newArtist = artistService.addArtist(artist);
+            song.setArtist(newArtist);
+        }
+        
+        artist.setFname(artistFirst);
+        artist.setLname(artistLast);
+
+        song.setTitle(title);
+        song.setCost(cost);
+        song.setDuration(songService.convertDuration(duration));
+      
+       songService.saveSong(song);
+
         modelAndView.setViewName("redirect:/admin/home/song-inventory");
         return modelAndView;
     }
