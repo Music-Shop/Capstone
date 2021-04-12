@@ -59,17 +59,20 @@ public class PurchaseController {
     }
 
     @PostMapping("/user/home/cart/customer-details/confirm")
-    public ModelAndView addShippingetails(
+    public ModelAndView addShippingetails(Principal principal,
     		@RequestParam String name, @RequestParam String email,
             @RequestParam String phone, @RequestParam String street, @RequestParam String apt,
             @RequestParam String city, @RequestParam String state, @RequestParam String zip
             ) {
+    	
+    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		UserCred user = userService.findUserByUserName(auth.getName()); 
         ModelAndView modelAndView = new ModelAndView();
         System.out.println("========================= " + "Collected items from details: " + name + " " + email + " "
                 + phone + " " + street + " " + apt + " " + city + " " + state + " " + zip);
         String address1 = street + " " + apt;
         String address2 = city + " " + state + " " + zip;
-        UserCred user = userService.findUserByEmail(email);
+
         modelAndView.addObject("name", name); 
         modelAndView.addObject("address1", address1);
         modelAndView.addObject("address2", address2);
