@@ -1,6 +1,7 @@
 package com.hcl.MusicMelody.models;
 
 import java.util.HashSet;
+
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -11,10 +12,13 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import lombok.Data;
+
 import org.hibernate.validator.constraints.Length;
 
 @Entity
 @Table(name = "album")
+@Data
 public class Album {
 
 	@Id
@@ -27,59 +31,12 @@ public class Album {
     private String title;
 
     @Column(name = "duration")
-    // @NotEmpty(message = "Duration cannot be 0, empty, or null")
     private Long duration;
 
     @Column(name = "cost", columnDefinition ="Decimal(10,2) default '0.00'" ,precision = 10, scale = 2)
-    // @NotEmpty(message = "Please enter a price for the song. Cannot be null or empty")
     private Double cost;
     
 	@OneToMany(mappedBy = "artist")
     private Set<Song> songs = new HashSet<>();
-	
-//    @ManyToMany(cascade = CascadeType.MERGE)
-//	@JoinTable(name = "song_album", joinColumns = @JoinColumn(name = "song_id"), inverseJoinColumns = @JoinColumn(name = "album_id"))
-//	private Set<Song> songs;
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public Long getDuration() {
-		return duration;
-	}
-
-	public void setDuration(Long duration) {
-		this.duration = duration;
-	}
-
-	public Double getCost() {
-		return cost;
-	}
-
-	public void setCost(Double cost) {
-		this.cost = cost;
-	}
-
-//	public Set<Song> getSongs() {
-//		return songs;
-//	}
-//
-//	public void setSongs(Set<Song> songs) {
-//		this.songs = songs;
-//	}
-    
     
 }
