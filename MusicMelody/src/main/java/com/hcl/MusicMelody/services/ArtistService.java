@@ -16,24 +16,18 @@ public class ArtistService {
     @Autowired
     private ArtistRepository artistRepo;
 
-    public List<Artist> GetAllArtists() {
+    public List<Artist> getAllArtists() {
         return artistRepo.findAll();
     }
 
-    public Optional<Artist> GetArtistByFName(String fname) {
+    public Artist getArtistByFName(String fname) {
         Optional<Artist> artist = artistRepo.findByFname(fname);
-        if(!artist.isPresent()) {
-            return null;
-        }
-        return artist;
+        return artist.orElse(null);
     }
     
-    public Artist getArtistById(Integer songId) {
-    	Optional<Artist> artist = artistRepo.findById(songId);
-        if(!artist.isPresent()) {
-            return null;
-        }
-        return artist.get();
+    public Artist getArtistById(Integer artistId) {
+    	Optional<Artist> artist = artistRepo.findById(artistId);
+        return artist.orElse(null);
     }
 
     public Artist addArtist(Artist artist) { 
