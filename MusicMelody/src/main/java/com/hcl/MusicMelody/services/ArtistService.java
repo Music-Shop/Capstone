@@ -16,7 +16,7 @@ public class ArtistService {
     @Autowired
     private ArtistRepository artistRepo;
 
-    public List<Artist> GetAllArtists() {
+    public List<Artist> getAllArtists() {
         return artistRepo.findAll();
     }
 
