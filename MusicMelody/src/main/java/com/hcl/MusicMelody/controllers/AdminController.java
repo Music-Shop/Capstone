@@ -1,9 +1,11 @@
 package com.hcl.MusicMelody.controllers;
 
 import java.math.BigDecimal;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import com.hcl.MusicMelody.models.Artist;
 import com.hcl.MusicMelody.models.Song;
@@ -34,7 +36,14 @@ public class AdminController {
     @GetMapping("/admin/home/song-inventory")
     public ModelAndView showSongInv() {
         ModelAndView modelAndView = new ModelAndView();
-        List<Song> listSongs = songService.listAll(null);
+        
+        // List<Song> listSongs = songService.listAll(null); - old code
+        //Added Stream to make the admin song list alphabetized - Alex G
+        List<Song> song = songService.listAll(null);
+        List<Song> listSongs = song.stream()
+        .sorted(Comparator.comparing(Song::getTitle))
+        .collect(Collectors.toList());
+        
         modelAndView.addObject("listSongs", listSongs);
         // for (Song song : listSongs) {
         //     System.out.println("======== song artist: " + song.getArtist().getFname() + " " + song.getArtist().getLname());
@@ -53,7 +62,15 @@ public class AdminController {
     @PostMapping("/admin/home/song-inventory")
     public ModelAndView searchSongs(@RequestParam String keyword) {
         ModelAndView modelAndView = new ModelAndView();
-        List<Song> listSongs = songService.listAll(keyword);
+        
+        // List<Song> listSongs = songService.listAll(keyword);- old code
+        //Added Stream to make the admin searched song list alphabetized - Alex G
+        
+        List<Song> song = songService.listAll(keyword);
+        List<Song> listSongs = song.stream()
+        .sorted(Comparator.comparing(Song::getTitle))
+        .collect(Collectors.toList());
+        
         modelAndView.addObject("listSongs", listSongs);
         modelAndView.setViewName("admin/song-inventory");
         return modelAndView;
