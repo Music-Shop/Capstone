@@ -15,6 +15,7 @@ import org.mockito.MockitoAnnotations;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import static org.mockito.Mockito.when;
 
@@ -37,9 +38,9 @@ public class ArtistServiceTest {
 
         Artist artist1 = new Artist("Celine", "Dion");
         artist1.setArtistId(1L);
-        Artist artist2 = new Artist("Prince", null);
+        Artist artist2 = new Artist("Frank", "Sinatra");
         artist2.setArtistId(2L);
-        Artist artist3 = new Artist("The Artist Formerly Known As Prince", null);
+        Artist artist3 = new Artist("Lady", "Gaga");
         artist3.setArtistId(3L);
         Artist artist4 = new Artist("The", "Artist");
         artist4.setArtistId(4L);
@@ -50,6 +51,7 @@ public class ArtistServiceTest {
 
     @Test
     public void getAllArtistsTest() {
+
         when(artistRepo.findAll()).thenReturn(expectedArtists);
 
         List<Artist> allArtists = artistService.getAllArtists();
@@ -57,5 +59,31 @@ public class ArtistServiceTest {
         Assertions.assertEquals(4, allArtists.size());
     }
 
+    @Test
+    public void getArtistByFNameNotNullTest() {
 
+        String fName = "Frank";
+
+        when(artistRepo.findByFname(fName)).thenReturn(Optional.ofNullable(expectedArtists.get(1)));
+
+        Artist fNameArtist = artistService.getArtistByFName(fName);
+
+        Assertions.assertEquals("Frank", fNameArtist.getFname());
+
+    }
+
+    @Test
+    public void getArtistByIdNotNullTest() {
+
+        Integer id = 1;
+
+        when(artistRepo.findById(id)).thenReturn(Optional.ofNullable(expectedArtists.get(id)));
+
+        Optional<Artist> idArtist = Optional.ofNullable(artistService.getArtistById(id));
+        Artist presentArtist = idArtist.get();
+
+        Assertions.assertEquals(presentArtist.getFname(), expectedArtists.get(1).getFname());
+        Assertions.assertEquals(presentArtist.getLname(), expectedArtists.get(1).getLname());
+
+    }
 }

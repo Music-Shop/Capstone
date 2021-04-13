@@ -67,12 +67,16 @@ public class AdminController {
 					            @RequestParam BigDecimal cost) {
         System.out.println("=================== Collection: " + title + " " + artistFirst + " " + artistLast + " " + duration + " " + cost);
         ModelAndView modelAndView = new ModelAndView();
-        if (artistService.GetArtistByFName(artistFirst) == null) {
-            Artist artistNew = new Artist(artistFirst, artistLast);
-            artistService.addArtist(artistNew);
+
+        Artist artist = artistService.getArtistByFName(artistFirst);
+
+        if (artist == null) {
+            artist = new Artist(artistFirst, artistLast);
+            artistService.addArtist(artist);
         }
+
         Song addSong = new Song(title, songService.convertDuration(duration), cost,
-                artistService.GetArtistByFName(artistFirst).get());
+                artist);
         songService.addUpdateSong(addSong);
         modelAndView.setViewName("redirect:/admin/home/song-inventory");
         return modelAndView;
@@ -100,25 +104,30 @@ public class AdminController {
         ModelAndView modelAndView = new ModelAndView();
         Song song = songService.getSongById(songId).get();
 
-        Artist artist = new Artist();
-        try{
-        	artist = artistService.GetArtistByFName(artistFirst).get();
-        }catch(Exception e) {
-        	Set<Song> songs = new HashSet<Song>();;
-        	songs.add(song);
-        	artist.setSongs(songs);
-            Artist newArtist = artistService.addArtist(artist);
-            song.setArtist(newArtist);
-        }
-        
-        artist.setFname(artistFirst);
-        artist.setLname(artistLast);
+        Artist artist = artistService.getArtistByFName(artistFirst);
 
-        song.setTitle(title);
-        song.setCost(cost);
-        song.setDuration(songService.convertDuration(duration));
+        if (artist == null) {
+
+            Artist newArtist = new Artist(artistFirst, artistLast);
+            artistService.addArtist(newArtist);
+
+        	Set<Song> songs = new HashSet<>();;
+        	songs.add(song);
+        	newArtist.setSongs(songs);
+
+            song.setArtist(newArtist);
+
+        } else {
+
+            artist.setFname(artistFirst);
+            artist.setLname(artistLast);
+
+            song.setTitle(title);
+            song.setCost(cost);
+            song.setDuration(songService.convertDuration(duration));
+        }
       
-       songService.saveSong(song);
+        songService.saveSong(song);
 
         modelAndView.setViewName("redirect:/admin/home/song-inventory");
         return modelAndView;
