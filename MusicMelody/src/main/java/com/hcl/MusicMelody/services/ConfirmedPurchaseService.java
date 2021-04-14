@@ -1,12 +1,10 @@
 package com.hcl.MusicMelody.services;
 
-import java.util.Optional;
+import com.hcl.MusicMelody.models.ConfirmedPurchase;
+import com.hcl.MusicMelody.repositories.ConfirmedPurchaseRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.hcl.MusicMelody.models.ConfirmedPurchase;
-import com.hcl.MusicMelody.repositories.ConfirmedPurchaseRepository;
 
 @Service
 public class ConfirmedPurchaseService {

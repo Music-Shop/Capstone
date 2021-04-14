@@ -2,14 +2,12 @@ package com.hcl.SpringSecurity;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Optional;
 
-import com.amazonaws.services.directconnect.model.NewPublicVirtualInterface;
 import com.hcl.MusicMelody.models.BillingInformation;
 import com.hcl.MusicMelody.repositories.BillingInformationRepository;
 import com.hcl.MusicMelody.services.BillingInformationService;

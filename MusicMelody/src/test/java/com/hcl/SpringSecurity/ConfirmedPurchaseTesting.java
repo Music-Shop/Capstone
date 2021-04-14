@@ -2,17 +2,14 @@ package com.hcl.SpringSecurity;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Optional;
 
-import com.hcl.MusicMelody.models.Album;
 import com.hcl.MusicMelody.models.Artist;
 import com.hcl.MusicMelody.models.ConfirmedPurchase;
-import com.hcl.MusicMelody.models.Genre;
 import com.hcl.MusicMelody.models.Song;
 import com.hcl.MusicMelody.models.UserCred;
 import com.hcl.MusicMelody.repositories.ConfirmedPurchaseRepository;
