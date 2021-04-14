@@ -16,6 +16,7 @@
 	<description>HCL Capstone music shop app</description>
 	<properties>
 		<java.version>8</java.version>
+		<start-class>com.mkyong.SpringBootWebApplication</start-class>
 	</properties>
 	<dependencies>
         <dependency>
@@ -72,6 +73,13 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+       
+       <!-- marked the embedded servlet container as provided -->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-tomcat</artifactId>
+        <scope>provided</scope>
+    </dependency>
        
        <dependency>
     <groupId>com.amazonaws</groupId>
