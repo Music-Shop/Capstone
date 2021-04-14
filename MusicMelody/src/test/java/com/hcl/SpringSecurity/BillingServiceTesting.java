@@ -1,25 +1,25 @@
 package com.hcl.SpringSecurity;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.ArgumentMatchers.any;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Optional;
 
+import com.amazonaws.services.directconnect.model.NewPublicVirtualInterface;
 import com.hcl.MusicMelody.models.BillingInformation;
 import com.hcl.MusicMelody.repositories.BillingInformationRepository;
 import com.hcl.MusicMelody.services.BillingInformationService;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 // @RunWith(SpringRunner.class)
@@ -37,29 +37,26 @@ public class BillingServiceTesting {
     private BillingInformationRepository billingRepo;
 
     private BillingInformation testBilling;
+    private ArrayList<BillingInformation> billingInfo;
 
 
-    @BeforeEach
+    @BeforeAll
     public void init() {
+        billingInfo = new ArrayList<>();
         testBilling = new BillingInformation(1, "123 Street Ave.", "", "San Antonio", "TX", "12345", "345", new Date(), "1111222233334444");
-        when(billingRepo.save(any(BillingInformation.class))).then();
+        billingInfo.add(testBilling);
+        
     }
 
     @Test
     public void shouldGetBillingInfoById() {
         // found case
-        Optional<BillingInformation> billing = billingService.getBillingInformationById(1);
-        assertTrue(billing.isPresent());
-        assertTrue(billing.get().equals(testBilling));
+        when(billingRepo.findById(1)).thenReturn(Optional.ofNullable(billingInfo.get(0)));
+        BillingInformation billing = billingService.getBillingInformationById(1);
+        assertEquals(billing, testBilling);
 
-        //not found case
-        billing = billingService.getBillingInformationById(2);
-        assertFalse(billing.isPresent());
-        assertFalse(billing.get().equals(testBilling));
-    }
-
-    @Test
-    public void shouldSaveAndUpdate() {
-        // billingService.saveOrUpdate(testBilling);
+        // not found case  
+        when(billingRepo.findById(2)).thenReturn(Optional.ofNullable(null));
+        assertNull(billingService.getBillingInformationById(2));
     }
 }
