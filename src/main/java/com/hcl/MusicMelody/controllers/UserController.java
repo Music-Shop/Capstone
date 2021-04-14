@@ -71,7 +71,6 @@ public class UserController {
 			 BillingInformation billingExists = billingInformationService.getBillingInformationById(userBilling.getId()).get();
 			 billingExists.setCardNumber(cardNumber);
 			 billingExists.setCvv(cvv);
-//			 billingInformation.setExpDate(state);
 			 billingExists.setStreet(street);
 			 billingExists.setCity(city);
 			 billingExists.setApt(apt);
@@ -86,7 +85,6 @@ public class UserController {
 			 BillingInformation billingInformation = new BillingInformation();
 			 billingInformation.setCardNumber(cardNumber);
 			 billingInformation.setCvv(cvv);
-//			 billingInformation.setExpDate(state);
 			 billingInformation.setCity(city);
 			 billingInformation.setApt(apt);
 			 billingInformation.setZip(zip);
