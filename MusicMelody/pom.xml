@@ -71,6 +71,11 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
+		</dependency>
        
        <dependency>
     <groupId>com.amazonaws</groupId>
@@ -79,7 +84,13 @@
 </dependency>
        
 
-	</dependencies>
+	
+   <dependency>
+     <groupId>com.disneystreaming</groupId>
+     <artifactId>weaver-core_sjs1_2.13</artifactId>
+     <version>0.7.1</version>
+   </dependency>
+ </dependencies>
 
 	<build>
 		<plugins>

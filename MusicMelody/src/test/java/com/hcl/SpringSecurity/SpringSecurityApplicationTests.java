@@ -1,13 +1,13 @@
-package com.hcl.SpringSecurity;
+// package com.hcl.SpringSecurity;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+// import org.junit.jupiter.api.Test;
+// import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
-class SpringSecurityApplicationTests {
+// @SpringBootTest
+// class SpringSecurityApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
+// 	@Test
+// 	void contextLoads() {
+// 	}
 
-}
+// }

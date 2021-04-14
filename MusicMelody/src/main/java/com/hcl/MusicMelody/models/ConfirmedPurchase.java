@@ -25,6 +25,14 @@ public class ConfirmedPurchase {
     @JoinColumn(name = "user_id")
     private UserCred user;
 
+	public ConfirmedPurchase() {
+	}
+
+	public ConfirmedPurchase(Song song, UserCred user) {
+		this.song = song;
+		this.user = user;
+	}
+	
 	public Integer getId() {
 		return id;
 	}
@@ -48,6 +56,8 @@ public class ConfirmedPurchase {
 	public void setUser(UserCred user) {
 		this.user = user;
 	}
+
+	
 	
 	
 }

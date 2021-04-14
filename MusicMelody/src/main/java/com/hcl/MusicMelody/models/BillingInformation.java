@@ -51,6 +51,43 @@ public class BillingInformation {
 	@NotEmpty(message = "Please provide a card number")
 	private String cardNumber;
 
+	public BillingInformation(@NotEmpty(message = "Please provide a Street Name") String street, String apt,
+			@NotEmpty(message = "An address should contain a city.") String city,
+			@NotEmpty(message = "An address should contain a state.") String state,
+			@NotEmpty(message = "An address should contain a zip code.") String zip,
+			@NotEmpty(message = "Please provide cvv") String cvv, Date expDate,
+			@NotEmpty(message = "Please provide a card number") String cardNumber) {
+		this.street = street;
+		this.apt = apt;
+		this.city = city;
+		this.state = state;
+		this.zip = zip;
+		this.cvv = cvv;
+		this.expDate = expDate;
+		this.cardNumber = cardNumber;
+	}
+
+	public BillingInformation() {
+		
+	}
+
+	public BillingInformation(Integer id, @NotEmpty(message = "Please provide a Street Name") String street, String apt,
+			@NotEmpty(message = "An address should contain a city.") String city,
+			@NotEmpty(message = "An address should contain a state.") String state,
+			@NotEmpty(message = "An address should contain a zip code.") String zip,
+			@NotEmpty(message = "Please provide cvv") String cvv, Date expDate,
+			@NotEmpty(message = "Please provide a card number") String cardNumber) {
+		this.id = id;
+		this.street = street;
+		this.apt = apt;
+		this.city = city;
+		this.state = state;
+		this.zip = zip;
+		this.cvv = cvv;
+		this.expDate = expDate;
+		this.cardNumber = cardNumber;
+	}
+	
 	public Integer getId() {
 		return id;
 	}
@@ -122,5 +159,16 @@ public class BillingInformation {
 	public void setCardNumber(String cardNumber) {
 		this.cardNumber = cardNumber;
 	}
+
+	@Override
+	public String toString() {
+		return "BillingInformation [apt=" + apt + ", cardNumber=" + cardNumber + ", city=" + city + ", cvv=" + cvv
+				+ ", expDate=" + expDate + ", id=" + id + ", state=" + state + ", street=" + street + ", zip=" + zip
+				+ "]";
+	}
+
+	
+
+	
 
 }
