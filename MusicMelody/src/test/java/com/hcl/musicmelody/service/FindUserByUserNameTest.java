@@ -29,17 +29,14 @@ import org.junit.jupiter.api.Assertions;
 import java.util.Date;
 
 
-//@SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class FindUserByUserNameTest {
 
+	
 	@InjectMocks
 	private UserService userService;
-	
-	//@InjectMocks
-	//private BillingInformationService billingInformationService;
-	
-	@MockBean
+
+	@Mock
 	private UserRepository userRepo;
 	
 	private List<UserCred> userCred = new ArrayList<UserCred>();
@@ -54,9 +51,7 @@ public class FindUserByUserNameTest {
 		us.setLastName("user");
 		us.setName("dummy user");
 		us.setEmail("dummy@email.com");
-		us.setPassword("dummyPassword");
-		//us.setBilling(billingInformation);
-	
+		us.setPassword("dummyPassword");	
 		userCred.add(us);
 	
 	}
@@ -65,25 +60,6 @@ public class FindUserByUserNameTest {
 	@Test
 	public void test() {
 		
-	/*	Date expDate = new Date(2222-22-22);
-		BillingInformation billingInformation = new BillingInformation();
-		 billingInformation.setCardNumber("1234123412");
-		 billingInformation.setCvv("123");
-		 billingInformation.setCity("San Antonio");
-		 billingInformation.setApt("10");
-		 billingInformation.setZip("12345");
-		 billingInformation.setState("TX");
-		 billingInformation.setExpDate(expDate);
-		 billingInformation.setStreet("123 Broadway st"); */
-		
-		UserCred us = new UserCred();
-		us.setUserName("dummy");
-		us.setLastName("user");
-		us.setName("dummy user");
-		us.setEmail("dummy@email.com");
-		us.setPassword("dummyPassword");
-		//us.setBilling(billingInformation);
-		//userService.saveUser(us);
 		UserCred u = new UserCred();
 		when(userService.findUserByUserName("dummy")).thenReturn(userCred.get(0));
 		u = userService.findUserByUserName("dummy");
