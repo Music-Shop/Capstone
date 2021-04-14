@@ -2,7 +2,9 @@
 package com.hcl.MusicMelody.controllers;
 
 import java.security.Principal;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
@@ -143,7 +145,16 @@ public class LoginController {
 	public ModelAndView Search(Principal principle, @RequestParam String keyword) {
 		// keyword = "Go";
 		System.out.println("================== keyword: " + keyword);
-		List<Song> listSongs = songService.listAll(keyword);
+		
+		
+		 // List<Song> listSongs = songService.listAll(keyword);- old code
+        //Added Stream to make the searched song list go from cheapest to expensive by default - Alex G
+        
+        List<Song> song = songService.listAll(keyword);
+        List<Song> listSongs = song.stream()
+        		.sorted(Comparator.comparing(Song::getCost))
+                .collect(Collectors.toList());
+        
 		ModelAndView modelAndView = new ModelAndView();
 		UserCred user = userService.findUserByUserName(principle.getName());
 		modelAndView.addObject("listSongs", listSongs);
