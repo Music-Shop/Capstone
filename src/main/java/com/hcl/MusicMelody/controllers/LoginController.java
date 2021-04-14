@@ -40,13 +40,6 @@ public class LoginController {
 		return modelAndView;
 	}
 
-	@GetMapping(value = "/user/cart")
-	public ModelAndView buildCart() {
-		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("user/cart");
-		return modelAndView;
-	}
-
 	@GetMapping(value = "/login")
 	public ModelAndView login() {
 		ModelAndView modelAndView = new ModelAndView();
@@ -153,28 +146,8 @@ public class LoginController {
 
 	@GetMapping("/user/home")
 	public String showUserHome(Model model, Principal principle) {
-		// ModelAndView modelAndView = new ModelAndView();
-		// List<Song> songs = songService.getAllSongs();
-		// UserCred user = userService.findUserByUserName(principle.getName());
-		// String keyword = "Go";
-		// List<Song> songs = songService.listAll(keyword);
-		// modelan
-		// logger.info("====================================== List contents");
-		// modelAndView.addObject("songs", songs);
-		// modelAndView.addObject("userName", user.getName());
-		// // modelAndView.addObject("adminMessage", "Content Available only for users
-		// with admin role");
-		// modelAndView.setViewName("user/home");
 
 		return findPaginated(1, "title", "asc", model);
-
-		// List<Song> songs = songService.GetAllSongs();
-		// System.out.println("================ songs ");
-		// for (Song song : songs) {
-		// System.out.println("================" + song.getTitle());
-		// }
-		// UserCred user = userService.findUserByUserName(principle.getName());
-
 	}
 
 	@GetMapping("/page/{pageNo}")

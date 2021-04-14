@@ -21,8 +21,6 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class PurchaseController {
 
-    // Logger logger = LoggerFactory.getLogger(PurchaseController.class);
-
     @Autowired
     private UserService userService;
 
@@ -59,7 +57,7 @@ public class PurchaseController {
     }
 
     @PostMapping("/user/home/cart/customer-details/confirm")
-    public ModelAndView addShippingetails(Principal principal,
+    public ModelAndView addShippingetails(
     		@RequestParam String name, @RequestParam String email,
             @RequestParam String phone, @RequestParam String street, @RequestParam String apt,
             @RequestParam String city, @RequestParam String state, @RequestParam String zip
@@ -110,7 +108,7 @@ public class PurchaseController {
     }
     
     @PostMapping("/user/home/cart/receipt")
-    public ModelAndView placeOrder(Principal principal, @RequestParam String idLst) {
+    public ModelAndView placeOrder(@RequestParam String idLst) {
         ModelAndView modelAndView = new ModelAndView();
         
         String[] arrSong = idLst.split(",");
