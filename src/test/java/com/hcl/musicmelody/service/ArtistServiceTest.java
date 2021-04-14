@@ -8,9 +8,10 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,6 +20,7 @@ import java.util.Optional;
 
 import static org.mockito.Mockito.when;
 
+@ExtendWith(MockitoExtension.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class ArtistServiceTest {
 
@@ -32,8 +34,6 @@ public class ArtistServiceTest {
 
     @BeforeAll
     public void init() {
-
-        MockitoAnnotations.openMocks(this);
 
         Artist artist1 = new Artist("Celine", "Dion");
         artist1.setArtistId(1L);
@@ -55,7 +55,7 @@ public class ArtistServiceTest {
 
         List<Artist> allArtists = artistService.getAllArtists();
 
-        Assertions.assertEquals(4, allArtists.size());
+        Assertions.assertEquals(allArtists.size(), 4);
     }
 
     @Test
