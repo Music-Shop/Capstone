@@ -58,8 +58,4 @@ public class Song {
         this.cost = cost;
         this.artist = artist;
     }
-
-    
-
-    
 }

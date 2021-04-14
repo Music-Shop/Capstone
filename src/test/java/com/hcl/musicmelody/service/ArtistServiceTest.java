@@ -19,7 +19,6 @@ import java.util.Optional;
 
 import static org.mockito.Mockito.when;
 
-
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class ArtistServiceTest {
 
@@ -69,7 +68,6 @@ public class ArtistServiceTest {
         Artist fNameArtist = artistService.getArtistByFName(fName);
 
         Assertions.assertEquals("Frank", fNameArtist.getFname());
-
     }
 
     @Test
@@ -84,6 +82,5 @@ public class ArtistServiceTest {
 
         Assertions.assertEquals(presentArtist.getFname(), expectedArtists.get(1).getFname());
         Assertions.assertEquals(presentArtist.getLname(), expectedArtists.get(1).getLname());
-
     }
 }

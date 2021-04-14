@@ -25,9 +25,6 @@ import org.springframework.web.servlet.ModelAndView;
 public class AdminController {
 
     @Autowired
-    private UserService userService;
-
-    @Autowired
     private SongService songService;
 
     @Autowired
@@ -36,18 +33,13 @@ public class AdminController {
     @GetMapping("/admin/home/song-inventory")
     public ModelAndView showSongInv() {
         ModelAndView modelAndView = new ModelAndView();
-        
-        // List<Song> listSongs = songService.listAll(null); - old code
-        //Added Stream to make the admin song list alphabetized - Alex G
-        List<Song> song = songService.listAll(null);
+
+        List<Song> song = songService.getAllSongs();
         List<Song> listSongs = song.stream()
-        .sorted(Comparator.comparing(Song::getTitle))
-        .collect(Collectors.toList());
+            .sorted(Comparator.comparing(Song::getTitle))
+            .collect(Collectors.toList());
         
         modelAndView.addObject("listSongs", listSongs);
-        // for (Song song : listSongs) {
-        //     System.out.println("======== song artist: " + song.getArtist().getFname() + " " + song.getArtist().getLname());
-        // }
         modelAndView.setViewName("admin/song-inventory");
         return modelAndView;
     }
@@ -63,13 +55,12 @@ public class AdminController {
     public ModelAndView searchSongs(@RequestParam String keyword) {
         ModelAndView modelAndView = new ModelAndView();
         
-        // List<Song> listSongs = songService.listAll(keyword);- old code
         //Added Stream to make the admin searched song list alphabetized - Alex G
         
-        List<Song> song = songService.listAll(keyword);
+        List<Song> song = songService.searchSongs(keyword);
         List<Song> listSongs = song.stream()
-        .sorted(Comparator.comparing(Song::getTitle))
-        .collect(Collectors.toList());
+            .sorted(Comparator.comparing(Song::getTitle))
+            .collect(Collectors.toList());
         
         modelAndView.addObject("listSongs", listSongs);
         modelAndView.setViewName("admin/song-inventory");
@@ -102,8 +93,10 @@ public class AdminController {
     @PostMapping("/admin/home/song-inventory/delete")
     public ModelAndView deleteSong(@RequestParam(name = "song-id") Integer songId) {
         System.out.println("==================== ID: " + songId);
-        ModelAndView modelAndView = new ModelAndView();
+
         songService.deleteSongById(songId);
+
+        ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/admin/home/song-inventory");
         return modelAndView;
     }

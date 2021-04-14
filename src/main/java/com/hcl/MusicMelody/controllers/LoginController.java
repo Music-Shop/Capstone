@@ -143,7 +143,7 @@ public class LoginController {
 	public ModelAndView Search(Principal principle, @RequestParam String keyword) {
 		// keyword = "Go";
 		System.out.println("================== keyword: " + keyword);
-		List<Song> listSongs = songService.listAll(keyword);
+		List<Song> listSongs = songService.searchSongs(keyword);
 		ModelAndView modelAndView = new ModelAndView();
 		UserCred user = userService.findUserByUserName(principle.getName());
 		modelAndView.addObject("listSongs", listSongs);
