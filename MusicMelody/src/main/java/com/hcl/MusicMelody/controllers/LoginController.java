@@ -145,7 +145,6 @@ public class LoginController {
 		System.out.println("================== keyword: " + keyword);
 		List<Song> listSongs = songService.listAll(keyword);
 		ModelAndView modelAndView = new ModelAndView();
-		UserCred user = userService.findUserByUserName(principle.getName());
 		modelAndView.addObject("listSongs", listSongs);
 		modelAndView.setViewName("/user/search");
 		return modelAndView;
