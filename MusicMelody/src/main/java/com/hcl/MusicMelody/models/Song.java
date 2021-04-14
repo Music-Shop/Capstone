@@ -61,6 +61,24 @@ public class Song {
     public Song() {
     }
 
+    public Song(@Length(min = 3, message = "Title should have at least 3 characters") String title, String duration,
+            BigDecimal cost, Artist artist) {
+        this.title = title;
+        this.duration = duration;
+        this.cost = cost;
+        this.artist = artist;
+    }
+
+    public Song(Integer id, @Length(min = 3, message = "Title should have at least 3 characters") String title,
+            String duration, BigDecimal cost, Album album, Artist artist, Genre genre) {
+        this.id = id;
+        this.title = title;
+        this.duration = duration;
+        this.cost = cost;
+        this.album = album;
+        this.artist = artist;
+        this.genre = genre;
+    } 
    
 
     public Integer getId() {
@@ -116,13 +134,9 @@ public class Song {
         return "Song [cost=" + cost + ", duration=" + duration + ", title=" + title + "]";
     }
 
-    public Song(@Length(min = 3, message = "Title should have at least 3 characters") String title, String duration,
-            BigDecimal cost, Artist artist) {
-        this.title = title;
-        this.duration = duration;
-        this.cost = cost;
-        this.artist = artist;
-    }
+    
+
+    
 
     
 

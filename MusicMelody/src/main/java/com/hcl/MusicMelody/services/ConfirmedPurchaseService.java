@@ -13,8 +13,10 @@ public class ConfirmedPurchaseService {
 	
     @Autowired
     private ConfirmedPurchaseRepository purchaseRepo;
-	public Optional<ConfirmedPurchase> getSongById(Integer purchaseId) {
-    	return purchaseRepo.findById(purchaseId);
+
+	public ConfirmedPurchase getSongById(Integer purchaseId) {
+		if(purchaseRepo.findById(purchaseId).isPresent()) return purchaseRepo.findById(purchaseId).get();
+    	return null;
     }
 	
 	public ConfirmedPurchase saveOrUpdate(ConfirmedPurchase confirmedPurchase) {

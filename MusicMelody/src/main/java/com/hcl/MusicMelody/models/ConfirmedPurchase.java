@@ -33,6 +33,13 @@ public class ConfirmedPurchase {
 		this.user = user;
 	}
 	
+	public ConfirmedPurchase(Integer id, Song song, UserCred user) {
+		this.id = id;
+		this.song = song;
+		this.user = user;
+	}
+
+	
 	public Integer getId() {
 		return id;
 	}
@@ -56,6 +63,8 @@ public class ConfirmedPurchase {
 	public void setUser(UserCred user) {
 		this.user = user;
 	}
+
+	
 
 	
 	
