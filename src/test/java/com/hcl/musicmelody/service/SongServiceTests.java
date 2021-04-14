@@ -74,7 +74,16 @@ public class SongServiceTests {
 
     @Test
     public void deleteSongByIdTest() {
-        
+
+    }
+
+    @Test
+    public void getSongByIdTest(){
+        int id = 2;
+        when(songRepository.findById(id)).thenReturn(Optional.ofNullable(expectedSongs.get(1)));
+        Optional<Song> idSong = songService.getSongById(id);
+        Assertions.assertEquals("All the Things of you are", idSong.get().getTitle());
+
     }
 
     @Test
@@ -83,6 +92,18 @@ public class SongServiceTests {
         Song song1 = new Song("Angel", "2:45", new BigDecimal("45.9"),artist1);
         when(songRepository.save(song1)).thenReturn(song1);
         Assertions.assertEquals(song1, songService.saveSong(song1));
+    }
+
+    @Test
+    public void addUpdateSongTest(){
+        Artist artist1 = new Artist("Fleetwood", "Mac");
+        Song song1 = new Song("Angel", "2:45", new BigDecimal("45.9"),artist1);
+        when(songRepository.save(song1)).thenReturn(song1);
+
+        songService.addUpdateSong(song1);
+        List<Song> allSongs = songService.getAllSongs();
+        Assertions.assertEquals(3, allSongs.size());
+
     }
 
     @Test
@@ -100,9 +121,10 @@ public class SongServiceTests {
 
     @Test
     public void SearchSongTest(){
-        String keyword = "Ang";
+        String keyword = "Fleetwood";
         when(songRepository.findAll(keyword)).thenReturn(expectedSongs);
         List<Song> allSongs = songService.getAllSongs();
+        Assertions.assertEquals("Angel", allSongs.get(0).getTitle());
     }
 
 }
