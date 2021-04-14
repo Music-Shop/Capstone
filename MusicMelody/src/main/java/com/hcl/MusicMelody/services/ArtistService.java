@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import com.hcl.MusicMelody.models.Artist;
-import com.hcl.MusicMelody.models.Song;
 import com.hcl.MusicMelody.repositories.ArtistRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;

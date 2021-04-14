@@ -68,7 +68,7 @@ public class UserController {
 
 		 if(userBilling != null) {
 			 //Update User billing existing information
-			 BillingInformation billingExists = billingInformationService.getBillingInformationById(userBilling.getId()).get();
+			 BillingInformation billingExists = billingInformationService.getBillingInformationById(userBilling.getId());
 			 billingExists.setCardNumber(cardNumber);
 			 billingExists.setCvv(cvv);
 //			 billingInformation.setExpDate(state);
