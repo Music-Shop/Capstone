@@ -1,7 +1,5 @@
 package com.hcl.MusicMelody.controllers;
 
-import java.security.Principal;
-
 import com.hcl.MusicMelody.models.ConfirmedPurchase;
 import com.hcl.MusicMelody.models.Song;
 import com.hcl.MusicMelody.models.UserCred;

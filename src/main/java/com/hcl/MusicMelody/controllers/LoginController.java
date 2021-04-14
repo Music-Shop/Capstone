@@ -1,27 +1,15 @@
-
 package com.hcl.MusicMelody.controllers;
-
-import java.security.Principal;
-import java.util.List;
 
 import javax.validation.Valid;
 
-import com.hcl.MusicMelody.models.Song;
 import com.hcl.MusicMelody.models.UserCred;
-import com.hcl.MusicMelody.services.SongService;
 import com.hcl.MusicMelody.services.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -29,9 +17,6 @@ public class LoginController {
 
 	@Autowired
 	private UserService userService;
-
-	@Autowired
-	private SongService songService;
 
 	@GetMapping(value = "/")
 	public ModelAndView home() {
@@ -87,91 +72,4 @@ public class LoginController {
 
 		return modelAndView;
 	}
-
-	@GetMapping(value = "/admin/home")
-	public ModelAndView home(Principal principal) {
-		ModelAndView modelAndView = new ModelAndView();
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		UserCred user = userService.findUserByUserName(auth.getName());
-		System.out.println("=================================== User for Tasks" + user.toString());
-		modelAndView.addObject("userName", user.getName());
-		modelAndView.addObject("adminMessage", "Content Available only for users with admin role");
-		modelAndView.setViewName("admin/home");
-
-		return modelAndView;
-	}
-
-	@PostMapping(value = "/admin/home")
-	public ModelAndView addTask(Principal principle) {
-		ModelAndView modelAndView = new ModelAndView();
-
-		UserCred user = userService.findUserByUserName(principle.getName());
-
-		modelAndView.addObject("userName", user.getName());
-		modelAndView.addObject("adminMessage", "Content Available only for users with admin role");
-
-		modelAndView.setViewName("redirect:/admin/home");
-		return modelAndView;
-	}
-
-	/**
-	 * ================================================ === USER CONTROLLER
-	 * ================================================
-	 */
-
-	@GetMapping("/user/home/search")
-	public ModelAndView showSearchResults() {
-		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("user/search");
-		return modelAndView;
-	}
-
-	/**
-	 * Gets the model for user home and displays the page for the new user.
-	 * 
-	 * @return - ModelAndView
-	 */
-
-	@PostMapping("/user/home/search")
-	public ModelAndView Search(Principal principle, @RequestParam String keyword) {
-		// keyword = "Go";
-		System.out.println("================== keyword: " + keyword);
-		List<Song> listSongs = songService.searchSongs(keyword);
-		ModelAndView modelAndView = new ModelAndView();
-		UserCred user = userService.findUserByUserName(principle.getName());
-		modelAndView.addObject("listSongs", listSongs);
-		modelAndView.setViewName("/user/search");
-		return modelAndView;
-	}
-
-	@GetMapping("/user/home")
-	public String showUserHome(Model model, Principal principle) {
-
-		return findPaginated(1, "title", "asc", model);
-	}
-
-	@GetMapping("/page/{pageNo}")
-	public String findPaginated(@PathVariable(value = "pageNo") int pageNo, @RequestParam("sortField") String sortField,
-			@RequestParam("sortDir") String sortDir, Model model) {
-
-		int pageSize = 10;
-
-		Page<Song> page = songService.findPaginated(pageNo, pageSize, sortField, sortDir);
-		List<Song> listSongs = page.getContent();
-
-		model.addAttribute("currentPage", pageNo);
-		model.addAttribute("totalPages", page.getTotalPages());
-		model.addAttribute("totalItems", page.getTotalElements());
-		model.addAttribute("listSongs", listSongs);
-
-		model.addAttribute("sortField", sortField);
-		model.addAttribute("sortDir", sortDir);
-		model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
-
-		// modelAndView.setViewName("user/home");
-
-		return "user/home";
-
-	}
-
 }

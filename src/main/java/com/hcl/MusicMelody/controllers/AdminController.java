@@ -1,6 +1,7 @@
 package com.hcl.MusicMelody.controllers;
 
 import java.math.BigDecimal;
+import java.security.Principal;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
@@ -9,10 +10,14 @@ import java.util.stream.Collectors;
 
 import com.hcl.MusicMelody.models.Artist;
 import com.hcl.MusicMelody.models.Song;
+import com.hcl.MusicMelody.models.UserCred;
 import com.hcl.MusicMelody.services.ArtistService;
 import com.hcl.MusicMelody.services.SongService;
 
+import com.hcl.MusicMelody.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,10 +28,39 @@ import org.springframework.web.servlet.ModelAndView;
 public class AdminController {
 
     @Autowired
+    private UserService userService;
+
+    @Autowired
     private SongService songService;
 
     @Autowired
     private ArtistService artistService;
+
+    @GetMapping(value = "/admin/home")
+    public ModelAndView home(Principal principal) {
+        ModelAndView modelAndView = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        UserCred user = userService.findUserByUserName(auth.getName());
+        System.out.println("=================================== User for Tasks" + user.toString());
+        modelAndView.addObject("userName", user.getName());
+        modelAndView.addObject("adminMessage", "Content Available only for users with admin role");
+        modelAndView.setViewName("admin/home");
+
+        return modelAndView;
+    }
+
+    @PostMapping(value = "/admin/home")
+    public ModelAndView addTask(Principal principle) {
+        ModelAndView modelAndView = new ModelAndView();
+
+        UserCred user = userService.findUserByUserName(principle.getName());
+
+        modelAndView.addObject("userName", user.getName());
+        modelAndView.addObject("adminMessage", "Content Available only for users with admin role");
+
+        modelAndView.setViewName("redirect:/admin/home");
+        return modelAndView;
+    }
 
     @GetMapping("/admin/home/song-inventory")
     public ModelAndView showSongInv() {
@@ -71,7 +105,8 @@ public class AdminController {
 					    		@RequestParam String artistLast, 
 					    		@RequestParam int duration,
 					            @RequestParam BigDecimal cost) {
-        System.out.println("=================== Collection: " + title + " " + artistFirst + " " + artistLast + " " + duration + " " + cost);
+        System.out.println("=================== Collection: " + title + " " + artistFirst + " " +
+                artistLast + " " + duration + " " + cost);
         ModelAndView modelAndView = new ModelAndView();
 
         Artist artist = artistService.getArtistByFName(artistFirst);
