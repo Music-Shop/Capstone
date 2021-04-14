@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" type="text/css" th:ref="@{/css/home.css}" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+
+	<style>
+		.nav-item {
+			margin-right: 15px;
+		}
+
+		hr {
+			background-color: #D06CFF;
+		}
+
+		body {
+			background-color: #1E1E1E;
+			color: white;
+		}
+
+		#footer {
+			background-color: black;
+			position: absolute;
+			bottom: 0px;
+			width: 100%;
+		}
+
+		.pathing-title {
+			font-size: x-large;
+			color: #D06CFF;
+		}
+
+		#admin-page {
+			background-color: #323232;
+			padding: 15px 15px;
+			border-radius: 5px;
+			color: white;
+			margin-top: 15px;
+		}
+	</style>
+
+	<title>Music Melody Admin</title>
+</head>
+
+<body>
+
+	<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: black;">
+		<a class="navbar-brand" href=" " style="color: #D06CFF">Music Melody</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+			aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+			<div class="navbar-nav ml-auto">
+				<a class="nav-item nav-link" href="/user/home">Home <span class="sr-only">(current)</span></a>
+				<a class="nav-item nav-link" href="#">My Songs</a>
+				<a class="nav-item nav-link" href="/user/profile">Profile</a>
+				<a class="nav-item nav-link" href="/user/home/cart">Cart</a>
+				<a class="nav-item nav-link active" href="/admin/home">Admin</a>
+				<form th:action="@{/logout}" method="get">
+					<button class="btn btn-md btn-block d-flex justify-content-center" name="registration"
+						type="Submit">Logout</button>
+				</form>
+			</div>
+		</div>
+	</nav>
+
+	<div class="container" id="admin-page">
+		<h1 class="display-4">Administrator Page</h1>
+		<hr>
+		<p>This is the Admin Page</p>
+
+		<br>
+		<br>
+	
+
+		<div class="pathing">
+			<div class="pathing-title">
+				<a href="/admin/home/song-inventory">Song Inventory</a>
+			</div>
+			<div class="pathing-body">
+				<p class="text text-muted">Here you can view, delete, and add to the song inventory</p>
+			</div>
+			<br>
+			<div hidden class="pathing-title">
+				<a href="/admin/home/user-management">User Management</a>
+			</div>
+			<div hidden class="pathing-body">
+				<p class="text text-muted">Here you can view, delete, and add the users and their information</p>
+			</div>
+		</div>
+	</div>
+
+	<!-- Footer -->
+	<footer class="text-center text-lg-start" id="footer" style="background-color: #D06CFF; color: white;">
+		<!-- Grid container -->
+		<div class="container p-4">
+			<div class="text-center">
+				<h5 class="text-uppercase">Contact</h5>
+			</div>
+
+			<div class="d-flex justify-content-center" style="margin-top: 2rem;">
+				<div style="margin-right: 3rem;">
+
+					<ul class="list-unstyled mb-0">
+						<li>
+							Email
+						</li>
+						<li>
+							Phone
+						</li>
+					</ul>
+				</div>
+
+				<div>
+
+					<ul class="list-unstyled">
+						<li>
+							evan_watson@hcl.com
+						</li>
+						<li>
+							(###)###-####
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<!-- Copyright -->
+		<div class="text-center p-3" style="background-color: black;">
+			2020 Copyright:
+			<a class="text-light" href="#">MusicMelody.us</a>
+		</div>
+		<!-- Copyright -->
+	</footer>
+</body>
+
+</html>
