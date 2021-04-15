@@ -14,28 +14,32 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.springframework.data.relational.core.mapping.Embedded.Nullable;
 
+@Data
+@EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
 @Entity
 @Table(name = "artist")
-@Data
 public class Artist {
+
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "artist_id")
     private Long artistId;
-	
+
 	@OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "artist_id")
     private Artist artist;
-	
+
 	@Column(name = "artist_fname")
     private String fname;
-	
+
 	@Column(name = "artist_lname")
     private String lname;
-	
+
 	@Nullable
 	@Column(name = "start_date")
     private String startDate;

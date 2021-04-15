@@ -150,7 +150,7 @@
                 </thead>
                 <tbody id="tableBody" th:each="song : ${listSongs}">
                     <tr>
-                        <td hidden th:text="${song.id}"></td>
+                        <td hidden th:value="${song.id}"></td>
                         <td class="titleTd" th:text="${song.title}"></td>
                         <td class="firstTd" th:text="${song.artist.fname}"></td>
                         <!-- <td th:text="${song.album.title}"></td> -->

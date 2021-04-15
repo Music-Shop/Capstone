@@ -12,15 +12,17 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import lombok.Data;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.hibernate.validator.constraints.Length;
 
+@Data
+@EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
 @Entity
 @Table(name = "song")
-@Data
 public class Song {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -38,8 +40,8 @@ public class Song {
 
     @ManyToOne
     @JoinColumn(name = "album_id")
-    private Album album;   
- 
+    private Album album;
+
     @ManyToOne 
     @JoinColumn(name = "artist_id")
     private Artist artist;

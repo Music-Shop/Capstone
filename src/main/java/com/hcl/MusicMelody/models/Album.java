@@ -13,19 +13,20 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.Data;
-
+import lombok.EqualsAndHashCode;
 import org.hibernate.validator.constraints.Length;
 
+@Data
+@EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
 @Entity
 @Table(name = "album")
-@Data
 public class Album {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "album_id")
     private Integer id;
-	
+
 	@Column(name = "title")
     @Length(min = 3, message = "Title should have at least 3 characters")
     private String title;
