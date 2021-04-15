@@ -31,7 +31,7 @@ public class AdminController {
     @GetMapping("/admin/home/song-inventory")
     public ModelAndView showSongInv() {
         ModelAndView modelAndView = new ModelAndView();
-
+        System.out.println("=============================: Song inventory");
         List<Song> song = songService.getAllSongs();
         List<Song> listSongs = song.stream()
             .sorted(Comparator.comparing(Song::getTitle))
@@ -88,7 +88,7 @@ public class AdminController {
         return modelAndView;
     }
 
-    @PostMapping("(/admin/home/song-inventory/delete)")
+    @PostMapping("/admin/home/song-inventory/delete")
     public ModelAndView deleteSong(@RequestParam(name = "song-id") Integer songId) {
         System.out.println("==================== ID: " + songId);
 
