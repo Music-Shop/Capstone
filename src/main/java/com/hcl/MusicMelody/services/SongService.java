@@ -66,8 +66,9 @@ public class SongService {
     	return this.songRepo.findAll(pageable);
     }
     
-    public Optional<Song> getSongById(Integer songId) {
-    	return songRepo.findById(songId);
+    public Song getSongById(Integer songId) {
+        Optional<Song> song = songRepo.findById(songId);
+    	return song.orElse(null);
     }
 
     public List<Song> searchSongs(String keyword) {

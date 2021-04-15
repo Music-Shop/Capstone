@@ -37,7 +37,9 @@ public class SongController {
         System.out.println("======================= " + sId + " =======================");
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("user/song");
-        Song song = songService.getSongById(sId).get();
+
+        Song song = songService.getSongById(sId);
+
         modelAndView.addObject("song", song);
 
         return modelAndView;

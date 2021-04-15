@@ -115,7 +115,7 @@ public class PurchaseController {
 
 		for(String songId: arrSong) {
         	System.out.println("=========================== IDs: " + songId);
-        	Song song = songService.getSongById(Integer.parseInt(songId)).get();
+        	Song song = songService.getSongById(Integer.parseInt(songId));
         	ConfirmedPurchase confirmPurchase = new ConfirmedPurchase();
         	confirmPurchase.setSong(song);
         	confirmPurchase.setUser(user);

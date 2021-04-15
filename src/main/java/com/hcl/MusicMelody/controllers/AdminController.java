@@ -123,7 +123,7 @@ public class AdminController {
         return modelAndView;
     }
 
-    @PostMapping("(/admin/home/song-inventory/delete)")
+    @PostMapping("/admin/home/song-inventory/delete")
     public ModelAndView deleteSong(@RequestParam(name = "song-id") Integer songId) {
         System.out.println("==================== ID: " + songId);
 
@@ -145,7 +145,7 @@ public class AdminController {
         
         //songService.convertDuration(duration)
         ModelAndView modelAndView = new ModelAndView();
-        Song song = songService.getSongById(songId).get();
+        Song song = songService.getSongById(songId);
 
         Artist artist = artistService.getArtistByFName(artistFirst);
 
