@@ -36,9 +36,15 @@
 //    @Mock
 //    private BillingInformationRepository mockBillingRepo;
 //
+<<<<<<< HEAD
 //    
 //    private BillingInformation testBilling;
 //    
+=======
+//
+//    private BillingInformation testBilling;
+//
+>>>>>>> f3170dd8753fd6e83ad0d4c73b45afd54fc9d399
 //    @BeforeEach
 //    public void setup() {
 //        testBilling = new BillingInformation(1,"123 Street Ave.", "", "San Antonio", "TX", "12345", "567", new Date(), "1111222233334444");

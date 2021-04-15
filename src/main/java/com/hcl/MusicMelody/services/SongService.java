@@ -25,7 +25,7 @@ public class SongService {
      * @param title - String 
      * @return Song
      */
-    public Song GetByTitle(String title) throws RuntimeException{
+    public Song getByTitle(String title) throws RuntimeException{
         Optional<Song> holder = songRepo.findByTitle(title);
         if (!holder.isPresent()) throw new RuntimeException();
         else return holder.get();
@@ -57,21 +57,6 @@ public class SongService {
         return String.valueOf(mins) + ":" + String.valueOf(seconds);
     }
     
-//    public List<Song> getPaging(Integer pageNo, Integer pageSize, String sortBy)
-//    {
-//        Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
-// 
-//        Page<Song> pagedResult = songRepo.findAll(paging);
-//         
-//        if(pagedResult.hasContent()) {
-//            return pagedResult.getContent();
-//        } else {
-//        	
-//        	List<Song> song = new ArrayList<Song>();
-//            return song;
-//        }
-//    }
-    
     public Page<Song> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection){
     	Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() :
 			Sort.by(sortField).descending();
@@ -79,17 +64,17 @@ public class SongService {
     	Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
     	
     	return this.songRepo.findAll(pageable);
-    };
+    }
     
     public Optional<Song> getSongById(Integer songId) {
     	return songRepo.findById(songId);
     }
 
-    public List<Song> listAll(String keyword) {
+    public List<Song> searchSongs(String keyword) {
         if (keyword != null) {
-            return songRepo.findAll(keyword);
+            return songRepo.songSearch(keyword);
         }
-        return songRepo.findAll();   
+        return songRepo.findAll();
     }
 
     public void deleteSongById(Integer id) {

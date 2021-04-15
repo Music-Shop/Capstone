@@ -13,49 +13,14 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class SongController {
 
-//     @PostMapping("")
-//     public ModelAndView s
 	@Autowired
     SongService songService;
-	
-//	@GetMapping
-//    public ResponseEntity<List<Song>> getAllSongs(
-//                        @RequestParam(defaultValue = "0") Integer pageNo, 
-//                        @RequestParam(defaultValue = "10") Integer pageSize,
-//                        @RequestParam(defaultValue = "id") String sortBy) 
-//    {
-//        List<Song> list = service.getPaging(pageNo, pageSize, sortBy);
-// 
-//        return new ResponseEntity<List<Song>>(list, new HttpHeaders(), HttpStatus.OK); 
-//    }
-	
-	//add page size
-//	@GetMapping("page/{pageNo}")
-//	public ModelAndView findPaginated(@PathVariable (value = "pageNo") int pageNo) {
-//		ModelAndView modelAndView = new ModelAndView();
-//		
-//		int pageSize = 5;
-//		
-//		Page<Song> page = service.findPaginated(pageNo, pageSize);
-//		List<Song> listSongs = page.getContent();
-//		
-//		modelAndView.addObject("currnentPage", pageNo);
-//		modelAndView.addObject("totalPages", page.getTotalPages());
-//		modelAndView.addObject("totalItems", page.getTotalElements());
-//		modelAndView.addObject("listSongs", listSongs);
-//		
-//		modelAndView.setViewName("user/home");
-//		
-//		return modelAndView;
-//
-//	}
 	
 	@GetMapping("/song")
 	public ModelAndView showSong(@RequestParam int songId) {
 		return findSong(songId);
 	}
 
-	
 	@GetMapping("/song/{sId}")
 	public ModelAndView findSong(@PathVariable (value = "sId") int sId) {
 		System.out.println("======================= " + sId + " =======================");

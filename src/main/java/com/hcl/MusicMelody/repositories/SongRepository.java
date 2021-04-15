@@ -12,8 +12,10 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface SongRepository extends JpaRepository<Song, Integer>{
     
+
+    public List<Song> findAll();
     public Optional<Song> findByTitle(String name);
 
     @Query("SELECT s FROM Song s WHERE s.title LIKE %?1% or s.artist.fname like %?1% or s.artist.lname like %?1%")
-    public List<Song> findAll (String keyword);
+    public List<Song> songSearch (String keyword);
 }
